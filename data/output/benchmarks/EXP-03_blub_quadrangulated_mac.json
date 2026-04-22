@@ -1,0 +1,39 @@
+[
+  {
+    "mesh_name": "blub_quadrangulated",
+    "mesh_path": "data/input/reference_datasets/blub/blub_quadrangulated.obj",
+    "n_vertices": 7106,
+    "n_faces": 7104,
+    "time_mean_s": 50.324006513614826,
+    "time_std_s": 1.5750757017710193,
+    "time_all_s": [
+      52.10564662492834,
+      49.74970241589472,
+      49.11667050002143
+    ],
+    "memory_peak_mb": 15.80909538269043,
+    "iterations": 191,
+    "function_evals": 203,
+    "execution_time": 50.324006513614826,
+    "initial_energy": 0.622189408271014,
+    "final_energy": 0.5870714817300928,
+    "energy_reduction": 5.644250138958402,
+    "planarity_improvement": 19.210638044547768,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.0002949111581066497,
+      "median": 0.0001664011364963805,
+      "std": 0.0005870577155573497,
+      "p95": 0.0009319950358661286,
+      "max": 0.014999859152388557
+    },
+    "planarity_after": {
+      "mean": 0.00029013187198509167,
+      "median": 0.00016633225667977996,
+      "std": 0.0005143130748296918,
+      "p95": 0.0009393316633729176,
+      "max": 0.009854098181508779
+    }
+  }
+]

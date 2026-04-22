@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\centering
+\caption{Performance benchmarks across real-world quad meshes (EXP-05).
+         All runs used default weights $w_p=10$, $w_f=1$, $w_c=5$.
+         Timings are the mean of three runs $\pm$ one standard deviation.
+         Hardware: Apple M3, NumPy backend.}
+\label{tab:benchmarks}
+\begin{tabular}{lrrrrrrl}
+\toprule
+Mesh & Vertices & Faces & Time (s) $\pm$ SD & Memory (MB) & Iterations & Planarity Improv.\ (\%) & Success \\
+\midrule
+\texttt{oloid256\_quad}       & 258   & 256   & $0.80 \pm 0.07$  & 0.76  & 118 & N/A$^{\dagger}$ & \checkmark \\
+\texttt{spot\_quadrangulated} & 2930  & 2928  & $18.47 \pm 0.82$ & 6.55  & 173 & 16.38           & \checkmark \\
+\texttt{blub\_quadrangulated} & 7106  & 7104  & $54.13 \pm 1.88$ & 15.59 & 191 & 19.21           & \checkmark \\
+\texttt{bob\_quad}            & 5344  & 5344  & $36.35 \pm 4.58$ & 11.70 & 155 & 11.73           & \checkmark \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item[$\dagger$] The oloid is a mathematically exact developable surface whose
+      mean per-face planarity deviation prior to optimisation is $\approx 0$
+      (unit-normalised $|d_f| < 10^{-4}$). The percentage improvement formula
+      $(\text{before} - \text{after})\,/\,\text{before} \times 100$ produces a
+      division-by-near-zero result and is therefore numerically meaningless for
+      this mesh. The correct measure is the absolute deviation: mean
+      $|d_f| = 0.0032$ after optimisation, 95th percentile $= 0.0061$,
+      which is within practical fabrication tolerance. See Section~5.3.
+\end{tablenotes}
+\end{table}

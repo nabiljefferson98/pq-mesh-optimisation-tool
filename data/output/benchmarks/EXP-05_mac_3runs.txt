@@ -1,0 +1,147 @@
+=== MAC EXP-05 RUN 1 ===
+
+Benchmarking 2 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing oloid256_quad.obj ... ✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓  118 iter, 1.16s ± 0.18s, 0.8 MB
+  Processing blub_quadrangulated.obj ... /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/src/optimisation/energy_terms.py:347: UserWarning: High-valence vertices detected (raw max valence = 7, stored max = 7, storage cap = 16). These are topologically non-standard for a quad mesh and will be skipped in angle balance computation. Check mesh import for T-junctions or non-manifold geometry.
+  vf = mesh.vertex_face_ids_padded
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓  191 iter, 49.39s ± 0.27s, 15.7 MB
+
+✅ Results saved to data/output/benchmarks/EXP-05_mac_run1.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  oloid256_quad                     258     256     1.16±0.18s        0.8       66.0%  ✅
+  blub_quadrangulated             7,106   7,104    49.39±0.27s       15.7        5.6%  ✅
+==========================================================================================
+=== MAC EXP-05 RUN 2 ===
+
+Benchmarking 2 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing oloid256_quad.obj ... ✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓  118 iter, 1.12s ± 0.02s, 0.8 MB
+  Processing blub_quadrangulated.obj ... /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/src/optimisation/energy_terms.py:347: UserWarning: High-valence vertices detected (raw max valence = 7, stored max = 7, storage cap = 16). These are topologically non-standard for a quad mesh and will be skipped in angle balance computation. Check mesh import for T-junctions or non-manifold geometry.
+  vf = mesh.vertex_face_ids_padded
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓  191 iter, 50.69s ± 2.45s, 15.7 MB
+
+✅ Results saved to data/output/benchmarks/EXP-05_mac_run2.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  oloid256_quad                     258     256     1.12±0.02s        0.8       66.0%  ✅
+  blub_quadrangulated             7,106   7,104    50.69±2.45s       15.7        5.6%  ✅
+==========================================================================================
+=== MAC EXP-05 RUN 3 ===
+
+Benchmarking 2 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing oloid256_quad.obj ... ✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓  118 iter, 1.23s ± 0.02s, 0.8 MB
+  Processing blub_quadrangulated.obj ... /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/src/optimisation/energy_terms.py:347: UserWarning: High-valence vertices detected (raw max valence = 7, stored max = 7, storage cap = 16). These are topologically non-standard for a quad mesh and will be skipped in angle balance computation. Check mesh import for T-junctions or non-manifold geometry.
+  vf = mesh.vertex_face_ids_padded
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓  191 iter, 54.95s ± 7.54s, 15.7 MB
+
+✅ Results saved to data/output/benchmarks/EXP-05_mac_run3.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  oloid256_quad                     258     256     1.23±0.02s        0.8       66.0%  ✅
+  blub_quadrangulated             7,106   7,104    54.95±7.54s       15.7        5.6%  ✅
+==========================================================================================

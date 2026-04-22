@@ -1,0 +1,192 @@
+=== MAC SERIES B RUN 1 ===
+
+Benchmarking 3 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing oloid64_quad.obj ... ✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓  92 iter, 0.27s ± 0.01s, 0.3 MB
+  Processing oloid256_quad.obj ... ✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓  118 iter, 1.13s ± 0.16s, 0.6 MB
+  Processing oloid1024_quad.obj ... ✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓  83 iter, 3.18s ± 0.02s, 2.3 MB
+
+✅ Results saved to data/output/benchmarks/EXP-01_seriesB_mac_run1.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  oloid64_quad                       66      64     0.27±0.01s        0.3       65.5%  ✅
+  oloid256_quad                     258     256     1.13±0.16s        0.6       66.0%  ✅
+  oloid1024_quad                  1,026   1,024     3.18±0.02s        2.3       66.2%  ✅
+==========================================================================================
+=== MAC SERIES B RUN 2 ===
+
+Benchmarking 3 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing oloid64_quad.obj ... ✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓  92 iter, 0.24s ± 0.01s, 0.3 MB
+  Processing oloid256_quad.obj ... ✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓  118 iter, 1.10s ± 0.04s, 0.6 MB
+  Processing oloid1024_quad.obj ... ✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓  83 iter, 3.14s ± 0.03s, 2.3 MB
+
+✅ Results saved to data/output/benchmarks/EXP-01_seriesB_mac_run2.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  oloid64_quad                       66      64     0.24±0.01s        0.3       65.5%  ✅
+  oloid256_quad                     258     256     1.10±0.04s        0.6       66.0%  ✅
+  oloid1024_quad                  1,026   1,024     3.14±0.03s        2.3       66.2%  ✅
+==========================================================================================
+=== MAC SERIES B RUN 3 ===
+
+Benchmarking 3 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing oloid64_quad.obj ... ✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓ Parsed 66 vertices, 64 faces total
+  Quads:     64
+  Triangles: 0
+✓ Loaded mesh: 66 vertices, 64 faces
+
+✓  92 iter, 0.25s ± 0.01s, 0.3 MB
+  Processing oloid256_quad.obj ... ✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓  118 iter, 1.12s ± 0.03s, 0.6 MB
+  Processing oloid1024_quad.obj ... ✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓ Parsed 1026 vertices, 1024 faces total
+  Quads:     1024
+  Triangles: 0
+✓ Loaded mesh: 1026 vertices, 1024 faces
+
+✓  83 iter, 3.19s ± 0.04s, 2.3 MB
+
+✅ Results saved to data/output/benchmarks/EXP-01_seriesB_mac_run3.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  oloid64_quad                       66      64     0.25±0.01s        0.3       65.5%  ✅
+  oloid256_quad                     258     256     1.12±0.03s        0.6       66.0%  ✅
+  oloid1024_quad                  1,026   1,024     3.19±0.04s        2.3       66.2%  ✅
+==========================================================================================

@@ -1,0 +1,5 @@
+{
+    "python.analysis.inlayHints.callArgumentNames": "off",
+    "python.analysis.supportAllPythonDocuments": false,
+    "python.terminal.activateEnvInCurrentTerminal": false
+}

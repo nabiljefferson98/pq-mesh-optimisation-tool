@@ -1,0 +1,113 @@
+[
+  {
+    "mesh_name": "oloid64_quad",
+    "mesh_path": "data\\input\\reference_datasets\\oloid\\oloid64_quad.obj",
+    "n_vertices": 66,
+    "n_faces": 64,
+    "time_mean_s": 0.2745443333333242,
+    "time_std_s": 0.03417860775252508,
+    "time_all_s": [
+      0.31397740000011254,
+      0.25343059999977413,
+      0.25622500000008586
+    ],
+    "memory_peak_mb": 0.35661983489990234,
+    "iterations": 81,
+    "function_evals": 90,
+    "execution_time": 0.2745443333333242,
+    "initial_energy": 576.0736396536914,
+    "final_energy": 198.5575047731706,
+    "energy_reduction": 65.53261751526523,
+    "planarity_improvement": -596058.1967678369,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.00013526525759397114,
+      "median": 0.00015499335798804033,
+      "std": 5.63613834693812e-05,
+      "p95": 0.0001924928210014522,
+      "max": 0.00019271782419491934
+    },
+    "planarity_after": {
+      "mean": 0.009974199223011524,
+      "median": 0.009823736799388662,
+      "std": 0.005341363201653114,
+      "p95": 0.018912789262980213,
+      "max": 0.01945504281347423
+    }
+  },
+  {
+    "mesh_name": "oloid256_quad",
+    "mesh_path": "data\\input\\reference_datasets\\oloid\\oloid256_quad.obj",
+    "n_vertices": 258,
+    "n_faces": 256,
+    "time_mean_s": 1.2932733000000856,
+    "time_std_s": 0.11336907334480856,
+    "time_all_s": [
+      1.1642489000005298,
+      1.3386263000002145,
+      1.3769446999995125
+    ],
+    "memory_peak_mb": 0.6297178268432617,
+    "iterations": 113,
+    "function_evals": 121,
+    "execution_time": 1.2932733000000856,
+    "initial_energy": 2325.6866376505104,
+    "final_energy": 789.9832459750862,
+    "energy_reduction": 66.03225760572995,
+    "planarity_improvement": -356297896.07074213,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 2.1137562907144736e-06,
+      "median": 2.417861994739488e-06,
+      "std": 9.224747043009341e-07,
+      "p95": 3.21740042868275e-06,
+      "max": 3.499505382517226e-06
+    },
+    "planarity_after": {
+      "mean": 0.003174717212938801,
+      "median": 0.0030739821709252825,
+      "std": 0.0029786565173602745,
+      "p95": 0.006071871764612616,
+      "max": 0.019347129711232286
+    }
+  },
+  {
+    "mesh_name": "oloid1024_quad",
+    "mesh_path": "data\\input\\reference_datasets\\oloid\\oloid1024_quad.obj",
+    "n_vertices": 1026,
+    "n_faces": 1024,
+    "time_mean_s": 3.8452770999998998,
+    "time_std_s": 0.02593348527078829,
+    "time_all_s": [
+      3.815936899999542,
+      3.865134699999544,
+      3.8547597000006135
+    ],
+    "memory_peak_mb": 2.2941694259643555,
+    "iterations": 83,
+    "function_evals": 90,
+    "execution_time": 3.8452770999998998,
+    "initial_energy": 9335.259276097893,
+    "final_energy": 3159.0880020855675,
+    "energy_reduction": 66.15961154743572,
+    "planarity_improvement": -1491975009.4225476,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 2.0899382104832123e-07,
+      "median": 1.7580423208555088e-07,
+      "std": 1.538896271123741e-07,
+      "p95": 4.7494859101560703e-07,
+      "max": 6.534152928362872e-07
+    },
+    "planarity_after": {
+      "mean": 0.000750614482341794,
+      "median": 0.0007211459760359468,
+      "std": 0.000664513969958148,
+      "p95": 0.0015424911179957273,
+      "max": 0.00555757184877091
+    }
+  }
+]

@@ -1,0 +1,187 @@
+[
+  {
+    "mesh_name": "plane_10x10_noisy",
+    "mesh_path": "D:\\PyCharm Repo\\pq-mesh-optimisation\\data\\input\\generated\\plane_10x10_noisy.obj",
+    "n_vertices": 121,
+    "n_faces": 100,
+    "time_mean_s": 0.41646686666657234,
+    "time_std_s": 0.04023279865140234,
+    "time_all_s": [
+      0.46292369999991934,
+      0.39324649999980466,
+      0.3932303999999931
+    ],
+    "memory_peak_mb": 0.46500396728515625,
+    "iterations": 95,
+    "function_evals": 101,
+    "execution_time": 0.41646686666657234,
+    "initial_energy": 5.844650045981497,
+    "final_energy": 1.19877937493326,
+    "energy_reduction": 79.48928737388677,
+    "planarity_improvement": 96.97921502084917,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.028635007481585026,
+      "median": 0.024347748727040326,
+      "std": 0.021003701334171284,
+      "p95": 0.06686074137809471,
+      "max": 0.0767551523803879
+    },
+    "planarity_after": {
+      "mean": 0.005184915941934679,
+      "median": 0.005345217862971388,
+      "std": 0.0033484837939076343,
+      "p95": 0.011640125053176336,
+      "max": 0.013658071980092713
+    }
+  },
+  {
+    "mesh_name": "plane_20x20_noisy",
+    "mesh_path": "D:\\PyCharm Repo\\pq-mesh-optimisation\\data\\input\\generated\\plane_20x20_noisy.obj",
+    "n_vertices": 441,
+    "n_faces": 400,
+    "time_mean_s": 3.0477442000001247,
+    "time_std_s": 0.4749338110632935,
+    "time_all_s": [
+      2.507416600000397,
+      3.2366879999999583,
+      3.399128000000019
+    ],
+    "memory_peak_mb": 1.0248699188232422,
+    "iterations": 190,
+    "function_evals": 197,
+    "execution_time": 3.0477442000001247,
+    "initial_energy": 22.8036424172713,
+    "final_energy": 3.7609117336632396,
+    "energy_reduction": 83.5074078743896,
+    "planarity_improvement": 94.87567479233167,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.0214811772817054,
+      "median": 0.020522216557538622,
+      "std": 0.01383703752035705,
+      "p95": 0.04590015542321265,
+      "max": 0.04989904399637317
+    },
+    "planarity_after": {
+      "mean": 0.004636643834304136,
+      "median": 0.004164386550104463,
+      "std": 0.0034581047080828203,
+      "p95": 0.01135451023629307,
+      "max": 0.01622244981481124
+    }
+  },
+  {
+    "mesh_name": "plane_3x3_noisy",
+    "mesh_path": "D:\\PyCharm Repo\\pq-mesh-optimisation\\data\\input\\generated\\plane_3x3_noisy.obj",
+    "n_vertices": 16,
+    "n_faces": 9,
+    "time_mean_s": 0.061780966666750224,
+    "time_std_s": 0.0007259946300122165,
+    "time_all_s": [
+      0.06258139999954437,
+      0.06116500000007363,
+      0.06159650000063266
+    ],
+    "memory_peak_mb": 0.11066055297851562,
+    "iterations": 47,
+    "function_evals": 56,
+    "execution_time": 0.061780966666750224,
+    "initial_energy": 2.2401193627921363,
+    "final_energy": 1.5672415190109645,
+    "energy_reduction": 30.037588842698153,
+    "planarity_improvement": 97.37668244913108,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.037083081688666635,
+      "median": 0.028703476344119353,
+      "std": 0.021022107706091767,
+      "p95": 0.07491405982895506,
+      "max": 0.07817639402817554
+    },
+    "planarity_after": {
+      "mean": 0.005467291743688592,
+      "median": 0.004677692044496621,
+      "std": 0.0042162309500772665,
+      "p95": 0.012915982320083298,
+      "max": 0.013353107584232103
+    }
+  },
+  {
+    "mesh_name": "plane_5x5_noisy",
+    "mesh_path": "D:\\PyCharm Repo\\pq-mesh-optimisation\\data\\input\\generated\\plane_5x5_noisy.obj",
+    "n_vertices": 36,
+    "n_faces": 25,
+    "time_mean_s": 0.1535988666664707,
+    "time_std_s": 0.003873215778155255,
+    "time_all_s": [
+      0.15796529999988707,
+      0.15225379999992583,
+      0.15057749999959924
+    ],
+    "memory_peak_mb": 0.1591644287109375,
+    "iterations": 75,
+    "function_evals": 84,
+    "execution_time": 0.1535988666664707,
+    "initial_energy": 2.7439378048769107,
+    "final_energy": 1.02879711093135,
+    "energy_reduction": 62.506544095029135,
+    "planarity_improvement": 97.83820855629999,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.038491971394022634,
+      "median": 0.03276232409945857,
+      "std": 0.02615291932196839,
+      "p95": 0.07625092237176959,
+      "max": 0.09963016941714287
+    },
+    "planarity_after": {
+      "mean": 0.005795891981943176,
+      "median": 0.006219162957995299,
+      "std": 0.003636419126461469,
+      "p95": 0.012119082632206492,
+      "max": 0.01336522337434499
+    }
+  },
+  {
+    "mesh_name": "plane_5x5_very_noisy",
+    "mesh_path": "D:\\PyCharm Repo\\pq-mesh-optimisation\\data\\input\\generated\\plane_5x5_very_noisy.obj",
+    "n_vertices": 36,
+    "n_faces": 25,
+    "time_mean_s": 0.18109080000006847,
+    "time_std_s": 0.005210505901385088,
+    "time_all_s": [
+      0.18359179999970365,
+      0.18457930000022316,
+      0.17510130000027857
+    ],
+    "memory_peak_mb": 0.15378284454345703,
+    "iterations": 86,
+    "function_evals": 97,
+    "execution_time": 0.18109080000006847,
+    "initial_energy": 7.612246792814956,
+    "final_energy": 1.7795956731330116,
+    "energy_reduction": 76.62193933579853,
+    "planarity_improvement": 97.30703512204852,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.06771543382067657,
+      "median": 0.06265938445823072,
+      "std": 0.046292536683674924,
+      "p95": 0.1371136567992484,
+      "max": 0.16035634224593115
+    },
+    "planarity_after": {
+      "mean": 0.011381528578064177,
+      "median": 0.011819031916863471,
+      "std": 0.007187050067353538,
+      "p95": 0.02411460971370257,
+      "max": 0.0262255667496779
+    }
+  }
+]

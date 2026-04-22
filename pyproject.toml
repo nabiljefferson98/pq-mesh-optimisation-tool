@@ -1,0 +1,61 @@
+ [build-system]
+ requires = ["setuptools>=61.0"]
+ build-backend = "setuptools.build_meta"
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.coverage.run]
+source = ["src"]
+
+[tool.coverage.report]
+omit = [
+    "src/visualisation/interactive_optimisation.py",
+]
+fail_under = 70
+exclude_lines = [
+    # Standard no-cover pragma
+    "pragma: no cover",
+
+    # Defensive / abstract stubs
+    "raise NotImplementedError",
+
+    # GPU (CuPy) paths — only reachable on CUDA hardware
+    "if HAS_CUDA:",
+    "if BACKEND == .cupy.:",
+    "import cupy",
+    "import cupyx",
+    "from cupy",
+    "cp\\.cuda",
+    "cp\\.linalg",
+    "cp\\.einsum",
+    "cpsp\\.",
+
+    # Numba @njit decorated function bodies — compiled to native code,
+    # not walked by the Python coverage tracer (sys.settrace is disabled
+    # inside @njit functions by design).
+    "@njit",
+    "@_njit_pg",
+    "from numba import",
+    "prange",
+]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+]
+per-file-ignores = [
+    "__init__.py:F401,F403",
+    "src/visualisation/interactive_optimisation.py:E402,E501,F401,F811",
+    "scripts/*.py:E402,E501,F401",
+    "scripts/*/*.py:E402,E501,F401",
+]
+statistics = true

@@ -1,0 +1,39 @@
+[
+  {
+    "mesh_name": "spot_quadrangulated",
+    "mesh_path": "data\\input\\reference_datasets\\spot\\spot_quadrangulated.obj",
+    "n_vertices": 2930,
+    "n_faces": 2928,
+    "time_mean_s": 18.308805466666552,
+    "time_std_s": 1.6199903169473195,
+    "time_all_s": [
+      18.02312299999994,
+      16.850660199999766,
+      20.052633199999946
+    ],
+    "memory_peak_mb": 6.683927536010742,
+    "iterations": 173,
+    "function_evals": 184,
+    "execution_time": 18.308805466666552,
+    "initial_energy": 1.0451869514306544,
+    "final_energy": 0.9662441932781057,
+    "energy_reduction": 7.552979688896007,
+    "planarity_improvement": 16.383846947700487,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.0008575197170292886,
+      "median": 0.0004288296124805146,
+      "std": 0.0012184251622074486,
+      "p95": 0.0031706134114389984,
+      "max": 0.010060078416258498
+    },
+    "planarity_after": {
+      "mean": 0.0008075726562561528,
+      "median": 0.0003972644172355939,
+      "std": 0.0010972790607393502,
+      "p95": 0.0030449351321464447,
+      "max": 0.00831039676801796
+    }
+  }
+]

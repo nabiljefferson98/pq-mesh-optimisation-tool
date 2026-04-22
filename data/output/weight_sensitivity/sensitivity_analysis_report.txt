@@ -1,0 +1,49 @@
+================================================================================
+WEIGHT SENSITIVITY ANALYSIS REPORT
+================================================================================
+
+Total configurations tested: 80
+Successful optimizations: 80
+Failed optimizations: 0
+
+================================================================================
+BEST CONFIGURATIONS BY OBJECTIVE
+================================================================================
+
+Best Planarity Improvement:
+  Weights: planarity=100.0, fairness=10.0, closeness=1.0
+  Planarity improvement: 99.99%
+  Fairness improvement: 96.89%
+  Vertex displacement: 0.059699
+
+Best Fairness Improvement:
+  Weights: planarity=100.0, fairness=10.0, closeness=1.0
+  Planarity improvement: 99.99%
+  Fairness improvement: 96.89%
+  Vertex displacement: 0.059699
+
+Minimal Vertex Displacement:
+  Weights: planarity=1.0, fairness=0.1, closeness=20.0
+  Planarity improvement: 29.49%
+  Fairness improvement: 24.88%
+  Vertex displacement: 0.004324
+
+================================================================================
+PARETO FRONTIER ANALYSIS
+================================================================================
+
+Pareto-optimal configurations: 75
+Percentage: 93.8%
+
+Pareto-optimal weight configurations:
+  1. wp=1.0, wf=0.1, wc=1.0 | Plan=92.7%, Fair=84.4%, Disp=0.0233
+  2. wp=1.0, wf=0.1, wc=5.0 | Plan=64.9%, Fair=56.2%, Disp=0.0115
+  3. wp=1.0, wf=0.1, wc=10.0 | Plan=46.5%, Fair=39.6%, Disp=0.0073
+  4. wp=1.0, wf=0.1, wc=20.0 | Plan=29.5%, Fair=24.9%, Disp=0.0043
+  5. wp=1.0, wf=1.0, wc=1.0 | Plan=99.5%, Fair=94.7%, Disp=0.0392
+  6. wp=1.0, wf=1.0, wc=5.0 | Plan=95.1%, Fair=88.9%, Disp=0.0272
+  7. wp=1.0, wf=1.0, wc=10.0 | Plan=88.8%, Fair=82.4%, Disp=0.0219
+  8. wp=1.0, wf=1.0, wc=20.0 | Plan=77.2%, Fair=71.5%, Disp=0.0164
+  9. wp=1.0, wf=5.0, wc=1.0 | Plan=100.0%, Fair=96.5%, Disp=0.0529
+  10. wp=1.0, wf=5.0, wc=5.0 | Plan=99.5%, Fair=94.7%, Disp=0.0391
+================================================================================

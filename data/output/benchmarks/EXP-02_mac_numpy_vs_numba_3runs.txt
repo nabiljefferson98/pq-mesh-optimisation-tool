@@ -1,0 +1,588 @@
+=== MAC BACKEND=numpy RUN 1 ===
+
+Benchmarking 5 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing plane_10x10_noisy.obj ... ✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓  95 iter, 0.09s ± 0.00s, 0.4 MB
+  Processing plane_20x20_noisy.obj ... ✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓  190 iter, 0.53s ± 0.01s, 1.3 MB
+  Processing plane_3x3_noisy.obj ... ✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓  47 iter, 0.02s ± 0.00s, 0.1 MB
+  Processing plane_5x5_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  75 iter, 0.03s ± 0.00s, 0.2 MB
+  Processing plane_5x5_very_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  86 iter, 0.04s ± 0.00s, 0.2 MB
+
+✅ Results saved to data/output/benchmarks/EXP-02_mac_numpy_run1.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  plane_10x10_noisy                 121     100     0.09±0.00s        0.4       79.5%  ✅
+  plane_20x20_noisy                 441     400     0.53±0.01s        1.3       83.5%  ✅
+  plane_3x3_noisy                    16       9     0.02±0.00s        0.1       30.0%  ✅
+  plane_5x5_noisy                    36      25     0.03±0.00s        0.2       62.5%  ✅
+  plane_5x5_very_noisy               36      25     0.04±0.00s        0.2       76.6%  ✅
+==========================================================================================
+=== MAC BACKEND=numpy RUN 2 ===
+
+Benchmarking 5 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing plane_10x10_noisy.obj ... ✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓  95 iter, 0.09s ± 0.00s, 0.4 MB
+  Processing plane_20x20_noisy.obj ... ✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓  190 iter, 0.54s ± 0.02s, 1.3 MB
+  Processing plane_3x3_noisy.obj ... ✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓  47 iter, 0.02s ± 0.00s, 0.1 MB
+  Processing plane_5x5_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  75 iter, 0.04s ± 0.00s, 0.2 MB
+  Processing plane_5x5_very_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  86 iter, 0.04s ± 0.00s, 0.2 MB
+
+✅ Results saved to data/output/benchmarks/EXP-02_mac_numpy_run2.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  plane_10x10_noisy                 121     100     0.09±0.00s        0.4       79.5%  ✅
+  plane_20x20_noisy                 441     400     0.54±0.02s        1.3       83.5%  ✅
+  plane_3x3_noisy                    16       9     0.02±0.00s        0.1       30.0%  ✅
+  plane_5x5_noisy                    36      25     0.04±0.00s        0.2       62.5%  ✅
+  plane_5x5_very_noisy               36      25     0.04±0.00s        0.2       76.6%  ✅
+==========================================================================================
+=== MAC BACKEND=numpy RUN 3 ===
+
+Benchmarking 5 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing plane_10x10_noisy.obj ... ✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓  95 iter, 0.09s ± 0.00s, 0.4 MB
+  Processing plane_20x20_noisy.obj ... ✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓  190 iter, 0.61s ± 0.10s, 1.3 MB
+  Processing plane_3x3_noisy.obj ... ✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓  47 iter, 0.02s ± 0.00s, 0.1 MB
+  Processing plane_5x5_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  75 iter, 0.03s ± 0.00s, 0.2 MB
+  Processing plane_5x5_very_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  86 iter, 0.04s ± 0.00s, 0.2 MB
+
+✅ Results saved to data/output/benchmarks/EXP-02_mac_numpy_run3.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  plane_10x10_noisy                 121     100     0.09±0.00s        0.4       79.5%  ✅
+  plane_20x20_noisy                 441     400     0.61±0.10s        1.3       83.5%  ✅
+  plane_3x3_noisy                    16       9     0.02±0.00s        0.1       30.0%  ✅
+  plane_5x5_noisy                    36      25     0.03±0.00s        0.2       62.5%  ✅
+  plane_5x5_very_noisy               36      25     0.04±0.00s        0.2       76.6%  ✅
+==========================================================================================
+=== MAC BACKEND=numba RUN 1 ===
+
+Benchmarking 5 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing plane_10x10_noisy.obj ... ✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓  95 iter, 0.41s ± 0.05s, 0.5 MB
+  Processing plane_20x20_noisy.obj ... ✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓  190 iter, 2.68s ± 0.04s, 1.0 MB
+  Processing plane_3x3_noisy.obj ... ✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓  47 iter, 0.03s ± 0.00s, 0.1 MB
+  Processing plane_5x5_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  75 iter, 0.09s ± 0.00s, 0.2 MB
+  Processing plane_5x5_very_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  86 iter, 0.10s ± 0.00s, 0.1 MB
+
+✅ Results saved to data/output/benchmarks/EXP-02_mac_numba_run1.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  plane_10x10_noisy                 121     100     0.41±0.05s        0.5       79.5%  ✅
+  plane_20x20_noisy                 441     400     2.68±0.04s        1.0       83.5%  ✅
+  plane_3x3_noisy                    16       9     0.03±0.00s        0.1       30.0%  ✅
+  plane_5x5_noisy                    36      25     0.09±0.00s        0.2       62.5%  ✅
+  plane_5x5_very_noisy               36      25     0.10±0.00s        0.1       76.6%  ✅
+==========================================================================================
+=== MAC BACKEND=numba RUN 2 ===
+
+Benchmarking 5 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing plane_10x10_noisy.obj ... ✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓  95 iter, 0.37s ± 0.04s, 0.5 MB
+  Processing plane_20x20_noisy.obj ... ✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓  190 iter, 2.68s ± 0.08s, 1.0 MB
+  Processing plane_3x3_noisy.obj ... ✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓  47 iter, 0.03s ± 0.00s, 0.1 MB
+  Processing plane_5x5_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  75 iter, 0.10s ± 0.00s, 0.2 MB
+  Processing plane_5x5_very_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  86 iter, 0.10s ± 0.00s, 0.1 MB
+
+✅ Results saved to data/output/benchmarks/EXP-02_mac_numba_run2.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  plane_10x10_noisy                 121     100     0.37±0.04s        0.5       79.5%  ✅
+  plane_20x20_noisy                 441     400     2.68±0.08s        1.0       83.5%  ✅
+  plane_3x3_noisy                    16       9     0.03±0.00s        0.1       30.0%  ✅
+  plane_5x5_noisy                    36      25     0.10±0.00s        0.2       62.5%  ✅
+  plane_5x5_very_noisy               36      25     0.10±0.00s        0.1       76.6%  ✅
+==========================================================================================
+=== MAC BACKEND=numba RUN 3 ===
+
+Benchmarking 5 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing plane_10x10_noisy.obj ... ✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+✓  95 iter, 0.37s ± 0.01s, 0.5 MB
+  Processing plane_20x20_noisy.obj ... ✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓  190 iter, 2.73s ± 0.12s, 1.0 MB
+  Processing plane_3x3_noisy.obj ... ✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓ Parsed 16 vertices, 9 faces total
+  Quads:     9
+  Triangles: 0
+✓ Loaded mesh: 16 vertices, 9 faces
+
+✓  47 iter, 0.03s ± 0.00s, 0.1 MB
+  Processing plane_5x5_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  75 iter, 0.09s ± 0.00s, 0.2 MB
+  Processing plane_5x5_very_noisy.obj ... ✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+✓  86 iter, 0.10s ± 0.01s, 0.1 MB
+
+✅ Results saved to data/output/benchmarks/EXP-02_mac_numba_run3.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  plane_10x10_noisy                 121     100     0.37±0.01s        0.5       79.5%  ✅
+  plane_20x20_noisy                 441     400     2.73±0.12s        1.0       83.5%  ✅
+  plane_3x3_noisy                    16       9     0.03±0.00s        0.1       30.0%  ✅
+  plane_5x5_noisy                    36      25     0.09±0.00s        0.2       62.5%  ✅
+  plane_5x5_very_noisy               36      25     0.10±0.01s        0.1       76.6%  ✅
+==========================================================================================

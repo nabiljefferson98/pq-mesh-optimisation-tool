@@ -1,0 +1,39 @@
+[
+  {
+    "mesh_name": "plane_20x20_noisy",
+    "mesh_path": "data/input/generated/plane_20x20_noisy.obj",
+    "n_vertices": 441,
+    "n_faces": 400,
+    "time_mean_s": 2.7957384722928205,
+    "time_std_s": 0.08551935855375235,
+    "time_all_s": [
+      2.894270791905001,
+      2.7408068750519305,
+      2.7521377499215305
+    ],
+    "memory_peak_mb": 1.1608381271362305,
+    "iterations": 190,
+    "function_evals": 197,
+    "execution_time": 2.7957384722928205,
+    "initial_energy": 22.8036424172713,
+    "final_energy": 3.7609117336632396,
+    "energy_reduction": 83.5074078743896,
+    "planarity_improvement": 94.87567479232521,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.0214811772817054,
+      "median": 0.020522216557538622,
+      "std": 0.01383703752035705,
+      "p95": 0.045900155423212664,
+      "max": 0.049899043996373155
+    },
+    "planarity_after": {
+      "mean": 0.004636643834308147,
+      "median": 0.004164386550100992,
+      "std": 0.0034581047080835176,
+      "p95": 0.011354510236292532,
+      "max": 0.016222449814844875
+    }
+  }
+]

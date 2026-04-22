@@ -1,0 +1,50 @@
+[MASTER]
+# List of plugins (as comma separated values of python module names) to load,
+# usually to register additional checkers.
+load-plugins=
+
+# A comma-separated list of package or module names from which C extensions may
+# be loaded. Extensions are loading into the Python interpreter and can be
+# analyzed after it.
+extension-pkg-allow-list=polyscope,polyscope.imgui,cupy,cupy_backends,numba
+
+[MESSAGES CONTROL]
+# Disable the message, report, category or checker with the given id(s).
+disable=
+    # These are often intentional in this specific project's architecture
+    import-outside-toplevel,
+    wrong-import-position,
+
+    # These are a bit too strict for the research-oriented codebase
+    too-many-instance-attributes,
+    too-many-locals,
+    too-many-arguments,
+    too-many-positional-arguments,
+    too-many-statements,
+    too-many-branches,
+    too-many-nested-blocks,
+    too-many-lines,
+
+    # Naming conventions (many math variables like E_p, L, Vt)
+    invalid-name,
+
+    # Handled by other tools or less critical
+    missing-function-docstring,
+    missing-module-docstring,
+    missing-class-docstring,
+
+    # Suppress noise from C extensions
+    c-extension-no-member,
+    no-member,
+
+    # Architectural suppresses
+    broad-exception-caught,
+    superfluous-parens,
+    attribute-defined-outside-init,
+    global-statement,
+    unused-import,
+    line-too-long
+
+[BASIC]
+# Good variable names which should always be accepted, separated by a comma.
+good-names=i,j,k,ex,v,f,x,y,z,e,cp,np,ps,L,V,E,u,v1,v2,n1,n2

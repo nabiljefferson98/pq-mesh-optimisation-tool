@@ -1,0 +1,124 @@
+=== CONVERGENCE: data/input/generated/plane_20x20_noisy.obj ===
+
+Benchmarking 1 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing plane_20x20_noisy.obj ... ✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓ Parsed 441 vertices, 400 faces total
+  Quads:     400
+  Triangles: 0
+✓ Loaded mesh: 441 vertices, 400 faces
+
+✓  190 iter, 2.80s ± 0.09s, 1.2 MB
+
+✅ Results saved to data/output/benchmarks/EXP-03_plane_20x20_noisy_mac.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  plane_20x20_noisy                 441     400     2.80±0.09s        1.2       83.5%  ✅
+==========================================================================================
+=== CONVERGENCE: data/input/reference_datasets/oloid/oloid256_quad.obj ===
+
+Benchmarking 1 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing oloid256_quad.obj ... ✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+✓  118 iter, 1.20s ± 0.10s, 0.8 MB
+
+✅ Results saved to data/output/benchmarks/EXP-03_oloid256_quad_mac.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  oloid256_quad                     258     256     1.20±0.10s        0.8       66.0%  ✅
+==========================================================================================
+=== CONVERGENCE: data/input/reference_datasets/spot/spot_quadrangulated.obj ===
+
+Benchmarking 1 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing spot_quadrangulated.obj ... /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/src/optimisation/energy_terms.py:347: UserWarning: High-valence vertices detected (raw max valence = 6, stored max = 6, storage cap = 16). These are topologically non-standard for a quad mesh and will be skipped in angle balance computation. Check mesh import for T-junctions or non-manifold geometry.
+  vf = mesh.vertex_face_ids_padded
+✓ Parsed 2930 vertices, 2928 faces total
+  Quads:     2928
+  Triangles: 0
+✓ Loaded mesh: 2930 vertices, 2928 faces
+
+✓ Parsed 2930 vertices, 2928 faces total
+  Quads:     2928
+  Triangles: 0
+✓ Loaded mesh: 2930 vertices, 2928 faces
+
+✓ Parsed 2930 vertices, 2928 faces total
+  Quads:     2928
+  Triangles: 0
+✓ Loaded mesh: 2930 vertices, 2928 faces
+
+✓  173 iter, 19.63s ± 0.30s, 6.7 MB
+
+✅ Results saved to data/output/benchmarks/EXP-03_spot_quadrangulated_mac.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  spot_quadrangulated             2,930   2,928    19.63±0.30s        6.7        7.6%  ✅
+==========================================================================================
+=== CONVERGENCE: data/input/reference_datasets/blub/blub_quadrangulated.obj ===
+
+Benchmarking 1 mesh(es) (3 repetition(s) each, max_iter=500)...
+
+  Processing blub_quadrangulated.obj ... /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/src/optimisation/energy_terms.py:347: UserWarning: High-valence vertices detected (raw max valence = 7, stored max = 7, storage cap = 16). These are topologically non-standard for a quad mesh and will be skipped in angle balance computation. Check mesh import for T-junctions or non-manifold geometry.
+  vf = mesh.vertex_face_ids_padded
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+✓  191 iter, 50.32s ± 1.58s, 15.8 MB
+
+✅ Results saved to data/output/benchmarks/EXP-03_blub_quadrangulated_mac.json
+
+==========================================================================================
+BENCHMARK SUMMARY
+==========================================================================================
+  Mesh                         Vertices   Faces     Time (s)   Mem (MB)   Energy ↓   OK
+------------------------------------------------------------------------------------------
+  blub_quadrangulated             7,106   7,104    50.32±1.58s       15.8        5.6%  ✅
+==========================================================================================

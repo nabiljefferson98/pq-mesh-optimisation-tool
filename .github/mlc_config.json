@@ -1,0 +1,12 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^http://localhost"
+    }
+  ],
+  "replacementPatterns": [],
+  "retryOn429": true,
+  "retryCount": 2,
+  "fallbackRetryDelay": "500ms",
+  "aliveStatusCodes": [200, 206]
+}

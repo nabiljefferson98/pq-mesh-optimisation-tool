@@ -1,0 +1,113 @@
+[
+  {
+    "mesh_name": "oloid256_quad",
+    "mesh_path": "data\\input\\reference_datasets\\oloid\\oloid256_quad.obj",
+    "n_vertices": 258,
+    "n_faces": 256,
+    "time_mean_s": 1.2151407666660816,
+    "time_std_s": 0.13119715134462565,
+    "time_all_s": [
+      1.094062500000291,
+      1.1968272999984038,
+      1.35453249999955
+    ],
+    "memory_peak_mb": 0.7649202346801758,
+    "iterations": 113,
+    "function_evals": 121,
+    "execution_time": 1.2151407666660816,
+    "initial_energy": 2325.6866376505104,
+    "final_energy": 789.9832459750862,
+    "energy_reduction": 66.03225760572995,
+    "planarity_improvement": -356297896.07074213,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 2.1137562907144736e-06,
+      "median": 2.417861994739488e-06,
+      "std": 9.224747043009341e-07,
+      "p95": 3.21740042868275e-06,
+      "max": 3.499505382517226e-06
+    },
+    "planarity_after": {
+      "mean": 0.003174717212938801,
+      "median": 0.0030739821709252825,
+      "std": 0.0029786565173602745,
+      "p95": 0.006071871764612616,
+      "max": 0.019347129711232286
+    }
+  },
+  {
+    "mesh_name": "spot_quadrangulated",
+    "mesh_path": "data\\input\\reference_datasets\\spot\\spot_quadrangulated.obj",
+    "n_vertices": 2930,
+    "n_faces": 2928,
+    "time_mean_s": 21.67896373333315,
+    "time_std_s": 0.05642401222694116,
+    "time_all_s": [
+      21.69175709999945,
+      21.727892599999905,
+      21.61724150000009
+    ],
+    "memory_peak_mb": 6.546417236328125,
+    "iterations": 173,
+    "function_evals": 184,
+    "execution_time": 21.67896373333315,
+    "initial_energy": 1.0451869514306544,
+    "final_energy": 0.9662441932781057,
+    "energy_reduction": 7.552979688896007,
+    "planarity_improvement": 16.383846947700487,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.0008575197170292886,
+      "median": 0.0004288296124805146,
+      "std": 0.0012184251622074486,
+      "p95": 0.0031706134114389984,
+      "max": 0.010060078416258498
+    },
+    "planarity_after": {
+      "mean": 0.0008075726562561528,
+      "median": 0.0003972644172355939,
+      "std": 0.0010972790607393502,
+      "p95": 0.0030449351321464447,
+      "max": 0.00831039676801796
+    }
+  },
+  {
+    "mesh_name": "blub_quadrangulated",
+    "mesh_path": "data\\input\\reference_datasets\\blub\\blub_quadrangulated.obj",
+    "n_vertices": 7106,
+    "n_faces": 7104,
+    "time_mean_s": 57.66979633333358,
+    "time_std_s": 0.12337833277402036,
+    "time_all_s": [
+      57.79791130000012,
+      57.659702999999354,
+      57.55177470000126
+    ],
+    "memory_peak_mb": 15.593505859375,
+    "iterations": 191,
+    "function_evals": 203,
+    "execution_time": 57.66979633333358,
+    "initial_energy": 0.622189408271014,
+    "final_energy": 0.5870714817306262,
+    "energy_reduction": 5.64425013887268,
+    "planarity_improvement": 19.210637798004633,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.00029491115810664976,
+      "median": 0.00016640113649638027,
+      "std": 0.0005870577155573497,
+      "p95": 0.0009319950358661288,
+      "max": 0.01499985915238856
+    },
+    "planarity_after": {
+      "mean": 0.00029013187198418256,
+      "median": 0.0001663321691809724,
+      "std": 0.0005143130758646943,
+      "p95": 0.0009393316635884086,
+      "max": 0.009854098293157247
+    }
+  }
+]

@@ -1,0 +1,76 @@
+[
+  {
+    "mesh_name": "spot_quadrangulated",
+    "mesh_path": "data/input/reference_datasets/spot/spot_quadrangulated.obj",
+    "n_vertices": 2930,
+    "n_faces": 2928,
+    "time_mean_s": 27.259613486317296,
+    "time_std_s": 0.31136359327251195,
+    "time_all_s": [
+      27.57751762494445,
+      27.246091834036633,
+      26.95523099997081
+    ],
+    "memory_peak_mb": 6.676334381103516,
+    "iterations": 173,
+    "function_evals": 184,
+    "execution_time": 27.259613486317296,
+    "initial_energy": 1.0451869514306544,
+    "final_energy": 0.9662441932781055,
+    "energy_reduction": 7.552979688896028,
+    "planarity_improvement": 16.383846947701176,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.0008575197170292886,
+      "median": 0.00042882961248051426,
+      "std": 0.0012184251622074488,
+      "p95": 0.003170613411438998,
+      "max": 0.010060078416258495
+    },
+    "planarity_after": {
+      "mean": 0.0008075726562561631,
+      "median": 0.00039726441723647094,
+      "std": 0.0010972790607393355,
+      "p95": 0.003044935132147009,
+      "max": 0.008310396768013095
+    }
+  },
+  {
+    "mesh_name": "bob_quad",
+    "mesh_path": "data/input/reference_datasets/bob/bob_quad.obj",
+    "n_vertices": 5344,
+    "n_faces": 5344,
+    "time_mean_s": 44.89343230573771,
+    "time_std_s": 0.3482910234865029,
+    "time_all_s": [
+      44.8100748329889,
+      45.275838625151664,
+      44.59438345907256
+    ],
+    "memory_peak_mb": 11.701754570007324,
+    "iterations": 155,
+    "function_evals": 166,
+    "execution_time": 44.89343230573771,
+    "initial_energy": 0.2555121058527973,
+    "final_energy": 0.24882813878280488,
+    "energy_reduction": 2.6159101337621675,
+    "planarity_improvement": 11.727539241340937,
+    "success": true,
+    "convergence_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "planarity_before": {
+      "mean": 0.0001481343290316336,
+      "median": 4.1768710236441484e-06,
+      "std": 0.00033395233280028325,
+      "p95": 0.0007146674689520827,
+      "max": 0.004746080534533107
+    },
+    "planarity_after": {
+      "mean": 0.0001443279185316628,
+      "median": 4.5896296090406485e-06,
+      "std": 0.00031142396650260973,
+      "p95": 0.0007068656788567715,
+      "max": 0.00372869833786149
+    }
+  }
+]

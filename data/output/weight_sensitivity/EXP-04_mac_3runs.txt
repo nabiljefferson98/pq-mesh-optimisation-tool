@@ -1,0 +1,1728 @@
+=== MAC EXP-04 RUN 1 ===
+
+======================================================================
+WEIGHT SENSITIVITY ANALYSIS (EXP-04)
+======================================================================
+  What this script does:
+    Tests many combinations of the three optimisation weights
+    (planarity, fairness, closeness) and records how each one
+    affects the final mesh quality.
+
+    The goal is to find the 'Pareto-optimal' configurations:   
+    weight combinations where you cannot improve one objective  
+    (e.g. flatness) without making another worse               
+    (e.g. smoothness or shape change).
+
+    Results are saved to data/output/weight_sensitivity/.
+
+======================================================================
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+
+Testing 80 weight combinations on plane_10x10_noisy.obj
+======================================================================
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[1/80] wp=1.0, wf=0.1, wc=1.0... ✓ E↓=69.6%, iter=64
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[2/80] wp=1.0, wf=0.1, wc=5.0... ✓ E↓=37.4%, iter=47
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[3/80] wp=1.0, wf=0.1, wc=10.0... ✓ E↓=24.1%, iter=36
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[4/80] wp=1.0, wf=0.1, wc=20.0... ✓ E↓=14.2%, iter=27
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[5/80] wp=1.0, wf=1.0, wc=1.0... ✓ E↓=89.7%, iter=77
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[6/80] wp=1.0, wf=1.0, wc=5.0... ✓ E↓=75.5%, iter=45
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[7/80] wp=1.0, wf=1.0, wc=10.0... ✓ E↓=64.5%, iter=35
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[8/80] wp=1.0, wf=1.0, wc=20.0... ✓ E↓=50.8%, iter=26
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[9/80] wp=1.0, wf=5.0, wc=1.0... ✓ E↓=94.7%, iter=103
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[10/80] wp=1.0, wf=5.0, wc=5.0... ✓ E↓=89.5%, iter=64
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[11/80] wp=1.0, wf=5.0, wc=10.0... ✓ E↓=84.9%, iter=47
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[12/80] wp=1.0, wf=5.0, wc=20.0... ✓ E↓=77.9%, iter=37
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[13/80] wp=1.0, wf=10.0, wc=1.0... ✓ E↓=95.7%, iter=120
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[14/80] wp=1.0, wf=10.0, wc=5.0... ✓ E↓=92.4%, iter=74
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[15/80] wp=1.0, wf=10.0, wc=10.0... ✓ E↓=89.5%, iter=60
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[16/80] wp=1.0, wf=10.0, wc=20.0... ✓ E↓=84.9%, iter=44
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[17/80] wp=5.0, wf=0.1, wc=1.0... ✓ E↓=81.7%, iter=145
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[18/80] wp=5.0, wf=0.1, wc=5.0... ✓ E↓=55.4%, iter=128
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[19/80] wp=5.0, wf=0.1, wc=10.0... ✓ E↓=40.8%, iter=96
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[20/80] wp=5.0, wf=0.1, wc=20.0... ✓ E↓=27.1%, iter=65
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[21/80] wp=5.0, wf=1.0, wc=1.0... ✓ E↓=90.7%, iter=123
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[22/80] wp=5.0, wf=1.0, wc=5.0... ✓ E↓=77.4%, iter=72
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[23/80] wp=5.0, wf=1.0, wc=10.0... ✓ E↓=66.9%, iter=56
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[24/80] wp=5.0, wf=1.0, wc=20.0... ✓ E↓=53.6%, iter=48
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[25/80] wp=5.0, wf=5.0, wc=1.0... ✓ E↓=94.8%, iter=148
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[26/80] wp=5.0, wf=5.0, wc=5.0... ✓ E↓=89.7%, iter=81
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[27/80] wp=5.0, wf=5.0, wc=10.0... ✓ E↓=85.2%, iter=67
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[28/80] wp=5.0, wf=5.0, wc=20.0... ✓ E↓=78.3%, iter=50
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[29/80] wp=5.0, wf=10.0, wc=1.0... ✓ E↓=95.7%, iter=153
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[30/80] wp=5.0, wf=10.0, wc=5.0... ✓ E↓=92.5%, iter=98
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[31/80] wp=5.0, wf=10.0, wc=10.0... ✓ E↓=89.6%, iter=76
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[32/80] wp=5.0, wf=10.0, wc=20.0... ✓ E↓=85.0%, iter=59
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[33/80] wp=10.0, wf=0.1, wc=1.0... ✓ E↓=87.8%, iter=193
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[34/80] wp=10.0, wf=0.1, wc=5.0... ✓ E↓=67.3%, iter=177
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[35/80] wp=10.0, wf=0.1, wc=10.0... ✓ E↓=53.9%, iter=111
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[36/80] wp=10.0, wf=0.1, wc=20.0... ✓ E↓=39.1%, iter=110
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[37/80] wp=10.0, wf=1.0, wc=1.0... ✓ E↓=91.6%, iter=153
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[38/80] wp=10.0, wf=1.0, wc=5.0... ✓ E↓=79.5%, iter=95
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[39/80] wp=10.0, wf=1.0, wc=10.0... ✓ E↓=69.6%, iter=77
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[40/80] wp=10.0, wf=1.0, wc=20.0... ✓ E↓=56.7%, iter=70
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[41/80] wp=10.0, wf=5.0, wc=1.0... ✓ E↓=94.9%, iter=177
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[42/80] wp=10.0, wf=5.0, wc=5.0... ✓ E↓=90.0%, iter=102
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[43/80] wp=10.0, wf=5.0, wc=10.0... ✓ E↓=85.6%, iter=83
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[44/80] wp=10.0, wf=5.0, wc=20.0... ✓ E↓=78.8%, iter=61
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[45/80] wp=10.0, wf=10.0, wc=1.0... ✓ E↓=95.8%, iter=170
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[46/80] wp=10.0, wf=10.0, wc=5.0... ✓ E↓=92.6%, iter=110
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[47/80] wp=10.0, wf=10.0, wc=10.0... ✓ E↓=89.7%, iter=92
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[48/80] wp=10.0, wf=10.0, wc=20.0... ✓ E↓=85.2%, iter=67
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[49/80] wp=50.0, wf=0.1, wc=1.0... ✓ E↓=96.6%, iter=228
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[50/80] wp=50.0, wf=0.1, wc=5.0... ✓ E↓=89.2%, iter=211
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[51/80] wp=50.0, wf=0.1, wc=10.0... ✓ E↓=82.8%, iter=205
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[52/80] wp=50.0, wf=0.1, wc=20.0... ✓ E↓=73.2%, iter=193
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[53/80] wp=50.0, wf=1.0, wc=1.0... ✓ E↓=95.4%, iter=225
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[54/80] wp=50.0, wf=1.0, wc=5.0... ✓ E↓=88.2%, iter=188
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[55/80] wp=50.0, wf=1.0, wc=10.0... ✓ E↓=81.7%, iter=172
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[56/80] wp=50.0, wf=1.0, wc=20.0... ✓ E↓=72.3%, iter=186
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[57/80] wp=50.0, wf=5.0, wc=1.0... ✓ E↓=95.8%, iter=233
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[58/80] wp=50.0, wf=5.0, wc=5.0... ✓ E↓=91.6%, iter=173
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[59/80] wp=50.0, wf=5.0, wc=10.0... ✓ E↓=87.9%, iter=141
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[60/80] wp=50.0, wf=5.0, wc=20.0... ✓ E↓=82.0%, iter=112
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[61/80] wp=50.0, wf=10.0, wc=1.0... ✓ E↓=96.2%, iter=243
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[62/80] wp=50.0, wf=10.0, wc=5.0... ✓ E↓=93.3%, iter=190
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[63/80] wp=50.0, wf=10.0, wc=10.0... ✓ E↓=90.7%, iter=140
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[64/80] wp=50.0, wf=10.0, wc=20.0... ✓ E↓=86.5%, iter=107
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[65/80] wp=100.0, wf=0.1, wc=1.0... ✓ E↓=98.2%, iter=259
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[66/80] wp=100.0, wf=0.1, wc=5.0... ✓ E↓=94.0%, iter=245
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[67/80] wp=100.0, wf=0.1, wc=10.0... ✓ E↓=90.2%, iter=230
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[68/80] wp=100.0, wf=0.1, wc=20.0... ✓ E↓=83.9%, iter=205
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[69/80] wp=100.0, wf=1.0, wc=1.0... ✓ E↓=97.1%, iter=247
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[70/80] wp=100.0, wf=1.0, wc=5.0... ✓ E↓=92.3%, iter=208
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[71/80] wp=100.0, wf=1.0, wc=10.0... ✓ E↓=87.8%, iter=198
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[72/80] wp=100.0, wf=1.0, wc=20.0... ✓ E↓=80.9%, iter=192
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[73/80] wp=100.0, wf=5.0, wc=1.0... ✓ E↓=96.5%, iter=258
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[74/80] wp=100.0, wf=5.0, wc=5.0... ✓ E↓=93.1%, iter=212
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[75/80] wp=100.0, wf=5.0, wc=10.0... ✓ E↓=89.9%, iter=183
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[76/80] wp=100.0, wf=5.0, wc=20.0... ✓ E↓=84.9%, iter=154
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[77/80] wp=100.0, wf=10.0, wc=1.0... ✓ E↓=96.6%, iter=257
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[78/80] wp=100.0, wf=10.0, wc=5.0... ✓ E↓=94.0%, iter=216
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[79/80] wp=100.0, wf=10.0, wc=10.0... ✓ E↓=91.6%, iter=181
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[80/80] wp=100.0, wf=10.0, wc=20.0... ✓ E↓=87.9%, iter=145
+
+✅ Saved raw data: data/output/weight_sensitivity/EXP-04_mac_run1.json
+
+✅ Generated analysis report: /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/output/weight_sensitivity/sensitivity_analysis_report.txt
+
+================================================================================
+WEIGHT SENSITIVITY ANALYSIS REPORT
+================================================================================
+
+Total configurations tested: 80
+Successful optimizations: 80
+Failed optimizations: 0
+
+================================================================================
+BEST CONFIGURATIONS BY OBJECTIVE
+================================================================================
+
+Best Planarity Improvement:
+  Weights: planarity=100.0, fairness=10.0, closeness=1.0
+  Planarity improvement: 99.99%
+  Fairness improvement: 96.89%
+  Vertex displacement: 0.059699
+
+Best Fairness Improvement:
+  Weights: planarity=100.0, fairness=10.0, closeness=1.0
+  Planarity improvement: 99.99%
+  Fairness improvement: 96.89%
+  Vertex displacement: 0.059699
+
+Minimal Vertex Displacement:
+  Weights: planarity=1.0, fairness=0.1, closeness=20.0
+  Planarity improvement: 29.49%
+  Fairness improvement: 24.88%
+  Vertex displacement: 0.004324
+
+================================================================================
+PARETO FRONTIER ANALYSIS
+================================================================================
+
+Pareto-optimal configurations: 75
+Percentage: 93.8%
+
+Pareto-optimal weight configurations:
+  1. wp=1.0, wf=0.1, wc=1.0 | Plan=92.7%, Fair=84.4%, Disp=0.0233
+  2. wp=1.0, wf=0.1, wc=5.0 | Plan=64.9%, Fair=56.2%, Disp=0.0115
+  3. wp=1.0, wf=0.1, wc=10.0 | Plan=46.5%, Fair=39.6%, Disp=0.0073
+  4. wp=1.0, wf=0.1, wc=20.0 | Plan=29.5%, Fair=24.9%, Disp=0.0043
+  5. wp=1.0, wf=1.0, wc=1.0 | Plan=99.5%, Fair=94.7%, Disp=0.0392
+  6. wp=1.0, wf=1.0, wc=5.0 | Plan=95.1%, Fair=88.9%, Disp=0.0272
+  7. wp=1.0, wf=1.0, wc=10.0 | Plan=88.8%, Fair=82.4%, Disp=0.0219
+  8. wp=1.0, wf=1.0, wc=20.0 | Plan=77.2%, Fair=71.5%, Disp=0.0164
+  9. wp=1.0, wf=5.0, wc=1.0 | Plan=100.0%, Fair=96.5%, Disp=0.0529
+  10. wp=1.0, wf=5.0, wc=5.0 | Plan=99.5%, Fair=94.7%, Disp=0.0391
+================================================================================
+
+======================================================================
+SUMMARY
+======================================================================
+  Configurations tested : 80
+  Successful runs       : 80 (100%)
+
+  Best planarity result : 100.0% improvement
+    weights: planarity=100.0, fairness=10.0, closeness=1.0
+    Fabrication status: ✅ Panels are flat enough to fabricate
+
+  Full report saved to: /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/output/weight_sensitivity/sensitivity_analysis_report.txt
+  Raw data saved to   : data/output/weight_sensitivity/EXP-04_mac_run1.json
+======================================================================
+
+=== MAC EXP-04 RUN 2 ===
+
+======================================================================
+WEIGHT SENSITIVITY ANALYSIS (EXP-04)
+======================================================================
+  What this script does:
+    Tests many combinations of the three optimisation weights
+    (planarity, fairness, closeness) and records how each one
+    affects the final mesh quality.
+
+    The goal is to find the 'Pareto-optimal' configurations:   
+    weight combinations where you cannot improve one objective  
+    (e.g. flatness) without making another worse               
+    (e.g. smoothness or shape change).
+
+    Results are saved to data/output/weight_sensitivity/.
+
+======================================================================
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+
+Testing 80 weight combinations on plane_10x10_noisy.obj
+======================================================================
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[1/80] wp=1.0, wf=0.1, wc=1.0... ✓ E↓=69.6%, iter=64
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[2/80] wp=1.0, wf=0.1, wc=5.0... ✓ E↓=37.4%, iter=47
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[3/80] wp=1.0, wf=0.1, wc=10.0... ✓ E↓=24.1%, iter=36
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[4/80] wp=1.0, wf=0.1, wc=20.0... ✓ E↓=14.2%, iter=27
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[5/80] wp=1.0, wf=1.0, wc=1.0... ✓ E↓=89.7%, iter=77
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[6/80] wp=1.0, wf=1.0, wc=5.0... ✓ E↓=75.5%, iter=45
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[7/80] wp=1.0, wf=1.0, wc=10.0... ✓ E↓=64.5%, iter=35
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[8/80] wp=1.0, wf=1.0, wc=20.0... ✓ E↓=50.8%, iter=26
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[9/80] wp=1.0, wf=5.0, wc=1.0... ✓ E↓=94.7%, iter=103
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[10/80] wp=1.0, wf=5.0, wc=5.0... ✓ E↓=89.5%, iter=64
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[11/80] wp=1.0, wf=5.0, wc=10.0... ✓ E↓=84.9%, iter=47
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[12/80] wp=1.0, wf=5.0, wc=20.0... ✓ E↓=77.9%, iter=37
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[13/80] wp=1.0, wf=10.0, wc=1.0... ✓ E↓=95.7%, iter=120
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[14/80] wp=1.0, wf=10.0, wc=5.0... ✓ E↓=92.4%, iter=74
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[15/80] wp=1.0, wf=10.0, wc=10.0... ✓ E↓=89.5%, iter=60
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[16/80] wp=1.0, wf=10.0, wc=20.0... ✓ E↓=84.9%, iter=44
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[17/80] wp=5.0, wf=0.1, wc=1.0... ✓ E↓=81.7%, iter=145
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[18/80] wp=5.0, wf=0.1, wc=5.0... ✓ E↓=55.4%, iter=128
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[19/80] wp=5.0, wf=0.1, wc=10.0... ✓ E↓=40.8%, iter=96
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[20/80] wp=5.0, wf=0.1, wc=20.0... ✓ E↓=27.1%, iter=65
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[21/80] wp=5.0, wf=1.0, wc=1.0... ✓ E↓=90.7%, iter=123
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[22/80] wp=5.0, wf=1.0, wc=5.0... ✓ E↓=77.4%, iter=72
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[23/80] wp=5.0, wf=1.0, wc=10.0... ✓ E↓=66.9%, iter=56
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[24/80] wp=5.0, wf=1.0, wc=20.0... ✓ E↓=53.6%, iter=48
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[25/80] wp=5.0, wf=5.0, wc=1.0... ✓ E↓=94.8%, iter=148
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[26/80] wp=5.0, wf=5.0, wc=5.0... ✓ E↓=89.7%, iter=81
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[27/80] wp=5.0, wf=5.0, wc=10.0... ✓ E↓=85.2%, iter=67
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[28/80] wp=5.0, wf=5.0, wc=20.0... ✓ E↓=78.3%, iter=50
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[29/80] wp=5.0, wf=10.0, wc=1.0... ✓ E↓=95.7%, iter=153
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[30/80] wp=5.0, wf=10.0, wc=5.0... ✓ E↓=92.5%, iter=98
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[31/80] wp=5.0, wf=10.0, wc=10.0... ✓ E↓=89.6%, iter=76
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[32/80] wp=5.0, wf=10.0, wc=20.0... ✓ E↓=85.0%, iter=59
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[33/80] wp=10.0, wf=0.1, wc=1.0... ✓ E↓=87.8%, iter=193
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[34/80] wp=10.0, wf=0.1, wc=5.0... ✓ E↓=67.3%, iter=177
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[35/80] wp=10.0, wf=0.1, wc=10.0... ✓ E↓=53.9%, iter=111
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[36/80] wp=10.0, wf=0.1, wc=20.0... ✓ E↓=39.1%, iter=110
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[37/80] wp=10.0, wf=1.0, wc=1.0... ✓ E↓=91.6%, iter=153
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[38/80] wp=10.0, wf=1.0, wc=5.0... ✓ E↓=79.5%, iter=95
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[39/80] wp=10.0, wf=1.0, wc=10.0... ✓ E↓=69.6%, iter=77
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[40/80] wp=10.0, wf=1.0, wc=20.0... ✓ E↓=56.7%, iter=70
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[41/80] wp=10.0, wf=5.0, wc=1.0... ✓ E↓=94.9%, iter=177
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[42/80] wp=10.0, wf=5.0, wc=5.0... ✓ E↓=90.0%, iter=102
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[43/80] wp=10.0, wf=5.0, wc=10.0... ✓ E↓=85.6%, iter=83
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[44/80] wp=10.0, wf=5.0, wc=20.0... ✓ E↓=78.8%, iter=61
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[45/80] wp=10.0, wf=10.0, wc=1.0... ✓ E↓=95.8%, iter=170
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[46/80] wp=10.0, wf=10.0, wc=5.0... ✓ E↓=92.6%, iter=110
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[47/80] wp=10.0, wf=10.0, wc=10.0... ✓ E↓=89.7%, iter=92
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[48/80] wp=10.0, wf=10.0, wc=20.0... ✓ E↓=85.2%, iter=67
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[49/80] wp=50.0, wf=0.1, wc=1.0... ✓ E↓=96.6%, iter=228
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[50/80] wp=50.0, wf=0.1, wc=5.0... ✓ E↓=89.2%, iter=211
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[51/80] wp=50.0, wf=0.1, wc=10.0... ✓ E↓=82.8%, iter=205
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[52/80] wp=50.0, wf=0.1, wc=20.0... ✓ E↓=73.2%, iter=193
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[53/80] wp=50.0, wf=1.0, wc=1.0... ✓ E↓=95.4%, iter=225
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[54/80] wp=50.0, wf=1.0, wc=5.0... ✓ E↓=88.2%, iter=188
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[55/80] wp=50.0, wf=1.0, wc=10.0... ✓ E↓=81.7%, iter=172
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[56/80] wp=50.0, wf=1.0, wc=20.0... ✓ E↓=72.3%, iter=186
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[57/80] wp=50.0, wf=5.0, wc=1.0... ✓ E↓=95.8%, iter=233
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[58/80] wp=50.0, wf=5.0, wc=5.0... ✓ E↓=91.6%, iter=173
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[59/80] wp=50.0, wf=5.0, wc=10.0... ✓ E↓=87.9%, iter=141
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[60/80] wp=50.0, wf=5.0, wc=20.0... ✓ E↓=82.0%, iter=112
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[61/80] wp=50.0, wf=10.0, wc=1.0... ✓ E↓=96.2%, iter=243
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[62/80] wp=50.0, wf=10.0, wc=5.0... ✓ E↓=93.3%, iter=190
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[63/80] wp=50.0, wf=10.0, wc=10.0... ✓ E↓=90.7%, iter=140
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[64/80] wp=50.0, wf=10.0, wc=20.0... ✓ E↓=86.5%, iter=107
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[65/80] wp=100.0, wf=0.1, wc=1.0... ✓ E↓=98.2%, iter=259
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[66/80] wp=100.0, wf=0.1, wc=5.0... ✓ E↓=94.0%, iter=245
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[67/80] wp=100.0, wf=0.1, wc=10.0... ✓ E↓=90.2%, iter=230
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[68/80] wp=100.0, wf=0.1, wc=20.0... ✓ E↓=83.9%, iter=205
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[69/80] wp=100.0, wf=1.0, wc=1.0... ✓ E↓=97.1%, iter=247
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[70/80] wp=100.0, wf=1.0, wc=5.0... ✓ E↓=92.3%, iter=208
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[71/80] wp=100.0, wf=1.0, wc=10.0... ✓ E↓=87.8%, iter=198
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[72/80] wp=100.0, wf=1.0, wc=20.0... ✓ E↓=80.9%, iter=192
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[73/80] wp=100.0, wf=5.0, wc=1.0... ✓ E↓=96.5%, iter=258
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[74/80] wp=100.0, wf=5.0, wc=5.0... ✓ E↓=93.1%, iter=212
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[75/80] wp=100.0, wf=5.0, wc=10.0... ✓ E↓=89.9%, iter=183
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[76/80] wp=100.0, wf=5.0, wc=20.0... ✓ E↓=84.9%, iter=154
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[77/80] wp=100.0, wf=10.0, wc=1.0... ✓ E↓=96.6%, iter=257
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[78/80] wp=100.0, wf=10.0, wc=5.0... ✓ E↓=94.0%, iter=216
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[79/80] wp=100.0, wf=10.0, wc=10.0... ✓ E↓=91.6%, iter=181
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[80/80] wp=100.0, wf=10.0, wc=20.0... ✓ E↓=87.9%, iter=145
+
+✅ Saved raw data: data/output/weight_sensitivity/EXP-04_mac_run2.json
+
+✅ Generated analysis report: /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/output/weight_sensitivity/sensitivity_analysis_report.txt
+
+================================================================================
+WEIGHT SENSITIVITY ANALYSIS REPORT
+================================================================================
+
+Total configurations tested: 80
+Successful optimizations: 80
+Failed optimizations: 0
+
+================================================================================
+BEST CONFIGURATIONS BY OBJECTIVE
+================================================================================
+
+Best Planarity Improvement:
+  Weights: planarity=100.0, fairness=10.0, closeness=1.0
+  Planarity improvement: 99.99%
+  Fairness improvement: 96.89%
+  Vertex displacement: 0.059699
+
+Best Fairness Improvement:
+  Weights: planarity=100.0, fairness=10.0, closeness=1.0
+  Planarity improvement: 99.99%
+  Fairness improvement: 96.89%
+  Vertex displacement: 0.059699
+
+Minimal Vertex Displacement:
+  Weights: planarity=1.0, fairness=0.1, closeness=20.0
+  Planarity improvement: 29.49%
+  Fairness improvement: 24.88%
+  Vertex displacement: 0.004324
+
+================================================================================
+PARETO FRONTIER ANALYSIS
+================================================================================
+
+Pareto-optimal configurations: 75
+Percentage: 93.8%
+
+Pareto-optimal weight configurations:
+  1. wp=1.0, wf=0.1, wc=1.0 | Plan=92.7%, Fair=84.4%, Disp=0.0233
+  2. wp=1.0, wf=0.1, wc=5.0 | Plan=64.9%, Fair=56.2%, Disp=0.0115
+  3. wp=1.0, wf=0.1, wc=10.0 | Plan=46.5%, Fair=39.6%, Disp=0.0073
+  4. wp=1.0, wf=0.1, wc=20.0 | Plan=29.5%, Fair=24.9%, Disp=0.0043
+  5. wp=1.0, wf=1.0, wc=1.0 | Plan=99.5%, Fair=94.7%, Disp=0.0392
+  6. wp=1.0, wf=1.0, wc=5.0 | Plan=95.1%, Fair=88.9%, Disp=0.0272
+  7. wp=1.0, wf=1.0, wc=10.0 | Plan=88.8%, Fair=82.4%, Disp=0.0219
+  8. wp=1.0, wf=1.0, wc=20.0 | Plan=77.2%, Fair=71.5%, Disp=0.0164
+  9. wp=1.0, wf=5.0, wc=1.0 | Plan=100.0%, Fair=96.5%, Disp=0.0529
+  10. wp=1.0, wf=5.0, wc=5.0 | Plan=99.5%, Fair=94.7%, Disp=0.0391
+================================================================================
+
+======================================================================
+SUMMARY
+======================================================================
+  Configurations tested : 80
+  Successful runs       : 80 (100%)
+
+  Best planarity result : 100.0% improvement
+    weights: planarity=100.0, fairness=10.0, closeness=1.0
+    Fabrication status: ✅ Panels are flat enough to fabricate
+
+  Full report saved to: /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/output/weight_sensitivity/sensitivity_analysis_report.txt
+  Raw data saved to   : data/output/weight_sensitivity/EXP-04_mac_run2.json
+======================================================================
+
+=== MAC EXP-04 RUN 3 ===
+
+======================================================================
+WEIGHT SENSITIVITY ANALYSIS (EXP-04)
+======================================================================
+  What this script does:
+    Tests many combinations of the three optimisation weights
+    (planarity, fairness, closeness) and records how each one
+    affects the final mesh quality.
+
+    The goal is to find the 'Pareto-optimal' configurations:   
+    weight combinations where you cannot improve one objective  
+    (e.g. flatness) without making another worse               
+    (e.g. smoothness or shape change).
+
+    Results are saved to data/output/weight_sensitivity/.
+
+======================================================================
+
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+
+Testing 80 weight combinations on plane_10x10_noisy.obj
+======================================================================
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[1/80] wp=1.0, wf=0.1, wc=1.0... ✓ E↓=69.6%, iter=64
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[2/80] wp=1.0, wf=0.1, wc=5.0... ✓ E↓=37.4%, iter=47
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[3/80] wp=1.0, wf=0.1, wc=10.0... ✓ E↓=24.1%, iter=36
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[4/80] wp=1.0, wf=0.1, wc=20.0... ✓ E↓=14.2%, iter=27
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[5/80] wp=1.0, wf=1.0, wc=1.0... ✓ E↓=89.7%, iter=77
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[6/80] wp=1.0, wf=1.0, wc=5.0... ✓ E↓=75.5%, iter=45
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[7/80] wp=1.0, wf=1.0, wc=10.0... ✓ E↓=64.5%, iter=35
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[8/80] wp=1.0, wf=1.0, wc=20.0... ✓ E↓=50.8%, iter=26
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[9/80] wp=1.0, wf=5.0, wc=1.0... ✓ E↓=94.7%, iter=103
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[10/80] wp=1.0, wf=5.0, wc=5.0... ✓ E↓=89.5%, iter=64
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[11/80] wp=1.0, wf=5.0, wc=10.0... ✓ E↓=84.9%, iter=47
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[12/80] wp=1.0, wf=5.0, wc=20.0... ✓ E↓=77.9%, iter=37
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[13/80] wp=1.0, wf=10.0, wc=1.0... ✓ E↓=95.7%, iter=120
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[14/80] wp=1.0, wf=10.0, wc=5.0... ✓ E↓=92.4%, iter=74
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[15/80] wp=1.0, wf=10.0, wc=10.0... ✓ E↓=89.5%, iter=60
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[16/80] wp=1.0, wf=10.0, wc=20.0... ✓ E↓=84.9%, iter=44
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[17/80] wp=5.0, wf=0.1, wc=1.0... ✓ E↓=81.7%, iter=145
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[18/80] wp=5.0, wf=0.1, wc=5.0... ✓ E↓=55.4%, iter=128
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[19/80] wp=5.0, wf=0.1, wc=10.0... ✓ E↓=40.8%, iter=96
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[20/80] wp=5.0, wf=0.1, wc=20.0... ✓ E↓=27.1%, iter=65
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[21/80] wp=5.0, wf=1.0, wc=1.0... ✓ E↓=90.7%, iter=123
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[22/80] wp=5.0, wf=1.0, wc=5.0... ✓ E↓=77.4%, iter=72
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[23/80] wp=5.0, wf=1.0, wc=10.0... ✓ E↓=66.9%, iter=56
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[24/80] wp=5.0, wf=1.0, wc=20.0... ✓ E↓=53.6%, iter=48
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[25/80] wp=5.0, wf=5.0, wc=1.0... ✓ E↓=94.8%, iter=148
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[26/80] wp=5.0, wf=5.0, wc=5.0... ✓ E↓=89.7%, iter=81
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[27/80] wp=5.0, wf=5.0, wc=10.0... ✓ E↓=85.2%, iter=67
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[28/80] wp=5.0, wf=5.0, wc=20.0... ✓ E↓=78.3%, iter=50
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[29/80] wp=5.0, wf=10.0, wc=1.0... ✓ E↓=95.7%, iter=153
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[30/80] wp=5.0, wf=10.0, wc=5.0... ✓ E↓=92.5%, iter=98
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[31/80] wp=5.0, wf=10.0, wc=10.0... ✓ E↓=89.6%, iter=76
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[32/80] wp=5.0, wf=10.0, wc=20.0... ✓ E↓=85.0%, iter=59
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[33/80] wp=10.0, wf=0.1, wc=1.0... ✓ E↓=87.8%, iter=193
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[34/80] wp=10.0, wf=0.1, wc=5.0... ✓ E↓=67.3%, iter=177
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[35/80] wp=10.0, wf=0.1, wc=10.0... ✓ E↓=53.9%, iter=111
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[36/80] wp=10.0, wf=0.1, wc=20.0... ✓ E↓=39.1%, iter=110
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[37/80] wp=10.0, wf=1.0, wc=1.0... ✓ E↓=91.6%, iter=153
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[38/80] wp=10.0, wf=1.0, wc=5.0... ✓ E↓=79.5%, iter=95
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[39/80] wp=10.0, wf=1.0, wc=10.0... ✓ E↓=69.6%, iter=77
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[40/80] wp=10.0, wf=1.0, wc=20.0... ✓ E↓=56.7%, iter=70
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[41/80] wp=10.0, wf=5.0, wc=1.0... ✓ E↓=94.9%, iter=177
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[42/80] wp=10.0, wf=5.0, wc=5.0... ✓ E↓=90.0%, iter=102
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[43/80] wp=10.0, wf=5.0, wc=10.0... ✓ E↓=85.6%, iter=83
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[44/80] wp=10.0, wf=5.0, wc=20.0... ✓ E↓=78.8%, iter=61
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[45/80] wp=10.0, wf=10.0, wc=1.0... ✓ E↓=95.8%, iter=170
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[46/80] wp=10.0, wf=10.0, wc=5.0... ✓ E↓=92.6%, iter=110
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[47/80] wp=10.0, wf=10.0, wc=10.0... ✓ E↓=89.7%, iter=92
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[48/80] wp=10.0, wf=10.0, wc=20.0... ✓ E↓=85.2%, iter=67
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[49/80] wp=50.0, wf=0.1, wc=1.0... ✓ E↓=96.6%, iter=228
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[50/80] wp=50.0, wf=0.1, wc=5.0... ✓ E↓=89.2%, iter=211
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[51/80] wp=50.0, wf=0.1, wc=10.0... ✓ E↓=82.8%, iter=205
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[52/80] wp=50.0, wf=0.1, wc=20.0... ✓ E↓=73.2%, iter=193
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[53/80] wp=50.0, wf=1.0, wc=1.0... ✓ E↓=95.4%, iter=225
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[54/80] wp=50.0, wf=1.0, wc=5.0... ✓ E↓=88.2%, iter=188
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[55/80] wp=50.0, wf=1.0, wc=10.0... ✓ E↓=81.7%, iter=172
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[56/80] wp=50.0, wf=1.0, wc=20.0... ✓ E↓=72.3%, iter=186
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[57/80] wp=50.0, wf=5.0, wc=1.0... ✓ E↓=95.8%, iter=233
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[58/80] wp=50.0, wf=5.0, wc=5.0... ✓ E↓=91.6%, iter=173
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[59/80] wp=50.0, wf=5.0, wc=10.0... ✓ E↓=87.9%, iter=141
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[60/80] wp=50.0, wf=5.0, wc=20.0... ✓ E↓=82.0%, iter=112
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[61/80] wp=50.0, wf=10.0, wc=1.0... ✓ E↓=96.2%, iter=243
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[62/80] wp=50.0, wf=10.0, wc=5.0... ✓ E↓=93.3%, iter=190
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[63/80] wp=50.0, wf=10.0, wc=10.0... ✓ E↓=90.7%, iter=140
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[64/80] wp=50.0, wf=10.0, wc=20.0... ✓ E↓=86.5%, iter=107
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[65/80] wp=100.0, wf=0.1, wc=1.0... ✓ E↓=98.2%, iter=259
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[66/80] wp=100.0, wf=0.1, wc=5.0... ✓ E↓=94.0%, iter=245
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[67/80] wp=100.0, wf=0.1, wc=10.0... ✓ E↓=90.2%, iter=230
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[68/80] wp=100.0, wf=0.1, wc=20.0... ✓ E↓=83.9%, iter=205
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[69/80] wp=100.0, wf=1.0, wc=1.0... ✓ E↓=97.1%, iter=247
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[70/80] wp=100.0, wf=1.0, wc=5.0... ✓ E↓=92.3%, iter=208
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[71/80] wp=100.0, wf=1.0, wc=10.0... ✓ E↓=87.8%, iter=198
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[72/80] wp=100.0, wf=1.0, wc=20.0... ✓ E↓=80.9%, iter=192
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[73/80] wp=100.0, wf=5.0, wc=1.0... ✓ E↓=96.5%, iter=258
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[74/80] wp=100.0, wf=5.0, wc=5.0... ✓ E↓=93.1%, iter=212
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[75/80] wp=100.0, wf=5.0, wc=10.0... ✓ E↓=89.9%, iter=183
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[76/80] wp=100.0, wf=5.0, wc=20.0... ✓ E↓=84.9%, iter=154
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[77/80] wp=100.0, wf=10.0, wc=1.0... ✓ E↓=96.6%, iter=257
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[78/80] wp=100.0, wf=10.0, wc=5.0... ✓ E↓=94.0%, iter=216
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[79/80] wp=100.0, wf=10.0, wc=10.0... ✓ E↓=91.6%, iter=181
+✓ Parsed 121 vertices, 100 faces total
+  Quads:     100
+  Triangles: 0
+✓ Loaded mesh: 121 vertices, 100 faces
+
+[80/80] wp=100.0, wf=10.0, wc=20.0... ✓ E↓=87.9%, iter=145
+
+✅ Saved raw data: data/output/weight_sensitivity/EXP-04_mac_run3.json
+
+✅ Generated analysis report: /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/output/weight_sensitivity/sensitivity_analysis_report.txt
+
+================================================================================
+WEIGHT SENSITIVITY ANALYSIS REPORT
+================================================================================
+
+Total configurations tested: 80
+Successful optimizations: 80
+Failed optimizations: 0
+
+================================================================================
+BEST CONFIGURATIONS BY OBJECTIVE
+================================================================================
+
+Best Planarity Improvement:
+  Weights: planarity=100.0, fairness=10.0, closeness=1.0
+  Planarity improvement: 99.99%
+  Fairness improvement: 96.89%
+  Vertex displacement: 0.059699
+
+Best Fairness Improvement:
+  Weights: planarity=100.0, fairness=10.0, closeness=1.0
+  Planarity improvement: 99.99%
+  Fairness improvement: 96.89%
+  Vertex displacement: 0.059699
+
+Minimal Vertex Displacement:
+  Weights: planarity=1.0, fairness=0.1, closeness=20.0
+  Planarity improvement: 29.49%
+  Fairness improvement: 24.88%
+  Vertex displacement: 0.004324
+
+================================================================================
+PARETO FRONTIER ANALYSIS
+================================================================================
+
+Pareto-optimal configurations: 75
+Percentage: 93.8%
+
+Pareto-optimal weight configurations:
+  1. wp=1.0, wf=0.1, wc=1.0 | Plan=92.7%, Fair=84.4%, Disp=0.0233
+  2. wp=1.0, wf=0.1, wc=5.0 | Plan=64.9%, Fair=56.2%, Disp=0.0115
+  3. wp=1.0, wf=0.1, wc=10.0 | Plan=46.5%, Fair=39.6%, Disp=0.0073
+  4. wp=1.0, wf=0.1, wc=20.0 | Plan=29.5%, Fair=24.9%, Disp=0.0043
+  5. wp=1.0, wf=1.0, wc=1.0 | Plan=99.5%, Fair=94.7%, Disp=0.0392
+  6. wp=1.0, wf=1.0, wc=5.0 | Plan=95.1%, Fair=88.9%, Disp=0.0272
+  7. wp=1.0, wf=1.0, wc=10.0 | Plan=88.8%, Fair=82.4%, Disp=0.0219
+  8. wp=1.0, wf=1.0, wc=20.0 | Plan=77.2%, Fair=71.5%, Disp=0.0164
+  9. wp=1.0, wf=5.0, wc=1.0 | Plan=100.0%, Fair=96.5%, Disp=0.0529
+  10. wp=1.0, wf=5.0, wc=5.0 | Plan=99.5%, Fair=94.7%, Disp=0.0391
+================================================================================
+
+======================================================================
+SUMMARY
+======================================================================
+  Configurations tested : 80
+  Successful runs       : 80 (100%)
+
+  Best planarity result : 100.0% improvement
+    weights: planarity=100.0, fairness=10.0, closeness=1.0
+    Fabrication status: ✅ Panels are flat enough to fabricate
+
+  Full report saved to: /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/output/weight_sensitivity/sensitivity_analysis_report.txt
+  Raw data saved to   : data/output/weight_sensitivity/EXP-04_mac_run3.json
+======================================================================
+

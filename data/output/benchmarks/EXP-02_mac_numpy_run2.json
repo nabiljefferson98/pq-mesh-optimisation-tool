@@ -1,0 +1,187 @@
+[
+  {
+    "mesh_name": "plane_10x10_noisy",
+    "mesh_path": "/Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/input/generated/plane_10x10_noisy.obj",
+    "n_vertices": 121,
+    "n_faces": 100,
+    "time_mean_s": 0.09485858290766676,
+    "time_std_s": 0.0013378551665822057,
+    "time_all_s": [
+      0.09640249982476234,
+      0.09404083294793963,
+      0.09413241595029831
+    ],
+    "memory_peak_mb": 0.41356945037841797,
+    "iterations": 95,
+    "function_evals": 101,
+    "execution_time": 0.09485858290766676,
+    "initial_energy": 5.844650045981498,
+    "final_energy": 1.1987793749332605,
+    "energy_reduction": 79.48928737388677,
+    "planarity_improvement": 96.97921502084917,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.028635007481585026,
+      "median": 0.024347748727040326,
+      "std": 0.021003701334171287,
+      "p95": 0.06686074137809475,
+      "max": 0.07675515238038791
+    },
+    "planarity_after": {
+      "mean": 0.005184915941934681,
+      "median": 0.005345217862971426,
+      "std": 0.003348483793907636,
+      "p95": 0.01164012505317634,
+      "max": 0.013658071980092737
+    }
+  },
+  {
+    "mesh_name": "plane_20x20_noisy",
+    "mesh_path": "/Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/input/generated/plane_20x20_noisy.obj",
+    "n_vertices": 441,
+    "n_faces": 400,
+    "time_mean_s": 0.5392779028043151,
+    "time_std_s": 0.02065142002511924,
+    "time_all_s": [
+      0.5275026250164956,
+      0.5272075831890106,
+      0.5631235002074391
+    ],
+    "memory_peak_mb": 1.2524986267089844,
+    "iterations": 190,
+    "function_evals": 197,
+    "execution_time": 0.5392779028043151,
+    "initial_energy": 22.8036424172713,
+    "final_energy": 3.7609117336632396,
+    "energy_reduction": 83.5074078743896,
+    "planarity_improvement": 94.87567479231696,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.0214811772817054,
+      "median": 0.020522216557538622,
+      "std": 0.01383703752035705,
+      "p95": 0.045900155423212664,
+      "max": 0.049899043996373155
+    },
+    "planarity_after": {
+      "mean": 0.004636643834313303,
+      "median": 0.004164386550096601,
+      "std": 0.00345810470808441,
+      "p95": 0.011354510236291837,
+      "max": 0.016222449814888126
+    }
+  },
+  {
+    "mesh_name": "plane_3x3_noisy",
+    "mesh_path": "/Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/input/generated/plane_3x3_noisy.obj",
+    "n_vertices": 16,
+    "n_faces": 9,
+    "time_mean_s": 0.017829208401963115,
+    "time_std_s": 0.0001786745564801938,
+    "time_all_s": [
+      0.01782191707752645,
+      0.01801141700707376,
+      0.017654291121289134
+    ],
+    "memory_peak_mb": 0.10207271575927734,
+    "iterations": 47,
+    "function_evals": 56,
+    "execution_time": 0.017829208401963115,
+    "initial_energy": 2.2401193627921363,
+    "final_energy": 1.567241519010964,
+    "energy_reduction": 30.037588842698177,
+    "planarity_improvement": 97.37668244913108,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.03708308168866662,
+      "median": 0.028703476344119336,
+      "std": 0.021022107706091767,
+      "p95": 0.07491405982895505,
+      "max": 0.07817639402817554
+    },
+    "planarity_after": {
+      "mean": 0.005467291743689445,
+      "median": 0.004677692044498928,
+      "std": 0.004216230950076146,
+      "p95": 0.012915982320081888,
+      "max": 0.013353107584230983
+    }
+  },
+  {
+    "mesh_name": "plane_5x5_noisy",
+    "mesh_path": "/Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/input/generated/plane_5x5_noisy.obj",
+    "n_vertices": 36,
+    "n_faces": 25,
+    "time_mean_s": 0.03586231932664911,
+    "time_std_s": 0.0012970845187648655,
+    "time_all_s": [
+      0.03639349993318319,
+      0.03680950007401407,
+      0.03438395797275007
+    ],
+    "memory_peak_mb": 0.15501022338867188,
+    "iterations": 75,
+    "function_evals": 84,
+    "execution_time": 0.03586231932664911,
+    "initial_energy": 2.7439378048769107,
+    "final_energy": 1.0287971109313498,
+    "energy_reduction": 62.506544095029135,
+    "planarity_improvement": 97.83820855629997,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.038491971394022634,
+      "median": 0.03276232409945857,
+      "std": 0.02615291932196839,
+      "p95": 0.0762509223717696,
+      "max": 0.09963016941714282
+    },
+    "planarity_after": {
+      "mean": 0.005795891981943194,
+      "median": 0.006219162957995218,
+      "std": 0.0036364191264614525,
+      "p95": 0.012119082632206402,
+      "max": 0.013365223374345014
+    }
+  },
+  {
+    "mesh_name": "plane_5x5_very_noisy",
+    "mesh_path": "/Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/input/generated/plane_5x5_very_noisy.obj",
+    "n_vertices": 36,
+    "n_faces": 25,
+    "time_mean_s": 0.03962799999862909,
+    "time_std_s": 0.0005681229170943668,
+    "time_all_s": [
+      0.03916358295828104,
+      0.03945895889773965,
+      0.04026145813986659
+    ],
+    "memory_peak_mb": 0.15502548217773438,
+    "iterations": 86,
+    "function_evals": 97,
+    "execution_time": 0.03962799999862909,
+    "initial_energy": 7.612246792814956,
+    "final_energy": 1.7795956731330116,
+    "energy_reduction": 76.62193933579853,
+    "planarity_improvement": 97.30703512204857,
+    "success": true,
+    "convergence_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "planarity_before": {
+      "mean": 0.06771543382067657,
+      "median": 0.06265938445823069,
+      "std": 0.046292536683674924,
+      "p95": 0.13711365679924836,
+      "max": 0.16035634224593112
+    },
+    "planarity_after": {
+      "mean": 0.011381528578063958,
+      "median": 0.011819031916868079,
+      "std": 0.0071870500673535875,
+      "p95": 0.02411460971370571,
+      "max": 0.02622556674967112
+    }
+  }
+]

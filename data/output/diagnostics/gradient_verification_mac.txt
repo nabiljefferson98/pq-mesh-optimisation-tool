@@ -1,0 +1,520 @@
+
+======================================================================
+                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+======================================================================
+
+Loading mesh: data/input/generated/plane_5x5_noisy.obj
+✓ Parsed 36 vertices, 25 faces total
+  Quads:     25
+  Triangles: 0
+✓ Loaded mesh: 36 vertices, 25 faces
+
+  Vertices: 36, Faces: 25
+
+
+======================================================================
+ PART 1: ANALYTICAL VS NUMERICAL GRADIENT
+======================================================================
+
+Comparing analytical gradient against numerical gradient...
+(This may take 30-60 seconds due to finite differences)
+
+======================================================================
+GRADIENT VERIFICATION
+======================================================================
+Analytical gradient norm : 7.794593e+01
+Numerical  gradient norm : 7.794593e+01
+Absolute difference      : 4.688877e-09
+Relative error           : 6.015551e-11
+Tolerance                : 1.000000e-03
+
+✓ PASSED: Gradient verification successful
+======================================================================
+
+======================================================================
+ PART 2: GRADIENT COMPONENT ANALYSIS
+======================================================================
+
+======================================================================
+GRADIENT ANALYSIS
+======================================================================
+Total gradient:
+  Norm           : 77.945927
+  Max magnitude  : 28.473500
+  Mean magnitude : 10.331483
+  Std deviation  : 7.875673
+
+Component gradients:
+  Planarity : norm = 0.662989  (weight: 100.0)
+  Fairness  : norm = 12.759554  (weight: 1.0)
+  Closeness : norm = 0.000000  (weight: 10.0)
+======================================================================
+
+======================================================================
+ PART 3: GRADIENT DESCENT SANITY CHECK
+======================================================================
+
+Testing that gradient descent decreases energy...
+
+Initial energy: 7.616554
+  Step 1: E = 3.480008 (decrease: -4.136545)
+  Step 2: E = 2.680358 (decrease: -0.799650)
+  Step 3: E = 2.323835 (decrease: -0.356523)
+  Step 4: E = 2.100750 (decrease: -0.223085)
+  Step 5: E = 1.946252 (decrease: -0.154498)
+
+✓ PASSED: Energy decreased monotonically
+
+======================================================================
+ PART 4: GRADIENT MAGNITUDE DISTRIBUTION
+======================================================================
+
+Gradient statistics:
+  Total norm:      77.945927
+  Max magnitude:   28.473500
+  Mean magnitude:  10.331483
+  Std deviation:   7.875673
+  Min magnitude:   0.607128
+
+Interpretation:
+  • Large gradient → far from minimum, may need many iterations
+  • Low variance → uniform convergence expected
+
+======================================================================
+ SUMMARY
+======================================================================
+
+✓ Gradient implementation validated
+✓ Gradient error: 6.02e-11 (< 1e-3)
+✓ Gradient descent test passed
+
+  What this means:
+    The analytical gradient (computed mathematically) closely matches
+    the numerical gradient (computed by tiny finite differences).
+    This confirms that the optimiser will move mesh vertices in exactly
+    the right direction when reducing energy — the maths is correct.
+
+    A gradient error below 1e-3 is considered reliable for
+    engineering-grade optimisation.
+
+Ready to proceed with optimisation!
+Next step: Run the interactive optimiser on a mesh.
+  python src/visualisation/interactive_optimisation.py
+
+---MESH-SEPARATOR---
+
+======================================================================
+                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+======================================================================
+
+Loading mesh: data/input/reference_datasets/oloid/oloid256_quad.obj
+✓ Parsed 258 vertices, 256 faces total
+  Quads:     256
+  Triangles: 0
+✓ Loaded mesh: 258 vertices, 256 faces
+
+  Vertices: 258, Faces: 256
+
+
+======================================================================
+ PART 1: ANALYTICAL VS NUMERICAL GRADIENT
+======================================================================
+
+Comparing analytical gradient against numerical gradient...
+(This may take 30-60 seconds due to finite differences)
+
+======================================================================
+GRADIENT VERIFICATION
+======================================================================
+Analytical gradient norm : 3.367702e+02
+Numerical  gradient norm : 3.367702e+02
+Absolute difference      : 3.065910e-06
+Relative error           : 9.103864e-09
+Tolerance                : 1.000000e-03
+
+✓ PASSED: Gradient verification successful
+======================================================================
+
+======================================================================
+ PART 2: GRADIENT COMPONENT ANALYSIS
+======================================================================
+
+======================================================================
+GRADIENT ANALYSIS
+======================================================================
+Total gradient:
+  Norm           : 336.770156
+  Max magnitude  : 28.353663
+  Mean magnitude : 20.742355
+  Std deviation  : 3.056859
+
+Component gradients:
+  Planarity : norm = 0.000017  (weight: 100.0)
+  Fairness  : norm = 336.770191  (weight: 1.0)
+  Closeness : norm = 0.000000  (weight: 10.0)
+======================================================================
+
+======================================================================
+ PART 3: GRADIENT DESCENT SANITY CHECK
+======================================================================
+
+Testing that gradient descent decreases energy...
+
+Initial energy: 2325.686638
+  Step 1: E = 2215.100537 (decrease: -110.586101)
+  Step 2: E = 2115.245753 (decrease: -99.854785)
+  Step 3: E = 2025.044827 (decrease: -90.200926)
+  Step 4: E = 1943.535536 (decrease: -81.509291)
+  Step 5: E = 1869.855078 (decrease: -73.680457)
+
+✓ PASSED: Energy decreased monotonically
+
+======================================================================
+ PART 4: GRADIENT MAGNITUDE DISTRIBUTION
+======================================================================
+
+Gradient statistics:
+  Total norm:      336.770156
+  Max magnitude:   28.353663
+  Mean magnitude:  20.742355
+  Std deviation:   3.056859
+  Min magnitude:   6.009380
+
+Interpretation:
+  • Large gradient → far from minimum, may need many iterations
+  • Low variance → uniform convergence expected
+
+======================================================================
+ SUMMARY
+======================================================================
+
+✓ Gradient implementation validated
+✓ Gradient error: 9.10e-09 (< 1e-3)
+✓ Gradient descent test passed
+
+  What this means:
+    The analytical gradient (computed mathematically) closely matches
+    the numerical gradient (computed by tiny finite differences).
+    This confirms that the optimiser will move mesh vertices in exactly
+    the right direction when reducing energy — the maths is correct.
+
+    A gradient error below 1e-3 is considered reliable for
+    engineering-grade optimisation.
+
+Ready to proceed with optimisation!
+Next step: Run the interactive optimiser on a mesh.
+  python src/visualisation/interactive_optimisation.py
+
+---MESH-SEPARATOR---
+
+======================================================================
+                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+======================================================================
+
+Loading mesh: data/input/reference_datasets/spot/spot_quadrangulated.obj
+✓ Parsed 2930 vertices, 2928 faces total
+  Quads:     2928
+  Triangles: 0
+✓ Loaded mesh: 2930 vertices, 2928 faces
+
+  Vertices: 2930, Faces: 2928
+
+
+======================================================================
+ PART 1: ANALYTICAL VS NUMERICAL GRADIENT
+======================================================================
+
+Comparing analytical gradient against numerical gradient...
+(This may take 30-60 seconds due to finite differences)
+
+======================================================================
+GRADIENT VERIFICATION
+======================================================================
+Analytical gradient norm : 7.946842e+00
+Numerical  gradient norm : 7.946842e+00
+Absolute difference      : 3.344414e-08
+Relative error           : 4.208481e-09
+Tolerance                : 1.000000e-03
+
+✓ PASSED: Gradient verification successful
+======================================================================
+
+======================================================================
+ PART 2: GRADIENT COMPONENT ANALYSIS
+======================================================================
+
+======================================================================
+GRADIENT ANALYSIS
+======================================================================
+Total gradient:
+  Norm           : 7.946842
+  Max magnitude  : 0.987503
+  Mean magnitude : 0.078228
+  Std deviation  : 0.124234
+
+Component gradients:
+  Planarity : norm = 0.069563  (weight: 100.0)
+  Fairness  : norm = 2.481785  (weight: 1.0)
+  Closeness : norm = 0.000000  (weight: 10.0)
+======================================================================
+
+======================================================================
+ PART 3: GRADIENT DESCENT SANITY CHECK
+======================================================================
+
+Testing that gradient descent decreases energy...
+
+Initial energy: 1.630175
+  Step 1: E = 1.576059 (decrease: -0.054116)
+  Step 2: E = 1.544372 (decrease: -0.031687)
+  Step 3: E = 1.522068 (decrease: -0.022304)
+  Step 4: E = 1.504989 (decrease: -0.017079)
+  Step 5: E = 1.491280 (decrease: -0.013709)
+
+✓ PASSED: Energy decreased monotonically
+
+======================================================================
+ PART 4: GRADIENT MAGNITUDE DISTRIBUTION
+======================================================================
+
+Gradient statistics:
+  Total norm:      7.946842
+  Max magnitude:   0.987503
+  Mean magnitude:  0.078228
+  Std deviation:   0.124234
+  Min magnitude:   0.000320
+
+Interpretation:
+  • Moderate gradient → typical starting condition
+  • Low variance → uniform convergence expected
+
+======================================================================
+ SUMMARY
+======================================================================
+
+✓ Gradient implementation validated
+✓ Gradient error: 4.21e-09 (< 1e-3)
+✓ Gradient descent test passed
+
+  What this means:
+    The analytical gradient (computed mathematically) closely matches
+    the numerical gradient (computed by tiny finite differences).
+    This confirms that the optimiser will move mesh vertices in exactly
+    the right direction when reducing energy — the maths is correct.
+
+    A gradient error below 1e-3 is considered reliable for
+    engineering-grade optimisation.
+
+Ready to proceed with optimisation!
+Next step: Run the interactive optimiser on a mesh.
+  python src/visualisation/interactive_optimisation.py
+
+---MESH-SEPARATOR---
+
+======================================================================
+                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+======================================================================
+
+Loading mesh: data/input/reference_datasets/blub/blub_quadrangulated.obj
+✓ Parsed 7106 vertices, 7104 faces total
+  Quads:     7104
+  Triangles: 0
+✓ Loaded mesh: 7106 vertices, 7104 faces
+
+  Vertices: 7106, Faces: 7104
+
+
+======================================================================
+ PART 1: ANALYTICAL VS NUMERICAL GRADIENT
+======================================================================
+
+Comparing analytical gradient against numerical gradient...
+(This may take 30-60 seconds due to finite differences)
+
+======================================================================
+GRADIENT VERIFICATION
+======================================================================
+Analytical gradient norm : 6.715791e+00
+Numerical  gradient norm : 6.715791e+00
+Absolute difference      : 6.166467e-08
+Relative error           : 9.182041e-09
+Tolerance                : 1.000000e-03
+
+✓ PASSED: Gradient verification successful
+======================================================================
+
+======================================================================
+ PART 2: GRADIENT COMPONENT ANALYSIS
+======================================================================
+
+======================================================================
+GRADIENT ANALYSIS
+======================================================================
+Total gradient:
+  Norm           : 6.715791
+  Max magnitude  : 2.093903
+  Mean magnitude : 0.012776
+  Std deviation  : 0.078637
+
+Component gradients:
+  Planarity : norm = 0.059945  (weight: 100.0)
+  Fairness  : norm = 2.549105  (weight: 1.0)
+  Closeness : norm = 0.000000  (weight: 10.0)
+======================================================================
+
+======================================================================
+ PART 3: GRADIENT DESCENT SANITY CHECK
+======================================================================
+
+Testing that gradient descent decreases energy...
+
+Initial energy: 0.898143
+  Step 1: E = 0.860160 (decrease: -0.037983)
+  Step 2: E = 0.839700 (decrease: -0.020460)
+  Step 3: E = 0.826234 (decrease: -0.013466)
+  Step 4: E = 0.816531 (decrease: -0.009704)
+  Step 5: E = 0.809271 (decrease: -0.007259)
+
+✓ PASSED: Energy decreased monotonically
+
+======================================================================
+ PART 4: GRADIENT MAGNITUDE DISTRIBUTION
+======================================================================
+
+Gradient statistics:
+  Total norm:      6.715791
+  Max magnitude:   2.093903
+  Mean magnitude:  0.012776
+  Std deviation:   0.078637
+  Min magnitude:   0.000014
+
+Interpretation:
+  • Moderate gradient → typical starting condition
+  • High variance → non-uniform convergence expected
+
+======================================================================
+ SUMMARY
+======================================================================
+
+✓ Gradient implementation validated
+✓ Gradient error: 9.18e-09 (< 1e-3)
+✓ Gradient descent test passed
+
+  What this means:
+    The analytical gradient (computed mathematically) closely matches
+    the numerical gradient (computed by tiny finite differences).
+    This confirms that the optimiser will move mesh vertices in exactly
+    the right direction when reducing energy — the maths is correct.
+
+    A gradient error below 1e-3 is considered reliable for
+    engineering-grade optimisation.
+
+Ready to proceed with optimisation!
+Next step: Run the interactive optimiser on a mesh.
+  python src/visualisation/interactive_optimisation.py
+
+---MESH-SEPARATOR---
+
+======================================================================
+                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+======================================================================
+
+Loading mesh: data/input/reference_datasets/bob/bob_quad.obj
+✓ Parsed 5344 vertices, 5344 faces total
+  Quads:     5344
+  Triangles: 0
+✓ Loaded mesh: 5344 vertices, 5344 faces
+
+  Vertices: 5344, Faces: 5344
+
+
+======================================================================
+ PART 1: ANALYTICAL VS NUMERICAL GRADIENT
+======================================================================
+
+Comparing analytical gradient against numerical gradient...
+(This may take 30-60 seconds due to finite differences)
+
+======================================================================
+GRADIENT VERIFICATION
+======================================================================
+Analytical gradient norm : 2.055354e+00
+Numerical  gradient norm : 2.055354e+00
+Absolute difference      : 1.651302e-08
+Relative error           : 8.034149e-09
+Tolerance                : 1.000000e-03
+
+✓ PASSED: Gradient verification successful
+======================================================================
+
+======================================================================
+ PART 2: GRADIENT COMPONENT ANALYSIS
+======================================================================
+
+======================================================================
+GRADIENT ANALYSIS
+======================================================================
+Total gradient:
+  Norm           : 2.055354
+  Max magnitude  : 0.451134
+  Mean magnitude : 0.007656
+  Std deviation  : 0.027053
+
+Component gradients:
+  Planarity : norm = 0.017481  (weight: 100.0)
+  Fairness  : norm = 0.713606  (weight: 1.0)
+  Closeness : norm = 0.000000  (weight: 10.0)
+======================================================================
+
+======================================================================
+ PART 3: GRADIENT DESCENT SANITY CHECK
+======================================================================
+
+Testing that gradient descent decreases energy...
+
+Initial energy: 0.319705
+  Step 1: E = 0.316080 (decrease: -0.003624)
+  Step 2: E = 0.313920 (decrease: -0.002160)
+  Step 3: E = 0.312360 (decrease: -0.001560)
+  Step 4: E = 0.311135 (decrease: -0.001226)
+  Step 5: E = 0.310125 (decrease: -0.001009)
+
+✓ PASSED: Energy decreased monotonically
+
+======================================================================
+ PART 4: GRADIENT MAGNITUDE DISTRIBUTION
+======================================================================
+
+Gradient statistics:
+  Total norm:      2.055354
+  Max magnitude:   0.451134
+  Mean magnitude:  0.007656
+  Std deviation:   0.027053
+  Min magnitude:   0.000005
+
+Interpretation:
+  • Moderate gradient → typical starting condition
+  • High variance → non-uniform convergence expected
+
+======================================================================
+ SUMMARY
+======================================================================
+
+✓ Gradient implementation validated
+✓ Gradient error: 8.03e-09 (< 1e-3)
+✓ Gradient descent test passed
+
+  What this means:
+    The analytical gradient (computed mathematically) closely matches
+    the numerical gradient (computed by tiny finite differences).
+    This confirms that the optimiser will move mesh vertices in exactly
+    the right direction when reducing energy — the maths is correct.
+
+    A gradient error below 1e-3 is considered reliable for
+    engineering-grade optimisation.
+
+Ready to proceed with optimisation!
+Next step: Run the interactive optimiser on a mesh.
+  python src/visualisation/interactive_optimisation.py
+
+---MESH-SEPARATOR---

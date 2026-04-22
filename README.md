@@ -5,8 +5,8 @@
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![CI](https://github.com/nabiljefferson98/pq-mesh-optimisation/actions/workflows/ci.yml/badge.svg)](https://github.com/nabiljefferson98/pq-mesh-optimisation/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation/branch/main/graph/badge.svg)](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation)
+[![CI](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/actions/workflows/ci.yml/badge.svg)](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation-tool/branch/main/graph/badge.svg)](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation)
 
 A computational geometry tool for optimising quad meshes to achieve planar faces, enabling fabrication of architectural surfaces from flat panels. Implements SVD-based planarity formulation with L-BFGS-B optimisation.
 
@@ -39,8 +39,8 @@ A computational geometry tool for optimising quad meshes to achieve planar faces
 
 ```bash
 # Clone repository
-git clone https://github.com/<your-username>/pq-mesh-optimisation.git
-cd pq-mesh-optimisation
+git clone https://github.com/<your-username>/pq-mesh-optimisation-tool.git
+cd pq-mesh-optimisation-tool
 
 # Create virtual environment
 python3 -m venv .venv
@@ -363,8 +363,10 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fi
 
 ## 🙏 Acknowledgements
 
-- **Professor Hamish Carr** — Academic supervision and guidance
+- **Professor Hamish Carr** — Academic supervisor and guidance
 - **Dr Sebastian Ordyniak** - Academic Assessor and guidance
+- **Dr Samuel Wilson** - Director of Student Education and his support and guidance
+- **Professor Gordon Love** - Head of the School of Computer Science and his support
 - **Helmut Pottmann et al.** — Foundational research on architectural geometry
 - **SciPy Contributors** — Excellent optimisation library
 - **Polyscope Team** — Beautiful 3D visualisation framework
@@ -404,7 +406,7 @@ Future enhancements under consideration:
 - **Windows WSL**: GUI requires X server (e.g., VcXsrv)
 - **Very large meshes (>10,000 vertices)**: Runtime exceeds ~120 s; both the Numba planarity energy kernel and gradient kernel (`_planarity_gradient_contributions_numba`) are now implemented (15 Mar 2026). CuPy GPU path remains the target for very large meshes
 
-Report bugs: [GitHub Issues](https://github.com/nabiljefferson98/pq-mesh-optimisation/issues)
+Report bugs: [GitHub Issues](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/issues)
 
 ---
 

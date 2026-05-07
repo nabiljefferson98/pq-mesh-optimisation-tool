@@ -33,14 +33,14 @@ fundamental form (do Carmo, 1976, p. 150), providing the rigorous theoretical ba
 interpreting the conical mesh structure of Liu et al. (2006) as a discrete principal
 curvature network.
 
-Liu et al. (2006) additionally establish that conicality and circularity, in which each quad 
-has a circumscribed circle are the two known discrete analogues of principal curvature networks 
-on smooth surfaces. Bobenko and Suris (2008) establish that these two types stand in precise 
-duality under Laguerre and Möbius transformations respectively, a deep structural correspondence 
-that connects the Laguerre-geometric and Möbius-geometric perspectives on discrete curvature 
-line networks. Conicality is the architecturally preferred condition because it supports the 
-consistent offset property (Chapter 1, Section 1.5.1), while circularity is the computationally 
-more tractable dual. This duality is not exploited in the current implementation but represents 
+Liu et al. (2006) additionally establish that conicality and circularity, in which each quad
+has a circumscribed circle are the two known discrete analogues of principal curvature networks
+on smooth surfaces. Bobenko and Suris (2008) establish that these two types stand in precise
+duality under Laguerre and Möbius transformations respectively, a deep structural correspondence
+that connects the Laguerre-geometric and Möbius-geometric perspectives on discrete curvature
+line networks. Conicality is the architecturally preferred condition because it supports the
+consistent offset property (Chapter 1, Section 1.5.1), while circularity is the computationally
+more tractable dual. This duality is not exploited in the current implementation but represents
 a theoretically motivated direction for future work.
 
 ---
@@ -48,28 +48,28 @@ a theoretically motivated direction for future work.
 ## C.2 Full Comparison of Candidate Optimisation Methods
 
 **Table C.1:** Comparison of candidate optimisation methods for PQ mesh planarisation.
-Memory cost, gradient requirements, constraint support, GPU scalability, and principal 
-limitations are assessed for SQP (Liu et al., 2006), Gauss-Newton, augmented Lagrangian, 
-and the selected L-BFGS-B method (referenced in Chapter 1, Section 1.6.2). GPU scalability is 
-assessed with respect to energy and gradient computation; the L-BFGS-B solver loop executes on 
+Memory cost, gradient requirements, constraint support, GPU scalability, and principal
+limitations are assessed for SQP (Liu et al., 2006), Gauss-Newton, augmented Lagrangian,
+and the selected L-BFGS-B method (referenced in Chapter 1, Section 1.6.2). GPU scalability is
+assessed with respect to energy and gradient computation; the L-BFGS-B solver loop executes on
 the CPU in all configurations.
 
-| Method                 | Hessian Memory             | Gradient Required          | Box Constraints | GPU Scalable                                         | Key Limitation                                                                            |
-| ---------------------- |----------------------------| -------------------------- | --------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| SQP (Liu et al., 2006) | $O(n^2)$ KKT system        | Jacobian + KKT factors     | Not native      | No                                                   | Approx. 1,000-vertex limit; no public implementation                                      |
-| Gauss-Newton           | $O(n^2)$ normal equations  | Jacobian (approx. Hessian) | Not native      | Partial                                              | Ill-conditioned when weights differ by orders of magnitude                                |
-| Augmented Lagrangian   | $O(n)$ per iteration       | Gradient + penalty terms   | Via penalty     | Partial                                              | Penalty parameter tuning required; slower near optimum                                    |
-| L-BFGS-B (this work)   | $O(mn)$ limited memory     | Analytic (closed form)     | Native          | Partial (energy/gradient on GPU; solver loop on CPU) | Smooth-landscape assumption; cannot enforce exact planarity as a hard equality constraint |
+| Method                 | Hessian Memory            | Gradient Required          | Box Constraints | GPU Scalable                                         | Key Limitation                                                                            |
+| ---------------------- | ------------------------- | -------------------------- | --------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| SQP (Liu et al., 2006) | $O(n^2)$ KKT system       | Jacobian + KKT factors     | Not native      | No                                                   | Approx. 1,000-vertex limit; no public implementation                                      |
+| Gauss-Newton           | $O(n^2)$ normal equations | Jacobian (approx. Hessian) | Not native      | Partial                                              | Ill-conditioned when weights differ by orders of magnitude                                |
+| Augmented Lagrangian   | $O(n)$ per iteration      | Gradient + penalty terms   | Via penalty     | Partial                                              | Penalty parameter tuning required; slower near optimum                                    |
+| L-BFGS-B (this work)   | $O(mn)$ limited memory    | Analytic (closed form)     | Native          | Partial (energy/gradient on GPU; solver loop on CPU) | Smooth-landscape assumption; cannot enforce exact planarity as a hard equality constraint |
 
-The SQP approach of Liu et al. (2006) achieves the highest planarity accuracy for small meshes 
-because it enforces the planarity constraint as a hard equality; however, its $O(n^2)$ KKT memory 
-requirement and the absence of a public implementation prevent direct comparison at scale. L-BFGS-B 
-is the only method in this comparison that natively supports box constraints and maintains $O(mn)$ 
-memory with $m \ll n$. Although the SciPy solver loop executes on the CPU, the energy and gradient 
-computations are GPU-accelerated via CuPy, making the implementation hardware-portable and practically 
-scalable to large architectural meshes. The inability to enforce planarity as a hard equality constraint 
-is accepted as a design trade-off: the soft penalty formulation permits simultaneous optimisation 
-of planarity, fairness, and closeness within a single unconstrained objective, which would not be 
+The SQP approach of Liu et al. (2006) achieves the highest planarity accuracy for small meshes
+because it enforces the planarity constraint as a hard equality; however, its $O(n^2)$ KKT memory
+requirement and the absence of a public implementation prevent direct comparison at scale. L-BFGS-B
+is the only method in this comparison that natively supports box constraints and maintains $O(mn)$
+memory with $m \ll n$. Although the SciPy solver loop executes on the CPU, the energy and gradient
+computations are GPU-accelerated via CuPy, making the implementation hardware-portable and practically
+scalable to large architectural meshes. The inability to enforce planarity as a hard equality constraint
+is accepted as a design trade-off: the soft penalty formulation permits simultaneous optimisation
+of planarity, fairness, and closeness within a single unconstrained objective, which would not be
 possible under a hard-constraint formulation.
 
 ---
@@ -86,23 +86,26 @@ constant.
 Liu et al. (2006) demonstrate that a single PQ strip — one row of planar quads — is a
 discrete tangent developable: the column edges act as discrete rulings, and the shared
 tangent-plane condition along those edges is precisely the planarity condition $E_p = 0$.
-Enforcing $E_p = 0$ for every row of a PQ mesh therefore makes the mesh **row-developable**,
-a weaker condition than full isometric flattenability.
+Enforcing $E_p = 0$ for every strip in the mesh therefore produces a surface composed
+entirely of discrete developable strips, which is the precise sense in which PQ mesh
+planarisation supports fabrication from flat sheet material.
 
-Full isometric flattenability requires, in addition to planar faces, that the intrinsic metric
-be flat, entailing geodesic arc-length conditions across face boundaries equivalent to the
-constraints studied by Chu and Séquin (2002) for Bézier patches and by Tang et al. (2016) in
-the context of interactive developable surface design. These additional constraints are beyond
-the scope of the current project. Practitioners requiring full isometric flattenability — for
-example, for textile patterning or sheet-metal unfolding with zero stretch — should extend the
-current pipeline with the geodesic constraints of Tang et al. (2016).
+This strip-level developability is, however, strictly weaker than global isometric
+developability. A globally developable surface has Gaussian curvature identically zero
+(do Carmo, 1976, p. 195); a PQ mesh with $E_p = 0$ satisfies the discrete ruling condition
+strip-by-strip but does not, in general, have vanishing discrete Gaussian curvature at
+interior vertices. The angle defect at each interior vertex,
+$\delta_v = 2\pi - \sum_{f \ni v} \theta_{f,v}$, is the discrete analogue of integrated
+Gaussian curvature (Bobenko and Suris, 2008); it is nonzero for meshes approximating
+curved reference surfaces, and its nonzero value constitutes a geometric lower bound on
+the planarity error achievable by optimisation without deforming the mesh away from the
+reference surface.
 
-The Gaussian curvature interpretation provides the geometric explanation for the approximately
-83 per cent planarity reduction ceiling observed in EXP-01 (Chapter 4, Section 4.2.1). By the
-discrete Gauss-Bonnet theorem, a closed surface has a fixed total Gaussian curvature
-determined by its topology (Liu et al., 2006; Pottmann et al., 2007a). For a surface of
-non-zero Gaussian curvature, enforcing exact planarity on every face would require the mesh to
-be topologically equivalent to the plane — which a closed or doubly curved surface is not.
-The residual planarity error observed on the 900-face and larger meshes is therefore a
-geometric lower bound imposed by the target surface topology, not a limitation of the
-optimiser.
+This provides the geometric interpretation of the planarity reduction ceiling observed in
+the experimental results of Chapter 4: for meshes discretising surfaces with nonzero
+Gaussian curvature — the cylindrical and sinusoidal benchmark surfaces — the angle-defect
+sum constrains how close to zero $E_p$ can be driven whilst $E_c$ remains active. The
+ceiling is not a deficiency of the optimiser but a geometric inevitability; it can be lowered
+only by increasing mesh resolution (reducing the per-face curvature contribution) or by
+relaxing $w_c$ (permitting greater departure from the reference surface). Both effects are
+observable in the experimental data of Chapter 4 (EXP-01 and EXP-03).

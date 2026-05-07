@@ -236,7 +236,7 @@ relevant to the implementation claims of this chapter are:
 |---|---|
 | `test_gradients.py` | Gradient verification: $E_p$, $E_f$, $E_c$ analytic vs. finite difference |
 | `test_gradients_extended.py` | Gradient verification: $E_a$ (angle-balance); SciPy interface safeguards; extended geometries |
-| `test_numerical_equivalence.py` | Numba-versus-NumPy parity for all four gradients (229 tests) |
+| `test_numerical_equivalence.py` | Numba-versus-NumPy parity for all four gradients across $10 \times 10$ and $20 \times 20$ mesh geometries |
 | `test_energy_terms.py` | Unit tests for all five energy functions |
 | `test_optimiser.py` | Integration tests for `MeshOptimiser` and `OptimisationConfig` |
 | `test_preprocessor.py` | Unit tests for all six preprocessing stages and weight suggestion |
@@ -252,7 +252,6 @@ running individual modules in isolation.
 ## References
 
 - Botsch, M., Kobbelt, L., Pauly, M., Alliez, P., and Lévy, B. (2010). *Polygon Mesh Processing*. AK Peters.
-- Crane, K., de Goes, F., Desbrun, M., and Schröder, P. (2013). Digital geometry processing with discrete exterior calculus. *ACM SIGGRAPH 2013 Courses*.
 - Higham, N. J. (2002). *Accuracy and Stability of Numerical Algorithms*. 2nd ed. SIAM.
 - Lam, S. K., Pitrou, A., and Seibert, S. (2015). Numba: a LLVM-based Python JIT compiler. *Proceedings of the Second Workshop on the LLVM Compiler Infrastructure in HPC*, pp. 1–6.
 - Liu, Y., Pottmann, H., Wallner, J., Yang, Y.-L., and Wang, W. (2006). Geometric modelling with conical meshes and developable surfaces. *ACM Transactions on Graphics*, 25(3), pp. 681–689.

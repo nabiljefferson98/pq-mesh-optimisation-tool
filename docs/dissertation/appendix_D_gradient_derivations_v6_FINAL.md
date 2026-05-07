@@ -25,7 +25,7 @@ is a neighbour. Under the uniform-valence assumption (all interior vertices of a
 grid have the same valence $|N_v| = |N_w| = k$), this simplifies to a purely linear
 function of current vertex positions and is assembled via the Laplacian adjacency matrix.
 At boundary and irregular-valence vertices, the uniform assumption introduces a small
-approximation error proportional to valence deviation, as noted in Chapter 2 (Section 2.9.2).
+approximation error proportional to valence deviation, as noted in Chapter 2 (Section 2.4.2).
 
 ---
 
@@ -42,7 +42,7 @@ of a face with vertices $v_i, v_j, v_k$ is:
 $$\theta_{f,v_i} = \arccos \left( \frac{(v_j - v_i) \cdot (v_k - v_i)}{\|v_j - v_i\| \|v_k - v_i\|} \right)$$
 
 Differentiating with respect to $v_i$, $v_j$, and $v_k$ yields the per-face
-angle-contribution tensor, assembled into the gradient via the `ANGLESIGNS` sign assignments.
+angle-contribution tensor, assembled into the gradient via the `_ANGLE_SIGNS` sign assignments.
 For vertex $v_i$ (the apex of the angle):
 
 $$\frac{\partial \theta_{f,v_i}}{\partial v_i} = -\frac{1}{\sin \theta_{f,v_i}} \cdot \nabla_{v_i} \cos \theta_{f,v_i}$$
@@ -74,7 +74,7 @@ at JIT compilation time with a `TypingError` (Lam, Pitrou and Seibert, 2015). Co
 with the broad `except Exception` handler of Chapter 3 (Section 3.4.2), such a failure
 would silently route execution to the NumPy fallback, losing the expected CPU acceleration
 without any visible error. The fix was applied in March 2026 and is regression-tested in
-`tests/test_robustness.py` (Chapter 3, Section 3.8.1, category 4).
+`tests/test_robustness.py` (Chapter 3, Section 3.7).
 
 ---
 
@@ -98,4 +98,7 @@ cylindrically curved mesh geometries.
 All four terms pass verification across all tested geometries. The Numba-versus-NumPy
 numerical equivalence is separately validated in `tests/test_numerical_equivalence.py` to
 $10^{-10}$ for $10 \times 10$ meshes and $10^{-8}$ for $20 \times 20$ meshes (Chapter 2,
-Section 2.4.3; Higham, 2002).
+Section 2.4.3; Higham, 2002). `tests/test_gradients_extended.py` additionally verifies the
+SciPy interface functions `energy_for_scipy` and `gradient_for_scipy`, confirming that the
+non-finite sentinel guards ($10^{300}$ and `nan_to_num` replacement) behave correctly on
+degenerate inputs without activating on well-formed meshes.

@@ -54,12 +54,12 @@ and the selected L-BFGS-B method (referenced in Chapter 1, Section 1.6.2). GPU s
 assessed with respect to energy and gradient computation; the L-BFGS-B solver loop executes on 
 the CPU in all configurations.
 
-| Method                 | Hessian Memory                    | Gradient Required          | Box Constraints | GPU Scalable                                         | Key Limitation                                                                            |
-| ---------------------- | --------------------------------- | -------------------------- | --------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| SQP (Liu et al., 2006) | O(n2)O(n^2)O(n2) KKT system       | Jacobian + KKT factors     | Not native      | No                                                   | Approx. 1,000-vertex limit; no public implementation                                      |
-| Gauss-Newton           | O(n2)O(n^2)O(n2) normal equations | Jacobian (approx. Hessian) | Not native      | Partial                                              | Ill-conditioned when weights differ by orders of magnitude                                |
-| Augmented Lagrangian   | O(n)O(n)O(n) per iteration        | Gradient + penalty terms   | Via penalty     | Partial                                              | Penalty parameter tuning required; slower near optimum                                    |
-| L-BFGS-B (this work)   | O(mn)O(mn)O(mn) limited memory    | Analytic (closed form)     | Native          | Partial (energy/gradient on GPU; solver loop on CPU) | Smooth-landscape assumption; cannot enforce exact planarity as a hard equality constraint |
+| Method                 | Hessian Memory             | Gradient Required          | Box Constraints | GPU Scalable                                         | Key Limitation                                                                            |
+| ---------------------- |----------------------------| -------------------------- | --------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| SQP (Liu et al., 2006) | $O(n^2)$ KKT system        | Jacobian + KKT factors     | Not native      | No                                                   | Approx. 1,000-vertex limit; no public implementation                                      |
+| Gauss-Newton           | $O(n^2)$ normal equations  | Jacobian (approx. Hessian) | Not native      | Partial                                              | Ill-conditioned when weights differ by orders of magnitude                                |
+| Augmented Lagrangian   | $O(n)$ per iteration       | Gradient + penalty terms   | Via penalty     | Partial                                              | Penalty parameter tuning required; slower near optimum                                    |
+| L-BFGS-B (this work)   | $O(mn)$ limited memory     | Analytic (closed form)     | Native          | Partial (energy/gradient on GPU; solver loop on CPU) | Smooth-landscape assumption; cannot enforce exact planarity as a hard equality constraint |
 
 The SQP approach of Liu et al. (2006) achieves the highest planarity accuracy for small meshes 
 because it enforces the planarity constraint as a hard equality; however, its $O(n^2)$ KKT memory 

@@ -93,11 +93,11 @@ CNC or laser fabrication workflows.
 
 | Function | Returns | Notes |
 |---|---|---|
-| `compute_planarity_energy(mesh)` | `float64` | $\sum_f \sigma_{\min}(M_f)^2$ |
-| `compute_fairness_energy(mesh)` | `float64` | $\|LV\|^2_F$ |
+| `compute_planarity_energy(mesh)` | `float64` | $\sum_f \sum_{v \in f} d_{f,v}^2$ where $d_{f,v}$ is the signed distance of vertex $v$ from the SVD best-fit plane of face $f$ |
+| `compute_fairness_energy(mesh)` | `float64` | $\|LV\|^2_F$ (combinatorial umbrella Laplacian) |
 | `compute_closeness_energy(mesh)` | `float64` | $\|V - V_0\|^2_F$ |
-| `compute_angle_balance_energy(mesh)` | `float64` | $\sum_v (\alpha_0 + \alpha_2 - \alpha_1 - \alpha_3)^2$ |
-| `compute_planarity_per_face(mesh)` | `np.ndarray (F,)` | Unweighted $\sigma_{\min}$ per face |
+| `compute_angle_balance_energy(mesh)` | `float64` | $\sum_v \left(\sum_{f \ni v} \theta_{f,v} - 2\pi\right)^2$ (conical vertex constraint) |
+| `compute_planarity_per_face(mesh)` | `np.ndarray (F,)` | Per-face signed-distance RMS |
 | `compute_total_energy(mesh, weights)` | `float64` | Weighted sum |
 
 ---
@@ -198,12 +198,14 @@ def preprocess_mesh(
 def suggest_weights(mesh: QuadMesh) -> dict[str, float]: ...
 ```
 
-**Preprocessing steps (executed in order):**
+**Pre-processing stages (executed in fixed order):**
 
-1. Duplicate vertex removal (merge threshold: $10^{-8}$)
-2. Degenerate face removal (faces with repeated vertex indices)
-3. Unit-bounding-box normalisation (optional, `normalise=True`)
-4. Verbose change report (optional, `verbose=True`)
+1. Bounding-box recording (stores original extents before any modification)
+2. Duplicate vertex removal (merge threshold: $10^{-8}$; O(n²), warns if $n > 2000$)
+3. Degenerate face removal (faces with zero area or repeated vertex indices)
+4. Unit-bounding-box normalisation (optional, `normalise=True`; scales longest axis to target scale, centres at origin)
+5. Cleaned `QuadMesh` construction; sets `vertices_original` to normalised positions
+6. Automatic weight suggestion via `suggest_weights_for_mesh` (Stage 6; see below)
 
 **Weight suggestion heuristic:**
 
@@ -229,7 +231,7 @@ public interface of every function is identical across all three tiers.
 
 ## E.4 Test Suite Reference
 
-All 21 test modules are executable via `pytest tests/` from the repository root.
+All 20 test modules (229 tests total, 1 skipped; coverage ≥79% of `src/`) are executable via `pytest tests/` from the repository root.
 
 | Module | Primary Scope |
 |---|---|
@@ -238,14 +240,14 @@ All 21 test modules are executable via `pytest tests/` from the repository root.
 | `test_numerical_equivalence.py` | Numba-versus-NumPy parity ($10^{-10}$ at $10\times10$; $10^{-8}$ at $20\times20$) |
 | `test_energy_terms.py` | Unit tests for all five energy functions |
 | `test_optimiser.py` | Integration tests for `MeshOptimiser`, `OptimisationConfig`, two-stage logic |
-| `test_preprocessor.py` | Unit tests for all four preprocessing steps and weight suggestion |
+| `test_preprocessor.py` | Unit tests for all six preprocessing stages and weight suggestion heuristic |
+| `test_geometry.py` | Low-level geometric primitive correctness (face normals, best-fit planes, angle calculations) |
 | `test_robustness.py` | Degenerate-input and boundary-condition handling |
 | `test_scalability.py` | Timing benchmarks across mesh sizes |
 | `test_coverage_extended.py` | Branch coverage for backend fallback paths |
 | `test_coverage_gaps.py` | Additional branch and edge-case coverage |
 | `test_backends.py` | Backend availability detection and warmup |
 | `test_mesh.py` | `QuadMesh` construction and property validation |
-| `test_geometry.py` | Low-level geometric primitive correctness |
 | `test_obj_handler.py` | OBJ round-trip fidelity |
 | `test_obj_handler_extended.py` | Malformed OBJ error handling |
 | `test_panel_exporter.py` | Unfolding geometry and DXF/SVG output |

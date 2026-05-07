@@ -92,26 +92,29 @@ def preprocess_mesh(
 ) -> QuadMesh: ...
 ```
 
-The function executes four operations in a fixed order:
+The function executes six stages in a fixed order:
 
-1. **Duplicate vertex removal**: vertices within a Euclidean distance of $10^{-8}$ are
+1. **Bounding-box recording**: the original bounding box is stored before any modification,
+   providing a reference for the normalisation step.
+2. **Duplicate vertex removal**: vertices within a Euclidean distance of $10^{-8}$ are
    merged, with face indices remapped to the surviving vertex. This prevents the closeness
    energy from accumulating spurious contributions from coincident vertices.
-2. **Degenerate face removal**: faces containing repeated vertex indices are deleted and the
-   face array is recompacted.
-3. **Optional unit-bounding-box normalisation**: vertex coordinates are shifted and scaled
-   so that the mesh fits within the unit cube centred at the origin. This stabilises the
-   weight heuristic in `preprocessor.py` (Section 2.5.3) by ensuring that absolute
-   coordinate magnitudes do not inflate or deflate energy ratios.
-4. **Verbose reporting**: if `verbose=True`, a summary of changes (counts of merged vertices
-   and removed faces) is printed to stdout.
-
-A heuristic weight suggestion procedure within the same module targets the initial normalised
-component-energy ratio $E_p : E_f : E_c \approx 10 : 1 : 5$ by evaluating initial term
-magnitudes at the starting configuration and computing proportional weights. A guard for
-near-planar meshes activates when $E_p < 10^{-10}$, in which case default weights are
-returned without division. Default weights prior to scaling are $w_p = 100.0$, $w_f = 1.0$,
-$w_c = 10.0$ (Botsch et al., 2010).
+3. **Degenerate face removal**: faces containing zero-area or repeated vertex indices are
+   deleted and the face array is recompacted.
+4. **Optional unit-bounding-box normalisation**: vertex coordinates are shifted and scaled
+   so that the longest axis of the mesh fits within a target scale centred at the origin.
+   This stabilises the weight heuristic (Section 2.5.3) by ensuring that absolute coordinate
+   magnitudes do not inflate or deflate energy ratios.
+5. **Cleaned mesh construction**: a new `QuadMesh` is assembled from the cleaned vertex and
+   face arrays, and `vertices_original` is set to the normalised positions as the closeness
+   energy baseline.
+6. **Automatic weight suggestion**: `suggest_weights_for_mesh` evaluates initial energy-term
+   magnitudes at the starting configuration and computes proportional weights targeting the
+   ratio $E_p : E_f : E_c \approx 10 : 1 : 5$. A guard for near-planar meshes activates
+   when $E_p < 10^{-10}$, returning default weights without division. The default weights,
+   used when the heuristic is not applied or the near-planar guard activates, correspond to
+   the `OptimisationConfig` defaults: $w_p = 100.0$, $w_f = 1.0$, $w_c = 10.0$
+   (Botsch et al., 2010).
 
 ---
 
@@ -119,21 +122,28 @@ $w_c = 10.0$ (Botsch et al., 2010).
 
 ### 3.5.1 Energy Functionals
 
+A fifth module, `src/optimisation/mesh_geometry.py`, provides geometric primitive functions
+(face normal computation, best-fit plane projection, and angle calculations) consumed
+internally by `energy_terms.py` and `gradients.py`; it has no public API surface and is
+not documented separately.
+
 `src/optimisation/energy_terms.py` implements the four energy terms defined in Chapter 2.
 All functions accept a `QuadMesh` and, where applicable, a scalar weight, and return a
 scalar `float64`:
 
 | Function | Energy Term | Formula |
 |---|---|---|
-| `compute_planarity_energy(mesh)` | $E_p$ | $\sum_f \sigma_{\min}(M_f)^2$ |
+| `compute_planarity_energy(mesh)` | $E_p$ | $\sum_f \sum_{v \in f} d_{f,v}^2$ |
 | `compute_fairness_energy(mesh)` | $E_f$ | $\|LV\|^2_F$ |
 | `compute_closeness_energy(mesh)` | $E_c$ | $\|V - V_0\|^2_F$ |
-| `compute_angle_balance_energy(mesh)` | $E_a$ | $\sum_v (\alpha_0 + \alpha_2 - \alpha_1 - \alpha_3)^2$ |
+| `compute_angle_balance_energy(mesh)` | $E_a$ | $\sum_v \left(\sum_{f \ni v} \theta_{f,v} - 2\pi\right)^2$ |
 | `compute_total_energy(mesh, weights)` | $E$ | Weighted sum of all four terms |
 
-where $M_f$ is the $(4 \times 3)$ matrix of mean-centred vertex positions for face $f$,
-$\sigma_{\min}$ is its smallest singular value, and $L$ is the combinatorial Laplacian
-matrix (Crane et al., 2013).
+where $d_{f,v}$ is the signed distance of vertex $v$ from the least-squares best-fit plane
+of face $f$ (computed via SVD of the mean-centred vertex matrix $M_f$), and $L$ is the
+combinatorial umbrella Laplacian matrix (Botsch et al., 2010). $\theta_{f,v}$ denotes the
+interior angle of face $f$ at vertex $v$; the angle-balance term penalises deviation of the
+angle sum at each vertex from the conical condition $\sum_{f \ni v} \theta_{f,v} = 2\pi$.
 
 ### 3.5.2 Analytic Gradients and Backend Dispatch
 
@@ -179,8 +189,9 @@ sequential L-BFGS-B passes. Stage 1 multiplies the planarity weight by
 `stage1_planarity_multiplier` (default 5.0) and reduces fairness and closeness weights to
 10% of their standard values, using loose tolerances (`ftol=1e-7`, `gtol=1e-4`,
 `maxcor=10`, `maxls=20`) to terminate quickly once faces are approximately flat. Stage 2
-restores the original balanced weights and tightens tolerances (`ftol=1e-9`, `gtol=1e-5`,
-`maxcor=20`, `maxls=40`), warm-starting from the Stage 1 solution. The combined iteration
+restores the original balanced weights and overrides the `OptimisationConfig` defaults with
+tighter tolerances (`ftol=1e-9`, `gtol=1e-5`, `maxcor=20`, `maxls=40`) applied locally
+within `optimise()`, warm-starting from the Stage 1 solution. The combined iteration
 budget across both stages is strictly bounded by `max_iterations` (default 1,000): Stage 1
 receives at most `min(200, max_iterations // 3)` iterations and Stage 2 receives the
 remainder.
@@ -214,19 +225,20 @@ library.
 
 ## 3.7 Testing Architecture
 
-The test suite in `tests/` covers 21 modules. The principal modules relevant to the
-implementation claims of this chapter are:
+The test suite in `tests/` comprises 20 test modules (229 tests total, 1 skipped; overall
+coverage ≥79% of `src/`, excluding `interactive_optimisation.py`). The principal modules
+relevant to the implementation claims of this chapter are:
 
 | Test Module | Scope |
 |---|---|
 | `test_gradients.py` | Gradient verification: $E_p$, $E_f$, $E_c$ analytic vs. finite difference |
-| `test_gradients_extended.py` | Gradient verification: $E_a$ (angle-balance); extended geometries |
-| `test_numerical_equivalence.py` | Numba-versus-NumPy parity for all four gradients |
+| `test_gradients_extended.py` | Gradient verification: $E_a$ (angle-balance); SciPy interface safeguards; extended geometries |
+| `test_numerical_equivalence.py` | Numba-versus-NumPy parity for all four gradients (229 tests) |
 | `test_energy_terms.py` | Unit tests for all five energy functions |
 | `test_optimiser.py` | Integration tests for `MeshOptimiser` and `OptimisationConfig` |
-| `test_preprocessor.py` | Unit tests for all four preprocessing steps |
+| `test_preprocessor.py` | Unit tests for all six preprocessing stages and weight suggestion |
 | `test_robustness.py` | Degenerate-input and boundary-condition handling |
-| `test_numerical_equivalence.py` | Numba and NumPy backend numerical parity |
+| `test_geometry.py` | Geometric primitive correctness (face normals, best-fit planes, angle calculations) |
 
 All tests are executable via `pytest tests/` from the repository root. The TESTING_GUIDE.md
 in `tests/` documents the full suite structure, expected pass criteria, and instructions for

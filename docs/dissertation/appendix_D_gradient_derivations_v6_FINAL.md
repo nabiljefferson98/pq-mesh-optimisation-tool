@@ -73,8 +73,8 @@ A plain Python list or `numpy.int32` array causes Numba's closure type-inference
 at JIT compilation time with a `TypingError` (Lam, Pitrou and Seibert, 2015). Combined
 with the broad `except Exception` handler of Chapter 3 (Section 3.5.2), such a failure
 would silently route execution to the NumPy fallback, losing the expected CPU acceleration
-without any visible error. The fix was applied in March 2026 and is regression-tested in
-`tests/test_robustness.py` (Chapter 3, Section 3.7).
+without any visible error. The fix was applied prior to the current version and is
+regression-tested in `tests/test_robustness.py` (Chapter 3, Section 3.7).
 
 ---
 

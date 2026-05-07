@@ -256,4 +256,5 @@ running individual modules in isolation.
 - Lam, S. K., Pitrou, A., and Seibert, S. (2015). Numba: a LLVM-based Python JIT compiler. *Proceedings of the Second Workshop on the LLVM Compiler Infrastructure in HPC*, pp. 1–6.
 - Liu, Y., Pottmann, H., Wallner, J., Yang, Y.-L., and Wang, W. (2006). Geometric modelling with conical meshes and developable surfaces. *ACM Transactions on Graphics*, 25(3), pp. 681–689.
 - Nocedal, J. and Wright, S. J. (2006). *Numerical Optimization*. 2nd ed. Springer.
-- Pottmann, H., Eigensatz, M., Vaxman, A., and Wallner, J. (2015). Architectural geometry. *Computers and Graphics*, 47, pp. 145–164.
+- Pottmann, H., Eigensatz, M., Vaxman, A., and Wallner, J. (2015). Architectural geometry. *Computers and Graphics*, 47, pp. 145–164. 
+[Note: this is a distinct publication from Pottmann et al. (2007a); it is cited here solely in relation to CNC fabrication export workflows in Section 3.3.2.]

@@ -140,7 +140,7 @@ class OptimisationConfig:
     # Required keys: "planarity", "fairness", "closeness"
     # Optional key:  "angle_balance" (default 0.0)
     max_iterations: int = 1000
-    tolerance: float = 1e-6           # Stage 1 ftol; Stage 2 uses 1e-9
+    tolerance: float = 1e-7           # Stage 1 ftol; Stage 2 uses 1e-9
     gradient_tolerance: float = 1e-4  # Stage 1 gtol; Stage 2 uses 1e-5
     two_stage: bool = True
     stage1_planarity_multiplier: float = 5.0
@@ -202,7 +202,7 @@ def suggest_weights(mesh: QuadMesh) -> dict[str, float]: ...
 
 1. Bounding-box recording (stores original extents before any modification)
 2. Duplicate vertex removal (merge threshold: $10^{-8}$; O(n²), warns if $n > 2000$)
-3. Degenerate face removal (faces with zero area or repeated vertex indices)
+3. Degenerate face removal (faces with zero area or repeated vertex indices; zero-area threshold: 10⁻⁸, distinct from the tighter validation threshold 10⁻¹⁰ used in validate_mesh())
 4. Unit-bounding-box normalisation (optional, `normalise=True`; scales longest axis to target scale, centres at origin)
 5. Cleaned `QuadMesh` construction; sets `vertices_original` to normalised positions
 6. Automatic weight suggestion via `suggest_weights_for_mesh` (Stage 6; see below)

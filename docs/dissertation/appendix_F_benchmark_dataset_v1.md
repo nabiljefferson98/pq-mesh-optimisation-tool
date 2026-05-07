@@ -54,7 +54,14 @@ Bob model used here carries a Creative Commons Attribution (CC BY) 4.0
 licence. The original model is a triangulated mesh; it was re-meshed to
 a quad-dominant topology using Blender's Remesh modifier with the Quad mode
 prior to import. The re-meshed output was verified to contain only
-quadrilateral faces before loading via `load_obj`.
+quadrilateral faces before loading via `load_obj`. The vertex
+and face counts reported in Chapter 4 (Table 4.9) — 5,344
+vertices and 5,344 faces — are the raw pre-preprocessing
+figures. Following the standard preprocessing pipeline,
+four duplicate vertices were merged and two degenerate faces
+were removed, yielding the post-preprocessing counts of
+5,340 vertices and 5,342 faces recorded in Table F.2 of
+this appendix.
 
 ---
 

@@ -3,7 +3,7 @@
 This appendix provides the full analytic gradient derivations for the fairness energy $E_f$
 and the angle-balance energy $E_a$, referenced in Chapter 2 (Section 2.4.2). It also
 documents the `_ANGLE_SIGNS` constant and its Numba JIT type constraint, documented in Chapter 3
-(Section 3.6.2).
+(Section 3.5.2).
 
 ---
 
@@ -71,7 +71,7 @@ _ANGLE_SIGNS = np.array([1.0, -1.0, 1.0, -1.0], dtype=np.float64)
 
 A plain Python list or `numpy.int32` array causes Numba's closure type-inference to fail
 at JIT compilation time with a `TypingError` (Lam, Pitrou and Seibert, 2015). Combined
-with the broad `except Exception` handler of Chapter 3 (Section 3.4.2), such a failure
+with the broad `except Exception` handler of Chapter 3 (Section 3.5.2), such a failure
 would silently route execution to the NumPy fallback, losing the expected CPU acceleration
 without any visible error. The fix was applied in March 2026 and is regression-tested in
 `tests/test_robustness.py` (Chapter 3, Section 3.7).

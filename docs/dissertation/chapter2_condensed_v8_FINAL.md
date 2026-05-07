@@ -190,12 +190,12 @@ vertices are merged via an $O(n^2)$ pairwise distance scan; unmerged duplicates 
 Laplacian adjacency graph and produce unphysical vertex movement under $E_f$. A warning is
 emitted for inputs exceeding 2,000 vertices, and a spatial-hashing approach is identified as
 a future efficiency improvement. Secondly, faces with zero or near-zero area (preprocessing
-threshold $10^{-8}$) are removed, as near-degenerate SVD matrices produce unreliable
-best-fit normals and propagate NaN through the gradient computation (Botsch et al., 2010);
-a secondary validation check in `validate_mesh()` applies the tighter threshold $10^{-10}$
-before optimisation begins (Section 2.6.1). Thirdly, the `QuadMesh` constructor raises a
-`ValueError` on negative face indices, preventing silent incorrect vertex lookups via
-NumPy's wrap-around indexing semantics.
+threshold $10^{-8}$) are removed, as near-degenerate SVD matrices produce unreliable best-fit
+normals and propagate NaN through the gradient computation (Botsch et al., 2010); a secondary
+validation check in `validate_mesh()` applies the tighter threshold $10^{-10}$ before
+optimisation begins (Section 2.6.1). Thirdly, the `QuadMesh` constructor raises a `ValueError`
+on negative face indices, preventing silent incorrect vertex lookups via NumPy's wrap-around
+indexing semantics.
 
 ### 2.5.2 Scale Normalisation and Reference Configuration
 
@@ -231,14 +231,14 @@ two-stage optimisation strategy described in Section 2.6.2.
 
 **Table 2.1:** L-BFGS-B hyperparameter configuration by stage.
 
-| Parameter | Stage 1 (Rapid Planarity) | Stage 2 (Balanced Refinement) | Rationale |
-|---|---|---|---|
-| `ftol` | $10^{-7}$ | $10^{-9}$ | Stage 1 uses a loose energy-change criterion to terminate quickly once faces are approximately flat; Stage 2 tightens this to avoid premature termination on flat energy plateaux during fine convergence |
-| `gtol` | $10^{-4}$ | $10^{-5}$ | Stage 1 tolerates a larger residual gradient; Stage 2 tightens to confirm genuine stationarity; the Stage 2 value is one order of magnitude below the gradient verification tolerance of $10^{-4}$ established in §2.4.3 |
-| `maxcor` | 10 | 20 | Stage 1 uses a shorter history to reduce per-iteration memory cost; Stage 2 doubles the L-BFGS-B correction history for a smoother inverse-Hessian approximation during refinement |
-| `maxls` | 20 | 40 | Stage 1 uses the SciPy default of 20 backtracking steps; Stage 2 doubles this to prevent early line-search termination on large or nearly-converged meshes |
-| `maxiter` | min(200, max_iterations // 3) | remainder of max_iterations | Stage 1 is allocated at most one-third of the total budget, capped at 200 iterations; Stage 2 receives all remaining iterations; the combined total is strictly bounded by max_iterations (default 1,000) |
-| `stage1_planarity_multiplier` | 5.0 | n/a | Planarity weight is multiplied by this factor in Stage 1; fairness and closeness are reduced to 10% of their standard values |
+| Parameter                     | Stage 1 (Rapid Planarity)     | Stage 2 (Balanced Refinement) | Rationale                                                                                                                                                                                                                      |
+|-------------------------------| ----------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ftol`                        | $10^{-7}$                     | $10^{-9}$                     | Stage 1 uses a loose energy-change criterion to terminate quickly once faces are approximately flat; Stage 2 tightens this to avoid premature termination on flat energy plateaux during fine convergence                       |
+| `gtol`                        | $10^{-4}$                     | $10^{-5}$                     | Stage 1 tolerates a larger residual gradient; Stage 2 tightens to confirm genuine stationarity; the Stage 2 value is one order of magnitude below the gradient verification tolerance of $10^{-4}$ established in §2.4.3       |
+| `maxcor`                      | 10                            | 20                            | Stage 1 uses a shorter history to reduce per-iteration memory cost; Stage 2 doubles the L-BFGS-B correction history for a smoother inverse-Hessian approximation during refinement                                             |
+| `maxls`                       | 20                            | 40                            | Stage 1 uses the SciPy default of 20 backtracking steps; Stage 2 doubles this to prevent early line-search termination on large or nearly-converged meshes                                                                     |
+| `maxiter`                     | min(200, max_iterations // 3) | remainder of max_iterations   | Stage 1 is allocated at most one-third of the total budget, capped at 200 iterations; Stage 2 receives all remaining iterations; the combined total is strictly bounded by max_iterations (default 1,000)                      |
+| `stage1_planarity_multiplier` | 5.0                           | n/a                           | Planarity weight is multiplied by this factor in Stage 1; fairness and closeness are reduced to 10% of their standard values                                                                                                   |
 
 `gtol` is the primary convergence indicator because a small energy change is indistinguishable
 via `ftol` alone from a near-zero line-search step, whereas a small gradient norm provides an

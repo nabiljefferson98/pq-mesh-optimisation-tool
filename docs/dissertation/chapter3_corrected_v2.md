@@ -8,7 +8,10 @@ is structured as a single importable Python library under the `src/` package, co
 subpackages: `core`, `io`, `optimisation`, `preprocessing`, and `visualisation`. All
 computation is expressed in terms of NumPy arrays; Numba JIT-compiled kernels provide
 optional acceleration for the planarity gradient and angle-balance gradient without altering
-the public interface or numerical contract of any function (Liu et al., 2006; Lam et al., 2015).
+the public interface or numerical contract of any function (Lam et al., 2015). A `scripts/`
+directory provides entry-point runnable scripts for common workflows that import from `src/`
+but are never imported by it, preserving the clean unidirectional dependency boundary of
+the library.
 
 The central data structure, described in Section 3.2, is the `QuadMesh` dataclass defined in
 `src/core/mesh.py`. All modules consume and return `QuadMesh` objects or NumPy arrays;

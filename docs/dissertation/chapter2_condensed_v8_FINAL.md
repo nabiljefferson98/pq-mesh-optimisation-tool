@@ -29,7 +29,7 @@ The `QuadMesh` class stores vertex positions as a floating-point matrix of shape
 face connectivity as an integer array of shape $(|F|, 4)$, lazily cached edge-adjacency
 structures, and a precomputed CSR scatter matrix $S$ of shape $(n, |F| \times 4)$ that enables
 BLAS-backed gradient accumulation two-to-four times faster than `numpy.add.at`; full
-construction details are given in Chapter 3 (Section 3.3). The optimisation variables are
+construction details are given in Chapter 3 (Section 3.2). The optimisation variables are
 the flattened vertex coordinates $\mathbf{x} = \text{vec}(V) \in \mathbb{R}^{3n}$, reshaped
 to $(n, 3)$ at each function evaluation. Optional box constraints restrict each coordinate to
 a prescribed interval around its reference position and are passed directly to L-BFGS-B,
@@ -140,7 +140,7 @@ $$\nabla_V E_p = S \cdot g_{fc}$$
 where $g_{fc} \in \mathbb{R}^{(|F| \times 4) \times 3}$ holds per-face, per-vertex
 contributions computed via batched SVD over the $(|F|, 4, 3)$ face-vertex tensor, accumulated
 in one BLAS-backed sparse matrix multiplication. Backend-specific kernel variants and
-numerical equivalence are documented in Chapter 3 (Section 3.4).
+numerical equivalence are documented in Chapter 3 (Section 3.5.2).
 
 ### 2.4.2 Supplementary Gradient Derivations
 
@@ -151,7 +151,7 @@ of the regular meshes used in the evaluation but introduces approximation error 
 and irregular-valence vertices — a limitation discussed in Section 2.9.2. Full derivations
 for $\partial E_f / \partial v_i$ and $\partial E_a / \partial v_i$, including the per-face
 angle-contribution tensor and the `_ANGLE_SIGNS` type constraints required for Numba JIT
-compilation, in which the full derivations are provided in Appendix D.
+compilation, are provided in Appendix D.
 
 ### 2.4.3 Gradient Verification and Numerical Safeguards
 
@@ -189,11 +189,13 @@ Three cleaning steps execute before any mesh reaches the optimiser. Firstly, dup
 vertices are merged via an $O(n^2)$ pairwise distance scan; unmerged duplicates fragment the
 Laplacian adjacency graph and produce unphysical vertex movement under $E_f$. A warning is
 emitted for inputs exceeding 2,000 vertices, and a spatial-hashing approach is identified as
-a future efficiency improvement. Secondly, faces with zero or near-zero area (threshold
-$10^{-8}$) are removed, as near-degenerate SVD matrices produce unreliable best-fit normals
-and propagate NaN through the gradient computation (Botsch et al., 2010). Thirdly, the
-`QuadMesh` constructor raises a `ValueError` on negative face indices, preventing silent
-incorrect vertex lookups via NumPy's wrap-around indexing semantics.
+a future efficiency improvement. Secondly, faces with zero or near-zero area (preprocessing
+threshold $10^{-8}$) are removed, as near-degenerate SVD matrices produce unreliable
+best-fit normals and propagate NaN through the gradient computation (Botsch et al., 2010);
+a secondary validation check in `validate_mesh()` applies the tighter threshold $10^{-10}$
+before optimisation begins (Section 2.6.1). Thirdly, the `QuadMesh` constructor raises a
+`ValueError` on negative face indices, preventing silent incorrect vertex lookups via
+NumPy's wrap-around indexing semantics.
 
 ### 2.5.2 Scale Normalisation and Reference Configuration
 
@@ -207,12 +209,12 @@ from the pre-processed design intent rather than from raw CAD metric artefacts.
 
 ### 2.5.3 Automatic Weight Suggestion
 
-A heuristic weight suggestion procedure in preprocessor.py targets the initial normalised 
-component-energy ratio $E_p : E_f : E_c \approx 10 : 1 : 5$ by evaluating the initial term 
-magnitudes at the starting vertex configuration and computing proportional weights, with a 
-guard for near-planar meshes, where $E_p$ is negligibly small (guard threshold: $E_p < 10^{-10}$. 
-This provides a reproducible starting point for interactive tuning rather than a guaranteed 
-optimum (Botsch et al., 2010). All fifteen weight configurations in Chapter 4 (EXP-04) 
+A heuristic weight suggestion procedure in preprocessor.py targets the initial normalised
+component-energy ratio $E_p : E_f : E_c \approx 10 : 1 : 5$ by evaluating the initial term
+magnitudes at the starting vertex configuration and computing proportional weights, with a
+guard for near-planar meshes, where $E_p$ is negligibly small (guard threshold: $E_p < 10^{-10}$).
+This provides a reproducible starting point for interactive tuning rather than a guaranteed
+optimum (Botsch et al., 2010). All fifteen weight configurations in Chapter 4 (EXP-04)
 depart from these suggested weights, validating their role as a practical baseline.
 
 ---
@@ -221,31 +223,31 @@ depart from these suggested weights, validating their role as a practical baseli
 
 ### 2.6.1 Algorithm Selection and Hyperparameter Configuration
 
-The selection of L-BFGS-B over gradient descent, conjugate gradient, SQP, and augmented 
+The selection of L-BFGS-B over gradient descent, conjugate gradient, SQP, and augmented
 Lagrangian methods was justified in Section 1.6.2 on grounds of superlinear convergence,
-modest memory footprint, native box-constraint support, and robustness to ill-conditioned 
-objectives. Table 2.1 specifies the hyperparameter configuration for each stage of the 
+modest memory footprint, native box-constraint support, and robustness to ill-conditioned
+objectives. Table 2.1 specifies the hyperparameter configuration for each stage of the
 two-stage optimisation strategy described in Section 2.6.2.
 
 **Table 2.1:** L-BFGS-B hyperparameter configuration by stage.
 
-| Parameter                    | Stage 1 (Rapid Planarity)     | Stage 2 (Balanced Refinement) | Rationale                                                                                                                                                                                                                      |
-|------------------------------| ----------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ftol`                       | 1×10−71 \\times 10^{-7}1×10−7 | 1×10−91 \\times 10^{-9}1×10−9 | Stage 1 uses a loose energy-change criterion to terminate quickly once faces are approximately flat; Stage 2 tightens this to avoid premature termination on flat energy plateaux during fine convergence                      |
-| `gtol`                       | 1×10−41 \\times 10^{-4}1×10−4 | 1×10−51 \\times 10^{-5}1×10−5 | Stage 1 tolerates a larger residual gradient; Stage 2 tightens to confirm genuine stationarity; the Stage 2 value is one order of magnitude below the gradient verification tolerance of 10−410^{-4}10−4 established in §2.4.3 |
-| `maxcor`                     | 10                            | 20                            | Stage 1 uses a shorter history to reduce per-iteration memory cost; Stage 2 doubles the L-BFGS-B correction history for a smoother inverse-Hessian approximation during refinement                                             |
-| `maxls`                      | 20                            | 40                            | Stage 1 uses the SciPy default of 20 backtracking steps; Stage 2 doubles this to prevent early line-search termination on large or nearly-converged meshes                                                                     |
-| `maxiter`                    | min(200, max_iterations // 3) | remainder of max_iterations   | Stage 1 is allocated at most one-third of the total budget, capped at 200 iterations; Stage 2 receives all remaining iterations; the combined total is strictly bounded by max_iterations (default 1,000)                      |
-| `stage1_planarity_multiplier`| 5.0                           | n/a                           | Planarity weight is multiplied by this factor in Stage 1; fairness and closeness are reduced to 10% of their standard values                                                                                                   |
+| Parameter | Stage 1 (Rapid Planarity) | Stage 2 (Balanced Refinement) | Rationale |
+|---|---|---|---|
+| `ftol` | $10^{-7}$ | $10^{-9}$ | Stage 1 uses a loose energy-change criterion to terminate quickly once faces are approximately flat; Stage 2 tightens this to avoid premature termination on flat energy plateaux during fine convergence |
+| `gtol` | $10^{-4}$ | $10^{-5}$ | Stage 1 tolerates a larger residual gradient; Stage 2 tightens to confirm genuine stationarity; the Stage 2 value is one order of magnitude below the gradient verification tolerance of $10^{-4}$ established in §2.4.3 |
+| `maxcor` | 10 | 20 | Stage 1 uses a shorter history to reduce per-iteration memory cost; Stage 2 doubles the L-BFGS-B correction history for a smoother inverse-Hessian approximation during refinement |
+| `maxls` | 20 | 40 | Stage 1 uses the SciPy default of 20 backtracking steps; Stage 2 doubles this to prevent early line-search termination on large or nearly-converged meshes |
+| `maxiter` | min(200, max_iterations // 3) | remainder of max_iterations | Stage 1 is allocated at most one-third of the total budget, capped at 200 iterations; Stage 2 receives all remaining iterations; the combined total is strictly bounded by max_iterations (default 1,000) |
+| `stage1_planarity_multiplier` | 5.0 | n/a | Planarity weight is multiplied by this factor in Stage 1; fairness and closeness are reduced to 10% of their standard values |
 
-`gtol` is the primary convergence indicator because a small energy change is indistinguishable 
-via `ftol` alone from a near-zero line-search step, whereas a small gradient norm provides an 
-unambiguous stationarity signal. The Stage 2 value of $\texttt{gtol} = 10^{-5}$ is one order of 
-magnitude below the $10^{-4}$ gradient verification bound established in §2.4.3, ensuring that 
-the solver halts only when the gradient is genuinely negligible relative to the verified precision 
-of the analytic derivatives. The Stage 1 value of $\texttt{gtol} = 10^{-4}$ matches the gradient 
-verification tolerance exactly, which is intentional: Stage 1 is considered complete as soon as 
-the gradient magnitude falls within the verified precision of the derivative computation, leaving 
+`gtol` is the primary convergence indicator because a small energy change is indistinguishable
+via `ftol` alone from a near-zero line-search step, whereas a small gradient norm provides an
+unambiguous stationarity signal. The Stage 2 value of $\texttt{gtol} = 10^{-5}$ is one order of
+magnitude below the $10^{-4}$ gradient verification bound established in §2.4.3, ensuring that
+the solver halts only when the gradient is genuinely negligible relative to the verified precision
+of the analytic derivatives. The Stage 1 value of $\texttt{gtol} = 10^{-4}$ matches the gradient
+verification tolerance exactly, which is intentional: Stage 1 is considered complete as soon as
+the gradient magnitude falls within the verified precision of the derivative computation, leaving
 fine convergence to Stage 2.
 
 ### 2.6.2 Two-Stage Strategy and Expected Convergence
@@ -280,18 +282,19 @@ tolerance. All Numba `try`-blocks employ `except Exception` handling rather than
 `LoweringError`, and LLVM compilation errors on platforms where JIT compilation fails; the
 narrower handler causes a `NameError` at runtime (Lam, Pitrou and Seibert, 2015). Each
 `except` block emits a `warnings.warn` message, ensuring transparency. Full kernel code and
-compilation flags are documented in Chapter 3 (Section 3.4.3).
+compilation flags are documented in Chapter 3 (Section 3.5.2).
 
 ### 2.7.2 Testing Infrastructure
 
 The test suite comprises 229 tests across four categories — unit and integration, gradient
 verification, numerical equivalence, and robustness and regression — with zero failures and
-one skip for the GUI-dependent smoke test. Coverage stands at 81 per cent for the
-non-interactive modules and 79 per cent across the complete source tree. Continuous
-integration runs on Windows 11 and macOS with Python 3.10 through 3.12, incorporating
-`mypy`, `bandit`, and pre-commit hooks for style and security. Version control follows
-atomic feature-branch development with pull-request-based merges. Full CI configuration and
-the test module inventory are detailed in Chapter 3 (Section 3.9).
+one skip for the GUI-dependent smoke test. Coverage stands at 79 per cent across the
+complete `src/` tree (excluding `interactive_optimisation.py`), rising to 81 per cent for
+the non-interactive modules alone. Continuous integration runs on Windows 11 and macOS
+with Python 3.10 through 3.12, incorporating `mypy`, `bandit`, and pre-commit hooks for
+style and security. Version control follows atomic feature-branch development with
+pull-request-based merges. Full CI configuration and the test module inventory are detailed
+in Chapter 3 (Section 3.7).
 
 ---
 
@@ -301,7 +304,7 @@ The interactive viewer couples the optimisation engine to a Polyscope-based real
 rendering layer: weight sliders trigger full optimisation re-runs, and per-face planarity and
 per-vertex conical-defect heatmaps provide immediate fabrication-quality feedback. This
 directly addresses the interactive feedback gap identified in Section 1.7.1 (Pottmann et al.,
-2007a). The software architecture of the viewer is detailed in Chapter 3 (Section 3.8.3).
+2007a). The software architecture of the viewer is detailed in Chapter 3 (Section 3.6).
 
 For fabrication export, a local two-dimensional frame $\{u_f, v_f\}$ is constructed in the
 SVD best-fit plane of each face, and the four vertices are projected onto it; the maximum
@@ -321,12 +324,12 @@ angle defect, iteration count, and wall-clock time.
 The principal strength is the unified four-term energy framework with exact analytic
 gradients, runtime-tuneable weights, and a first-class angle-balance term accessible without
 algorithm changes. The planarity gradient derivation of Section 2.4.1 is exact rather than
-approximate, and systematic central-finite-difference verification at $10^{-5}$ addresses the
-reproducibility gap identified in Section 1.7.1. The pre-processing anchored reference
-configuration ensures numerical conditioning at all mesh scales, and the three-tier backend
-with enforced associativity delivers near real-time performance across diverse hardware
-configurations without sacrificing numerical equivalence. The 229-test suite with continuous
-integration provides ongoing correctness assurance across software revisions.
+approximate, and systematic central-finite-difference verification to a relative error below
+$10^{-4}$ addresses the reproducibility gap identified in Section 1.7.1. The pre-processing
+anchored reference configuration ensures numerical conditioning at all mesh scales, and the
+three-tier backend with enforced associativity delivers near real-time performance across
+diverse hardware configurations without sacrificing numerical equivalence. The 229-test suite
+with continuous integration provides ongoing correctness assurance across software revisions.
 
 ### 2.9.2 Methodological Limitations
 

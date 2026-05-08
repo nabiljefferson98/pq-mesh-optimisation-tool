@@ -128,7 +128,8 @@ $E_p$ constitutes approximately 90.7 per cent of total initial energy for the
 $5 \times 5$ mesh, confirming that $w_p = 10.0$ correctly drives the primary
 objective. By iteration 5 for the $5 \times 5$ case, mean per-face deviation
 $|d_f|$ falls below $3 \times 10^{-4}$ m — within glass manufacturing
-tolerance of ±1 mm (EN 572-2:2012). The 9 to 13 iteration convergence range
+tolerance of ±1 mm (EN 572-2:2012), where convergence is defined by
+the Stage 2 criterion $\text{gtol} = 10^{-5}$. The 9 to 13 iteration convergence range
 across all mesh sizes is the hallmark of mesh-size-independent quasi-Newton
 convergence for smooth problems (Nocedal and Wright, 2006, Chapter 7). The
 near-flat tail at iterations 7 to 9 reflects $w_c = 5.0$ acting as a

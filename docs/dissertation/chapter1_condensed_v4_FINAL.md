@@ -202,8 +202,8 @@ curvature measure related to local developability. It is geometrically distinct 
 alternating condition of Liu et al. (2006): $E_a = 0$ does not guarantee the coaxial cone
 structure required for valid offset meshes. This is a deliberately acknowledged scope
 boundary; implementing the alternating condition as a soft penalty
-$\sum(\alpha_1 + \alpha_3 - \alpha_2 - \alpha_4)^2$ is identified as future work in Chapter
-4. $E_a$ is treated as a first-class term throughout the codebase with default weight
+$\sum(\alpha_1 + \alpha_3 - \alpha_2 - \alpha_4)^2$ is identified as future work in Section
+4.9. $E_a$ is treated as a first-class term throughout the codebase with default weight
 $w_a = 0$; setting $w_a > 0$ enables joint PQ and angle-defect optimisation without any
 algorithmic changes.
 

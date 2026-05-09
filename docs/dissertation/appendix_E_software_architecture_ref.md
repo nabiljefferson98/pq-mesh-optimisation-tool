@@ -232,6 +232,9 @@ public interface of every function is identical across all three tiers.
 ## E.4 Test Suite Reference
 
 All 20 test modules (229 tests total, 1 skipped; coverage ≥79% of `src/`) are executable via `pytest tests/` from the repository root.
+The hardware and software environment under which these results were 
+obtained is specified in Appendix G, Table G.1; expected reference 
+output values for validation are in Appendix G, Table G.4.
 
 | Module | Primary Scope |
 |---|---|
@@ -281,3 +284,7 @@ result = optimise_mesh_simple(
 print(result.summary())
 save_obj(mesh, "data/output/optimised_meshes/result.obj")
 ```
+The full step-by-step commands to reproduce this usage pattern from 
+a clean repository checkout — including virtual environment setup, 
+dependency installation, and backend verification — are provided in 
+Appendix G, Section G.2.

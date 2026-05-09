@@ -80,7 +80,7 @@ documented below.
 | Oloid | 0 | 0 | Yes | 1 (fully connected) |
 | Bob | 4 | 2 | Yes | 1 (fully connected) |
 
-For Bob, four duplicate vertices introduced by the Blender re-meshing workflow
+For Bob, four duplicate vertices introduced by the Blender re-meshing workflowE
 were merged (merge threshold $10^{-8}$, Chapter 2, Section 2.5.1), and two
 degenerate faces produced by the re-meshing boundary were removed. These
 modifications are cosmetic and do not affect the topological integrity of the

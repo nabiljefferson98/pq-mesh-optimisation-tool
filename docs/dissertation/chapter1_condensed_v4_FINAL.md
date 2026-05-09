@@ -252,9 +252,11 @@ are predominantly offline and batch-orientated, with no support for interactive 
 adjustment or real-time visual feedback (Pottmann et al., 2007a). Secondly, the conical
 angle-balance condition is treated as a binary constraint — either fully enforced within the
 SQP or entirely absent — preventing exploration of intermediate geometries (Liu et al., 2006).
-Thirdly, the literature provides limited quantitative benchmarking on standardised datasets,
-as most published results are qualitative and implementations are rarely made publicly
-available. Fourthly, existing implementations do not document systematic gradient
+Thirdly, the literature provides limited quantitative benchmarking on
+standardised datasets, as most published results are qualitative and 
+implementations are rarely made publicly available; full dataset 
+provenance and mesh statistics for the real-world benchmark used in 
+EXP-05 are documented in Appendix F. Fourthly, existing implementations do not document systematic gradient
 verification or numerical safeguards against ill-conditioned energy landscapes.
 
 ### 1.7.2 Research Questions
@@ -285,8 +287,11 @@ These questions are addressed through five documented experiments in Chapter 4.
 Chapter 2 presents the mathematical formulation of the four energy terms, their analytic
 gradients, the pre-processing pipeline, the optimisation algorithm with hyperparameter
 choices, and the fabrication export workflow. Chapter 3 describes the software architecture,
-the three-tier hardware backend, data flow, and the testing infrastructure. Chapter 4 reports
-five experiments covering scalability, backend performance, convergence behaviour, weight
-sensitivity, and generalisation to real-world meshes, and identifies future directions
-including full GPU pipeline integration, Rhino-Grasshopper extension, and direct
-implementation of the Liu et al. (2006) alternating angle-balance condition.
+the three-tier hardware backend, data flow, and the testing infrastructure. Chapter 4 reports 
+five experiments covering scalability, backend 
+performance, convergence behaviour, weight sensitivity, and 
+generalisation to real-world meshes. Future directions are summarised 
+in Chapter 4, Section 4.9, and elaborated in full in Appendix I. 
+Reproducibility instructions and hardware configuration are documented 
+in Appendix G. Extended EXP-04 weight sensitivity tables are provided 
+in Appendix H, and full benchmark dataset provenance is in Appendix F.

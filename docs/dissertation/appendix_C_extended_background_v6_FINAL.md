@@ -108,4 +108,6 @@ sum constrains how close to zero $E_p$ can be driven whilst $E_c$ remains active
 ceiling is not a deficiency of the optimiser but a geometric inevitability; it can be lowered
 only by increasing mesh resolution (reducing the per-face curvature contribution) or by
 relaxing $w_c$ (permitting greater departure from the reference surface). Both effects are
-observable in the experimental data of Chapter 4 (EXP-01 and EXP-03).
+observable in the experimental data of Chapter 4 (EXP-01 and EXP-03). The per-model vertex-valence 
+profiles that determine the magnitude of  these angle-defect residuals in EXP-05 are tabulated in Appendix F, 
+Section F.4.

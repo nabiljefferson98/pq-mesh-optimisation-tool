@@ -160,7 +160,9 @@ error below $10^{-4}$ across all degrees of freedom, implemented in
 `tests/test_gradients.py` and validated on flat, sinusoidally perturbed, and cylindrically
 curved mesh geometries. A separate suite in `tests/test_numerical_equivalence.py` validates
 Numba-versus-NumPy parity to $10^{-10}$ for meshes up to $10 \times 10$ faces and $10^{-8}$
-for $20 \times 20$ meshes. The observed divergence at the $10^{-8}$ level is
+for $20 \times 20$ meshes. Step-by-step instructions to run the gradient verification and 
+numerical equivalence test suites independently are provided in 
+Appendix G, Sections G.7 and G.8. The observed divergence at the $10^{-8}$ level is
 well below the convergence criterion $\texttt{gtol} = 10^{-4}$ and three orders of magnitude
 below the gradient verification tolerance of $10^{-4}$, and has no material effect on
 convergence (Higham, 2002). Two numerical safeguards in the SciPy interface return a sentinel
@@ -214,8 +216,9 @@ component-energy ratio $E_p : E_f : E_c \approx 10 : 1 : 5$ by evaluating the in
 magnitudes at the starting vertex configuration and computing proportional weights, with a
 guard for near-planar meshes, where $E_p$ is negligibly small (guard threshold: $E_p < 10^{-10}$).
 This provides a reproducible starting point for interactive tuning rather than a guaranteed
-optimum (Botsch et al., 2010). All fifteen weight configurations in Chapter 4 (EXP-04)
-depart from these suggested weights, validating their role as a practical baseline.
+optimum (Botsch et al., 2010). All fifteen weight configurations in Chapter 4 (EXP-04) depart from 
+these suggested weights, validating their role as a practical baseline; 
+the full per-configuration results are tabulated in Appendix H.
 
 ---
 
@@ -294,7 +297,8 @@ the non-interactive modules alone. Continuous integration runs on Windows 11 and
 with Python 3.10 through 3.12, incorporating `mypy`, `bandit`, and pre-commit hooks for
 style and security. Version control follows atomic feature-branch development with
 pull-request-based merges. Full CI configuration and the test module inventory are detailed
-in Chapter 3 (Section 3.7).
+in Chapter 3 (Section 3.7). The complete hardware and software environment under which all 229 
+tests were validated is recorded in Appendix G, Table G.1.
 
 ---
 
@@ -367,8 +371,8 @@ The current work extends both contributions by unifying PQ planarity, fairness, 
 and conicality as continuous, simultaneously tuneable energies within a hardware-accelerated
 framework, augmented by exact analytic gradients, systematic gradient verification, and a
 structured experimental evaluation on standardised benchmark datasets — a combination not
-present in any single surveyed tool (Section 1.6). The methodological scope is
-appropriately bounded for an undergraduate research prototype, where reproducibility and
-developer productivity are prioritised over production-grade scalability; joint fabrication
-modelling and cost optimisation are identified as natural directions for future
-interdisciplinary work.
+present in any single surveyed tool (Section 1.6). The methodological scope is appropriately bounded for an undergraduate 
+research prototype, where reproducibility and developer productivity 
+are prioritised over production-grade scalability; joint fabrication 
+modelling and cost optimisation are identified as natural directions 
+for future interdisciplinary work (Appendix I, Section I.4.3).

@@ -74,7 +74,8 @@ at JIT compilation time with a `TypingError` (Lam, Pitrou and Seibert, 2015). Co
 with the broad `except Exception` handler of Chapter 3 (Section 3.5.2), such a failure
 would silently route execution to the NumPy fallback, losing the expected CPU acceleration
 without any visible error. The fix was applied prior to the current version and is
-regression-tested in `tests/test_robustness.py` (Chapter 3, Section 3.7).
+regression-tested in `tests/test_robustness.py` (Chapter 3, Section 3.7). The hardware environment 
+under which this regression suite was validated is recorded in Appendix G, Table G.1.
 
 ---
 

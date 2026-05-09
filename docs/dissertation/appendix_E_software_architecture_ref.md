@@ -232,7 +232,7 @@ public interface of every function is identical across all three tiers.
 
 ## E.4 Test Suite Reference
 
-All 20 test modules (229 tests total, 1 skipped; coverage ≥79% of `src/`) are executable via `pytest tests/` from the repository root.
+All 20 test modules (321 tests total, 1 skipped; coverage ≥79% of `src/`) are executable via `pytest tests/` from the repository root.
 The hardware and software environment under which these results were 
 obtained is specified in Appendix G, Table G.1; expected reference 
 output values for validation are in Appendix G, Table G.4.

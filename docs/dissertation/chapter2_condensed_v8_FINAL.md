@@ -289,7 +289,7 @@ compilation flags are documented in Chapter 3 (Section 3.5.2).
 
 ### 2.7.2 Testing Infrastructure
 
-The test suite comprises 229 tests across four categories — unit and integration, gradient
+The test suite comprises 321 tests across four categories — unit and integration, gradient
 verification, numerical equivalence, and robustness and regression — with zero failures and
 one skip for the GUI-dependent smoke test. Coverage stands at 79 per cent across the
 complete `src/` tree (excluding `interactive_optimisation.py`), rising to 81 per cent for
@@ -297,7 +297,7 @@ the non-interactive modules alone. Continuous integration runs on Windows 11 and
 with Python 3.10 through 3.12, incorporating `mypy`, `bandit`, and pre-commit hooks for
 style and security. Version control follows atomic feature-branch development with
 pull-request-based merges. Full CI configuration and the test module inventory are detailed
-in Chapter 3 (Section 3.7). The complete hardware and software environment under which all 229 
+in Chapter 3 (Section 3.7). The complete hardware and software environment under which all 321 
 tests were validated is recorded in Appendix G, Table G.1.
 
 ---
@@ -332,7 +332,7 @@ approximate, and systematic central-finite-difference verification to a relative
 $10^{-4}$ addresses the reproducibility gap identified in Section 1.7.1. The pre-processing
 anchored reference configuration ensures numerical conditioning at all mesh scales, and the
 three-tier backend with enforced associativity delivers near real-time performance across
-diverse hardware configurations without sacrificing numerical equivalence. The 229-test suite
+diverse hardware configurations without sacrificing numerical equivalence. The 321-test suite
 with continuous integration provides ongoing correctness assurance across software revisions.
 
 ### 2.9.2 Methodological Limitations

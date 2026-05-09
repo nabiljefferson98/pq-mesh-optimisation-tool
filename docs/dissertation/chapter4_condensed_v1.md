@@ -328,7 +328,7 @@ treatment of conicality, the lack of standardised benchmarking, and
 the omission of systematic gradient verification (Chapter 1,
 Section 1.7.1). The pipeline developed across Chapters 2 and 3
 directly addresses all four through a four-term analytic energy
-framework, a three-tier hardware-accelerated backend, and a 229-test
+framework, a three-tier hardware-accelerated backend, and a 321-test
 reproducible software architecture.
 
 The five experiments of Chapter 4 confirmed sub-quadratic scaling at

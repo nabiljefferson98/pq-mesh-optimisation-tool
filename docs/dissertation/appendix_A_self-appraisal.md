@@ -19,7 +19,7 @@ and all planned software deliverables were completed:
   for meshes of practical size (Chapter 4, Table 4.3).
 - A Polyscope-based interactive visualisation interface with runtime
   weight adjustment and per-face planarity heatmap.
-- A reproducible test suite of 229 tests across 20 modules achieving
+- A reproducible test suite of 321 tests across 20 modules achieving
   ≥79% source coverage (Appendix E, Table E.3).
 - An OBJ/JSON fabrication export pipeline for downstream manufacturing
   workflows (Chapter 2, Section 2.7).

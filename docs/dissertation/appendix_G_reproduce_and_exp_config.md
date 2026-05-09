@@ -78,7 +78,7 @@ python -c "from src.optimisation.optimiser import optimise_mesh_simple; print('O
 pytest tests/ -q
 ```
 
-All 229 tests (1 skipped) should pass. Overall source
+All 321 tests (1 skipped) should pass. Overall source
 coverage should be at or above 79 per cent of `src/`,
 excluding `interactive_optimisation.py`.
 

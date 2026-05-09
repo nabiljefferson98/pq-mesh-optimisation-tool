@@ -228,7 +228,7 @@ library.
 
 ## 3.7 Testing Architecture
 
-The test suite in `tests/` comprises 20 test modules (229 tests total, 1 skipped; overall
+The test suite in `tests/` comprises 20 test modules (321 tests total, 1 skipped; overall
 coverage ≥79% of `src/`, excluding `interactive_optimisation.py`). The principal modules
 relevant to the implementation claims of this chapter are:
 

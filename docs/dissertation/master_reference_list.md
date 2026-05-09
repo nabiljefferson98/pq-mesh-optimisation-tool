@@ -36,3 +36,33 @@ In Proceedings of ASPLOS XIV. New York: ACM, pp. 265–276.
 
 Stein, O., Grinspun, E. and Crane, K. (2018). Developability of
 triangle meshes. ACM Transactions on Graphics, 37(4), Article 77.
+
+British Computer Society (2022). *BCS Code of Conduct*. Swindon:
+BCS. Available at: https://www.bcs.org/membership/become-a-member/bcs-code-of-conduct/
+
+Liu, Y., Pottmann, H., Wallner, J., Yang, Y.-L. and Wang, W.
+(2006). Geometric modeling with conical meshes and developable
+surfaces. *ACM Transactions on Graphics*, 25(3), pp. 681–689.
+
+Nocedal, J. and Wright, S. J. (2006). *Numerical Optimization*.
+2nd ed. New York: Springer.
+
+Crane, K., Pinkall, U. and Schröder, P. (2013). Robust fairing
+via conformal curvature flow. *ACM Transactions on Graphics*,
+32(4), pp. 1–10.
+
+Dirnböck, H. and Stachel, H. (1997). The development of the
+oloid. *Journal for Geometry and Graphics*, 1(2), pp. 105–118.
+
+Botsch, M., Kobbelt, L., Pauly, M., Alliez, P. and Lévy, B. (2010)
+*Polygon mesh processing*. Natick: AK Peters.
+
+Dirnböck, H. and Stachel, H. (1997) 'The development of the oloid',
+*Journal for Geometry and Graphics*, 1(2), pp. 105–118.
+
+Zhou, Q. and Jacobson, A. (2016) 'Thingi10K: a dataset of 10,000
+3D-printing models', *arXiv preprint arXiv:1605.04797*.
+
+Crane, K. (2024). 3D Model Repository. Available at:
+https://www.cs.cmu.edu/~kmcrane/Projects/ModelRepository/
+[Accessed: 9 March 2026].

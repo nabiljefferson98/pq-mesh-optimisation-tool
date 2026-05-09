@@ -318,42 +318,38 @@ Full details are in Appendix I.
 
 ## 4.10 Chapter Conclusion
 
-This chapter has presented the empirical evaluation of the PQ mesh
-optimisation pipeline across five structured experiments, providing
-quantitative answers to the three research questions stated in
-Section 1.7.2.
+---
 
-EXP-01 established that the NumPy baseline scales predictably as
-$T(n) \approx 0.0007 \times n^{1.27}$ ($R^2 = 1.000$) across two
-orders of magnitude in face count, confirming sub-quadratic complexity
-arising from sparse scatter-matrix gradient accumulation. EXP-02
-demonstrated that the Numba and CuPy backends deliver 2.40× to 2.79×
-and 2.19× to 3.14× speedup respectively for meshes of practical size,
-with numerical equivalence to the NumPy baseline confirmed to
-$10^{-8}$. EXP-03 confirmed quasi-Newton superlinear convergence in
-9 to 13 iterations across all tested mesh sizes, reaching $\text{grad norm} < 10^{-5}$ and mean per-face deviations below
-$3 \times 10^{-4}$ normalised units, within glass manufacturing tolerance
-of ±1 mm at physical scale (EN 572-2:2012). EXP-04 identified the
-calibrated weight configuration $w_p = 10.0$, $w_f = 1.0$,
-$w_c = 5.0$ as the Pareto-optimal point balancing planarity
-improvement, surface regularity, and design-intent preservation.
-EXP-05 generalised these findings to four real-world benchmark
-meshes, achieving 2.62 to 66.03 per cent $E_p$ reduction with
-convergence confirmed on all models.
+## 4.10 Conclusion
 
-Together, these results demonstrate that L-BFGS-B with analytic
-gradients and a hardware-accelerated backend is a viable and
-reproducible approach to interactive PQ mesh planarisation at
-architectural scale. The primary limitation identified is the
-approximate nature of the angle-balance term $E_a$, which does not
-enforce the strict alternating condition required for offset-mesh
-compatibility; this constitutes the highest-priority direction for
-future work (Appendix I, Section I.1.1). Secondary limitations —
-the $O(n^2)$ deduplication ceiling and the Laplacian approximation
-error at irregular-valence vertices — are well-understood and bounded,
-and do not affect the validity of the experimental conclusions drawn
-here.
+This dissertation addressed four gaps in the PQ mesh optimisation
+literature: the absence of interactive real-time tools, the binary
+treatment of conicality, the lack of standardised benchmarking, and
+the omission of systematic gradient verification (Chapter 1,
+Section 1.7.1). The pipeline developed across Chapters 2 and 3
+directly addresses all four through a four-term analytic energy
+framework, a three-tier hardware-accelerated backend, and a 229-test
+reproducible software architecture.
 
+The five experiments of Chapter 4 confirmed sub-quadratic scaling at
+$T(n) \approx 0.0007 \times n^{1.27}$ ($R^2 = 1.000$), Numba and CuPy
+speedups of up to 2.79× and 3.14×, quasi-Newton convergence in 9 to 13
+iterations to $\text{grad norm} < 10^{-5}$, a calibrated weight
+configuration ($w_p = 10.0$, $w_f = 1.0$, $w_c = 5.0$), and
+generalisation to real-world meshes with 2.62 to 66.03 per cent $E_p$
+reduction — bounded below by intrinsic Gaussian curvature as predicted
+theoretically (Appendix C, Section C.3).
+
+Relative to Liu et al. (2006) and Tang et al. (2016), the pipeline
+delivers comparable planarity quality without constraint Jacobians,
+at interactive response rates, and with the first-class tuneable
+angle-balance term $E_a$ that existing tools do not provide. The
+principal limitation — that $E_a = 0$ does not enforce the strict
+alternating conicality condition — is a deliberate scope boundary
+with a clear implementation pathway (Appendix I, Section I.1.1).
+The open-source release of the full pipeline, test suite, and
+reproducibility documentation provides a verifiable baseline for
+future research in fabrication-aware geometric modelling.
 ---
 
 ## References

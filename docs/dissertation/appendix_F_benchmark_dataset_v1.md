@@ -28,18 +28,27 @@ pipeline described in Chapter 3, Section 3.4.
 
 ### F.1.2 Oloid
 
-The Oloid model is a low-polygon quad mesh of a shape approximating the
-mathematical solid of the same name. It was constructed manually as a
-controlled near-developable surface test case for this project, generated
-programmatically using a lofted parameterisation over a $16 \times 16$
-quad grid. The Oloid was selected because it is a geometrically simple,
-near-ruled surface whose low Gaussian curvature provides a controlled
-positive control for high $E_p$ reduction. The classical mathematical
-oloid (Dirnböck and Stachel, 1997) — bounded by two orthogonal circles
-of equal radius — inspired the choice of name and geometry, but the
-programmatic construction used here is an independent approximation.
-The model is original to this project and is released under the MIT
-Licence consistent with the repository.
+The Oloid used in EXP-05 is sourced from Keenan Crane's 3D Model
+Repository (https://www.cs.cmu.edu/~kmcrane/Projects/ModelRepository/),
+released under a CC0 public domain dedication. The repository
+provides the mathematically defined developable oloid surface —
+bounded by two mutually perpendicular circles of equal radius in
+three-dimensional space — at four quad-mesh resolutions: 64, 256,
+1,024, and 4,096 faces, together with triangle mesh variants and
+generation source code (Crane, 2024). The lowest-resolution quad
+variant (oloid64_quad.obj, 64 faces) was selected for this
+experiment. The oloid is a classical developable surface: its
+entire surface contacts the ground as it rolls along a linear
+trajectory, a property that follows directly from its zero Gaussian
+curvature (Dirnböck and Stachel, 1997). This makes it the most
+theoretically appropriate positive control in the EXP-05 benchmark
+suite, providing a near-zero intrinsic curvature baseline against
+which the pipeline's maximum achievable $E_p$ reduction can be
+assessed. The 66.03 per cent reduction observed in EXP-05 (Chapter
+4, Table 4.9) reflects the residual planarity error introduced
+during quad discretisation of the smooth surface, which the
+optimiser drives towards zero subject to the closeness and fairness
+regularisation terms.
 
 ### F.1.3 Bob (Thingi10K Dataset)
 
@@ -174,3 +183,7 @@ Dirnböck, H. and Stachel, H. (1997) 'The development of the oloid',
 
 Zhou, Q. and Jacobson, A. (2016) 'Thingi10K: a dataset of 10,000
 3D-printing models', *arXiv preprint arXiv:1605.04797*.
+
+Crane, K. (2024). 3D Model Repository. Available at:
+https://www.cs.cmu.edu/~kmcrane/Projects/ModelRepository/
+[Accessed: 9 March 2026].

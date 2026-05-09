@@ -161,7 +161,7 @@ Chapter 4.
 | `maxcor`                      | 10               | 20               |
 | `maxls`                       | 20               | 40               |
 | `maxiter` (synthetic, EXP-01–04) | min(200, N // 3) | 200 − Stage 1 used |
-| `maxiter` (real-world, EXP-05) | min(200, N // 3) | 800              |
+| `maxiter` (real-world, EXP-05) | min(200, N // 3) | 800 (at default max_iterations = 1,000) |
 | `stage1_planarity_multiplier` | 5.0              | N/A              |
 
 **Experimental weight configuration (EXP-01 to EXP-05):**

@@ -140,7 +140,8 @@ class OptimisationConfig:
     # Required keys: "planarity", "fairness", "closeness"
     # Optional key:  "angle_balance" (default 0.0)
     max_iterations: int = 1000
-    tolerance: float = 1e-7           # Stage 1 ftol; Stage 2 uses 1e-9
+    tolerance: float = 1e-7           # Maps to ftol in scipy L-BFGS-B call;
+                                      # Stage 1 value; Stage 2 uses 1e-9
     gradient_tolerance: float = 1e-4  # Stage 1 gtol; Stage 2 uses 1e-5
     two_stage: bool = True
     stage1_planarity_multiplier: float = 5.0

@@ -64,113 +64,7 @@ Appendix C, Section C.3.
 
 ---
 
-## 4.3 EXP-03: Convergence Behaviour
-
-EXP-03 tracked per-iteration energy decomposition for three
-representative mesh sizes ($5 \times 5$, $10 \times 10$,
-$20 \times 20$) using Machine A with the Numba backend. Table
-4.4 presents the key convergence data.
-
-**Table 4.4 — EXP-03: Convergence at Key Iterations
-(Numba, Machine A)**
-
-| Mesh | Iter. | $E_\text{total}$ | $E_\text{planarity}$ | $E_\text{fairness}$ | $E_\text{closeness}$ | Grad Norm |
-|:---|:---|:---|:---|:---|:---|:---|
-| $5 \times 5$ | 0 | 10,847.6 | 9,842.1 | 312.5 | 693.0 | 8,421.3 |
-| $5 \times 5$ | 5 | 12.7 | 11.4 | 0.76 | 0.54 | 9.1 |
-| $5 \times 5$ | Final (9) | **1.12** | **1.01** | **0.067** | **0.040** | $< 10^{-5}$ |
-| $10 \times 10$ | Final (11) | **4.51** | **4.10** | **0.128** | **0.280** | $< 10^{-5}$ |
-| $20 \times 20$ | Final (12) | **16.38** | **14.88** | **0.466** | **1.040** | $< 10^{-5}$ |
-
-The convergence profile follows a characteristic quasi-Newton
-superlinear trajectory: large energy reductions in the first
-three to five iterations, followed by rapid refinement to
-near-zero planarity deviation (Figure 4.5). $E_p$ constitutes
-approximately 90.7 per cent of total initial energy for the
-$5 \times 5$ mesh, confirming that $w_p = 10.0$ correctly
-drives the primary objective. By iteration 5 for the
-$5 \times 5$ case, mean per-face deviation $|d_f|$ falls below
-$3 \times 10^{-4}$ m — within glass manufacturing tolerance
-of ±1 mm (EN 572-2:2012), where convergence is defined by the
-Stage 2 criterion $\text{gtol} = 10^{-5}$. The 9 to 13
-iteration convergence range across all mesh sizes is the
-hallmark of mesh-size-independent quasi-Newton convergence for
-smooth problems (Nocedal and Wright, 2006, Chapter 7). The
-near-flat tail at iterations 7 to 9 reflects $w_c = 5.0$
-acting as a regulariser, trading a small residual planarity
-error for design-intent preservation. No NaN or infinity guard
-activations were recorded across any EXP-03 run.
-
----
-
-## 4.4 EXP-04: Weight Sensitivity
-
-EXP-04 evaluated sensitivity to the three primary weights
-$w_p$, $w_f$, $w_c$ across fifteen configurations on the
-$10 \times 10$ mesh, holding two weights constant at their
-default values while sweeping the third across five levels.
-Full sweep tables are provided in Appendix H. The calibrated
-recommendation emerging from this analysis is summarised in
-Table 4.8.
-
-**Table 4.8 — EXP-04: Calibrated Weight Recommendation**
-
-| Weight | Recommended Value | Rationale |
-|:---|:---|:---|
-| $w_p$ | 10.0 | Onset of diminishing returns; further increase <0.01% gain |
-| $w_f$ | 1.0 | Prevents surface roughening without suppressing planarity |
-| $w_c$ | 5.0 | Preserves design intent; above 10.0 planarity gain drops >8% |
-| $w_a$ | 0.0 | Disabled by default; activate for joint PQ-conical runs |
-
-The planarity energy is strongly dominant at all configurations
-where $w_p \geq 5.0$, confirming that the heuristic
-preprocessor default ($w_p = 100.0$) is conservative and
-unnecessarily high for well-conditioned meshes. Increasing
-$w_f$ beyond 2.0 introduces visible surface flattening on the
-$10 \times 10$ test mesh, whilst $w_c$ values below 2.0 allow
-vertex drift exceeding the design intent threshold of 5 mm at
-model scale. The recommended configuration is consistent with
-the weight-architecture rationale of Chapter 2, Section 2.3.1.
-Detailed sweep results for each individual weight parameter are
-tabulated in Appendix H (Tables H.1, H.2, H.3).
-
----
-
-## 4.5 EXP-05: Real-World Benchmark Performance
-
-EXP-05 applied the pipeline to the four real-world quad meshes
-documented in Appendix F using the calibrated weights from
-EXP-04. Full dataset provenance and mesh statistics are in
-Appendix F; hardware configuration is in Appendix G.
-
-**Table 4.9 — EXP-05: Real-World Benchmark Results
-(Machine A, Numba)**
-
-| Model | Vertices (pre) | Faces (pre) | $E_p$ Reduction (%) | Runtime (s) | Iterations | Grad Norm Final |
-|:---|:---|:---|:---|:---|:---|:---|
-| Spot | 2,930 | 2,928 | 7.55 | 18.47 ± 1.12 | 87 | $< 10^{-5}$ |
-| Blub | 7,106 | 7,104 | 5.64 | 41.23 ± 2.87 | 143 | $< 10^{-5}$ |
-| Oloid | 258 | 256 | **66.03** | 0.80 ± 0.15 | 31 | $< 10^{-5}$ |
-| Bob | 5,344 | 5,344 | 2.62 | 29.14 ± 4.58 | 112 | $< 10^{-5}$ |
-
-The Oloid achieves 66.03 per cent $E_p$ reduction, consistent
-with its fully regular valence-4 topology and intrinsically
-near-developable ruled-surface geometry (Appendix F, Section
-F.4). Spot and Blub achieve modest reductions of 5.64 to 7.55
-per cent, attributable to the high Gaussian curvature of closed
-organic meshes and the 6.5 to 8.7 per cent proportion of
-irregular-valence vertices that impose a persistent angle-defect
-residual (Appendix F, Section F.5; Appendix C, Section C.3).
-Bob's 2.62 per cent reduction and high runtime variability
-(±4.58 s) reflect the non-uniform face sizes introduced by
-Blender re-meshing and the 12 open boundary edges that reduce
-Laplacian regularity. All four models converge to
-$\text{grad norm} < 10^{-5}$, confirming genuine stationarity
-rather than iteration-budget exhaustion.
-
----
-
-## 4.6 EXP-02: Backend Performance
+## 4.3 EXP-02: Backend Performance
 
 EXP-02 measured speedup of the Numba and CuPy backends
 relative to the NumPy baseline across five mesh sizes
@@ -203,6 +97,115 @@ $20 \times 20$ meshes (Chapter 2, Section 2.4.3).
 
 ---
 
+## 4.4 EXP-03: Convergence Behaviour
+
+EXP-03 tracked per-iteration energy decomposition for three
+representative mesh sizes ($5 \times 5$, $10 \times 10$,
+$20 \times 20$) using Machine A with the Numba backend. Table
+4.3 presents the key convergence data.
+
+**Table 4.3 — EXP-03: Convergence at Key Iterations
+(Numba, Machine A)**
+
+| Mesh | Iter. | $E_\text{total}$ | $E_\text{planarity}$ | $E_\text{fairness}$ | $E_\text{closeness}$ | Grad Norm |
+|:---|:---|:---|:---|:---|:---|:---|
+| $5 \times 5$ | 0 | 10,847.6 | 9,842.1 | 312.5 | 693.0 | 8,421.3 |
+| $5 \times 5$ | 5 | 12.7 | 11.4 | 0.76 | 0.54 | 9.1 |
+| $5 \times 5$ | Final (9) | **1.12** | **1.01** | **0.067** | **0.040** | $< 10^{-5}$ |
+| $10 \times 10$ | Final (11) | **4.51** | **4.10** | **0.128** | **0.280** | $< 10^{-5}$ |
+| $20 \times 20$ | Final (12) | **16.38** | **14.88** | **0.466** | **1.040** | $< 10^{-5}$ |
+
+The convergence profile follows a characteristic quasi-Newton
+superlinear trajectory: large energy reductions in the first
+three to five iterations, followed by rapid refinement to
+near-zero planarity deviation (Figure 4.5). $E_p$ constitutes
+approximately 90.7 per cent of total initial energy for the
+$5 \times 5$ mesh, confirming that $w_p = 10.0$ correctly
+drives the primary objective. By iteration 5 for the
+$5 \times 5$ case, mean per-face deviation $|d_f|$ falls below
+$3 \times 10^{-4}$ m — within glass manufacturing tolerance
+of ±1 mm (EN 572-2:2012), where convergence is defined by the
+Stage 2 criterion $\text{gtol} = 10^{-5}$. The 9 to 13
+iteration convergence range across all mesh sizes is the
+hallmark of mesh-size-independent quasi-Newton convergence for
+smooth problems (Nocedal and Wright, 2006, Chapter 7). The
+near-flat tail at iterations 7 to 9 reflects $w_c = 5.0$
+acting as a regulariser, trading a small residual planarity
+error for design-intent preservation. No NaN or infinity guard
+activations were recorded across any EXP-03 run.
+
+---
+
+## 4.5 EXP-04: Weight Sensitivity
+
+EXP-04 evaluated sensitivity to the three primary weights
+$w_p$, $w_f$, $w_c$ across fifteen configurations on the
+$10 \times 10$ mesh, holding two weights constant at their
+default values while sweeping the third across five levels.
+Full sweep tables are provided in Appendix H. The calibrated
+recommendation emerging from this analysis is summarised in
+Table 4.4.
+
+**Table 4.4 — EXP-04: Calibrated Weight Recommendation**
+
+| Weight | Recommended Value | Rationale |
+|:---|:---|:---|
+| $w_p$ | 10.0 | Onset of diminishing returns; further increase <0.01% gain |
+| $w_f$ | 1.0 | Prevents surface roughening without suppressing planarity |
+| $w_c$ | 5.0 | Preserves design intent; above 10.0 planarity gain drops >8% |
+| $w_a$ | 0.0 | Disabled by default; activate for joint PQ-conical runs |
+
+The planarity energy is strongly dominant at all configurations
+where $w_p \geq 5.0$, confirming that the heuristic
+preprocessor default ($w_p = 100.0$) is conservative and
+unnecessarily high for well-conditioned meshes. Increasing
+$w_f$ beyond 2.0 introduces visible surface flattening on the
+$10 \times 10$ test mesh, whilst $w_c$ values below 2.0 allow
+vertex drift exceeding the design intent threshold of 5 mm at
+model scale. The recommended configuration is consistent with
+the weight-architecture rationale of Chapter 2, Section 2.3.1.
+Detailed sweep results for each individual weight parameter are
+tabulated in Appendix H (Tables H.1, H.2, H.3).
+
+---
+
+## 4.6 EXP-05: Real-World Benchmark Performance
+
+EXP-05 applied the pipeline to the four real-world quad meshes
+documented in Appendix F using the calibrated weights from
+EXP-04. Full dataset provenance and mesh statistics are in
+Appendix F; hardware configuration is in Appendix G.
+
+**Table 4.5 — EXP-05: Real-World Benchmark Results
+(Machine A, Numba)**
+
+| Model | Vertices† | Faces† | $E_p$ Reduction (%) | Runtime (s) | Iterations | Grad Norm Final |
+|:---|:---|:---|:---|:---|:---|:---|
+| Spot | 2,930 | 2,928 | 7.55 | 18.47 ± 1.12 | 87 | $< 10^{-5}$ |
+| Blub | 7,106 | 7,104 | 5.64 | 41.23 ± 2.87 | 143 | $< 10^{-5}$ |
+| Oloid | 258 | 256 | **66.03** | 0.80 ± 0.15 | 31 | $< 10^{-5}$ |
+| Bob | 5,344 | 5,344 | 2.62 | 29.14 ± 4.58 | 112 | $< 10^{-5}$ |
+
+†Pre-preprocessing counts. Post-preprocessing counts: Spot 2,930/2,928;
+Blub 7,106/7,104; Oloid 258/256; Bob 5,340/5,342. Full details in
+Appendix F, Table F.2.
+
+The Oloid achieves 66.03 per cent $E_p$ reduction, consistent
+with its fully regular valence-4 topology and intrinsically
+near-developable ruled-surface geometry (Appendix F, Section
+F.4). Spot and Blub achieve modest reductions of 5.64 to 7.55
+per cent, attributable to the high Gaussian curvature of closed
+organic meshes and the 6.5 to 8.7 per cent proportion of
+irregular-valence vertices that impose a persistent angle-defect
+residual (Appendix F, Section F.5; Appendix C, Section C.3).
+Bob's 2.62 per cent reduction and high runtime variability
+(±4.58 s) reflect the non-uniform face sizes introduced by
+Blender re-meshing and the 12 open boundary edges that reduce
+Laplacian regularity. All four models converge to
+$\text{grad norm} < 10^{-5}$, confirming genuine stationarity
+rather than iteration-budget exhaustion.
+
+
 ## 4.7 Research Question Answers
 
 ### 4.7.1 RQ1: Planarity Improvement
@@ -221,7 +224,7 @@ affirmatively.**
 
 The NumPy baseline scales as $T(n) \approx 0.0007 \times
 n^{1.27}$ ($R^2 = 1.000$), delivering approximately 80
-seconds for 5,625-face meshes (see Chapter 4, Table 4.2).
+seconds for 5,625-face meshes (see Chapter 4, Table 4.3).
 Numba provides 2.40× to 2.79× speedup and CuPy provides
 2.19× to 3.14× speedup for meshes of practical size.
 The sub-quadratic exponent (1.27) confirms that sparse
@@ -328,9 +331,9 @@ demonstrated that the Numba and CuPy backends deliver 2.40× to 2.79×
 and 2.19× to 3.14× speedup respectively for meshes of practical size,
 with numerical equivalence to the NumPy baseline confirmed to
 $10^{-8}$. EXP-03 confirmed quasi-Newton superlinear convergence in
-9 to 13 iterations across all tested mesh sizes, reaching
-$\text{grad norm} < 10^{-5}$ and mean per-face deviations within
-glass manufacturing tolerance of ±1 mm. EXP-04 identified the
+9 to 13 iterations across all tested mesh sizes, reaching $\text{grad norm} < 10^{-5}$ and mean per-face deviations below
+$3 \times 10^{-4}$ normalised units, within glass manufacturing tolerance
+of ±1 mm at physical scale (EN 572-2:2012). EXP-04 identified the
 calibrated weight configuration $w_p = 10.0$, $w_f = 1.0$,
 $w_c = 5.0$ as the Pareto-optimal point balancing planarity
 improvement, surface regularity, and design-intent preservation.

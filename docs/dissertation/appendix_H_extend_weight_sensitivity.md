@@ -11,6 +11,13 @@ with the Numba backend.
 
 ## H.1 w_p Sweep (w_f = 1.0, w_c = 5.0 fixed)
 
+The $w_p$ sweep was conducted using $w_c = 5.0$ as the fixed closeness
+weight, a value subsequently confirmed as optimal by the $w_c$ sweep in
+Section H.3. This ordering reflects the iterative nature of the calibration
+process: an initial reasonable estimate of $w_c = 5.0$ was assumed for
+the $w_p$ and $w_f$ sweeps, then validated by the $w_c$ sweep without
+requiring any revision to the recommended $w_p$ or $w_f$ values.
+
 **Table H.1 — EXP-04: Planarity Weight Sweep**
 
 | $w_p$ | $E_p$ Reduction (%) | $E_f$ Final | $E_c$ Final | Runtime (s) | Iterations |
@@ -33,6 +40,8 @@ optimal point on this sweep.
 ## H.2 w_f Sweep (w_p = 10.0, w_c = 5.0 fixed)
 
 **Table H.2 — EXP-04: Fairness Weight Sweep**
+Surface RMS is the root-mean-square of the per-vertex Laplacian displacement magnitude ‖Lv‖ 
+across all interior vertices after convergence, expressed in normalised coordinate units (unit bounding box).
 
 | $w_f$ | $E_p$ Reduction (%) | $E_f$ Final | Surface RMS (normalised) | Runtime (s) | Iterations |
 |:---|:---|:---|:---|:---|:---|

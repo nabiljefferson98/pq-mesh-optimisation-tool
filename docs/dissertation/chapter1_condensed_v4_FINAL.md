@@ -61,7 +61,7 @@ $$E_{\text{total}} = w_p E_p + w_f E_f + w_c E_c + w_a E_a$$
 where the weights $w_p$, $w_f$, $w_c$, and $w_a$ are tuneable at runtime. **Near real-time
 performance** is defined here as convergence ranging from sub-second for 9-face meshes to
 approximately 80 seconds for 5,625-face meshes on the NumPy baseline
-(see Chapter 4, Table 4.2), with planarity
+(see Chapter 4, Table 4.1), with planarity
 reductions exceeding 99 per cent for meshes of at most 400 faces and approximately 83 per
 cent for meshes of 900 or more faces. The mathematical foundations of each energy term are
 established in Sections 1.3 to 1.5.

@@ -28,22 +28,18 @@ pipeline described in Chapter 3, Section 3.4.
 
 ### F.1.2 Oloid
 
-The Oloid model is a low-polygon quad mesh of the mathematical solid of the
-same name, a shape bounded by two orthogonal circles of equal radius in
-three-dimensional space. It was constructed manually as a controlled
-developable-surface test case for this project, generated programmatically
-using the parametric equations:
-
-$$x(u,v) = \cos(u) + v(\cos(u/2)\cos(u) - \cos(u))$$
-$$y(u,v) = \sin(u) + v(\cos(u/2)\sin(u) - \sin(u))$$
-$$z(u,v) = v \sin(u/2)$$
-
-for $u \in [0, 2\pi]$, $v \in [0, 1]$, discretised onto a $16 \times 16$
-quad grid. The Oloid was selected because it is a ruled surface whose
-developability is well-established in the classical surface theory literature
-(Dirnböck and Stachel, 1997), providing a controlled positive control for
-high $E_p$ reduction. The model is original to this project and is released
-under the MIT Licence consistent with the repository.
+The Oloid model is a low-polygon quad mesh of a shape approximating the
+mathematical solid of the same name. It was constructed manually as a
+controlled near-developable surface test case for this project, generated
+programmatically using a lofted parameterisation over a $16 \times 16$
+quad grid. The Oloid was selected because it is a geometrically simple,
+near-ruled surface whose low Gaussian curvature provides a controlled
+positive control for high $E_p$ reduction. The classical mathematical
+oloid (Dirnböck and Stachel, 1997) — bounded by two orthogonal circles
+of equal radius — inspired the choice of name and geometry, but the
+programmatic construction used here is an independent approximation.
+The model is original to this project and is released under the MIT
+Licence consistent with the repository.
 
 ### F.1.3 Bob (Thingi10K Dataset)
 

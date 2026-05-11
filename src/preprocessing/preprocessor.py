@@ -72,6 +72,7 @@ Pottmann, H., Eigensatz, M., Vaxman, A., and Wallner, J. (2015).
 Author: Muhammad Nabil
 Date: March 2026
 """
+
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
@@ -128,6 +129,7 @@ class PreprocessingInfo:
         Non-fatal warnings emitted during processing (for example, reporting
         the number of merged duplicates or removed degenerate faces).
     """
+
     original_vertices: int = 0
     original_faces: int = 0
     final_vertices: int = 0

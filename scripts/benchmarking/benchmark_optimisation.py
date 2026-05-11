@@ -68,6 +68,7 @@ DEFAULT_REPS = 3
 # Core benchmarking function
 # ---------------------------------------------------------------------------
 
+
 def benchmark_mesh(mesh_path: Path, weights: dict, max_iter: int, reps: int) -> dict:
     """
     Run the optimiser on one mesh file and collect all performance metrics.
@@ -142,9 +143,7 @@ def benchmark_mesh(mesh_path: Path, weights: dict, max_iter: int, reps: int) -> 
     plan_initial = last_result.component_energies_initial.get("planarity", 0.0)
     plan_final = last_result.component_energies_final.get("planarity", 0.0)
     planarity_improvement = (
-        (plan_initial - plan_final) / plan_initial * 100.0
-        if plan_initial > 0
-        else 0.0
+        (plan_initial - plan_final) / plan_initial * 100.0 if plan_initial > 0 else 0.0
     )
 
     return {
@@ -189,6 +188,7 @@ def _deviation_stats(pf_array: np.ndarray) -> dict:
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
+
 
 def main():
     """
@@ -262,8 +262,10 @@ def main():
             )
             sys.exit(1)
 
-    print(f"\nBenchmarking {len(test_meshes)} mesh(es) "
-          f"({args.reps} repetition(s) each, max_iter={args.max_iter})...\n")
+    print(
+        f"\nBenchmarking {len(test_meshes)} mesh(es) "
+        f"({args.reps} repetition(s) each, max_iter={args.max_iter})...\n"
+    )
 
     results = []
     for mesh_path in test_meshes:

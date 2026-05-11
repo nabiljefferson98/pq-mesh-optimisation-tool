@@ -65,6 +65,7 @@ Autodesk (2024). DXF R2010 Reference (AC1024).
 Author: Muhammad Nabil
 Date: March 2026
 """
+
 import os
 import re
 import tempfile
@@ -75,6 +76,7 @@ from typing import List, Tuple
 import numpy as np
 
 from src.core.mesh import QuadMesh
+
 
 # ============================================================================
 # DATA CLASSES
@@ -118,6 +120,7 @@ class FlatPanel:
         Indicates the panel's orientation in 3D space, which is needed for
         structural analysis and panel connection design.
     """
+
     face_id: int
     vertices_2d: np.ndarray  # (4, 2)
     planarity_residual: float
@@ -159,6 +162,7 @@ class UnfoldReport:
         tolerance. Faces are listed by index up to a maximum of five; if
         more faces exceed tolerance, a summary count is appended instead.
     """
+
     n_panels: int = 0
     max_planarity_residual: float = 0.0
     mean_planarity_residual: float = 0.0

@@ -32,13 +32,13 @@ import matplotlib.pyplot as plt
 # ---------------------------------------------------------------------------
 
 COLOURS = {
-    "planarity": "#2E86AB",   # Steel blue  -- planarity data
-    "fairness": "#A23B72",    # Dark rose   -- fairness data
-    "closeness": "#F18F01",   # Amber       -- closeness / time data
-    "before": "#E84855",      # Coral red   -- 'before optimisation' bars
-    "after": "#3BB273",       # Mint green  -- 'after optimisation' bars
-    "fit_line": "#C62828",    # Deep red    -- regression / fit lines
-    "neutral": "#555555",     # Dark grey   -- secondary lines
+    "planarity": "#2E86AB",  # Steel blue  -- planarity data
+    "fairness": "#A23B72",  # Dark rose   -- fairness data
+    "closeness": "#F18F01",  # Amber       -- closeness / time data
+    "before": "#E84855",  # Coral red   -- 'before optimisation' bars
+    "after": "#3BB273",  # Mint green  -- 'after optimisation' bars
+    "fit_line": "#C62828",  # Deep red    -- regression / fit lines
+    "neutral": "#555555",  # Dark grey   -- secondary lines
     "spot": "#2E86AB",
     "blub": "#A23B72",
     "oloid": "#3BB273",
@@ -63,6 +63,7 @@ MARKERS = {
 # ---------------------------------------------------------------------------
 # Shared style function
 # ---------------------------------------------------------------------------
+
 
 def apply_dissertation_style():
     """

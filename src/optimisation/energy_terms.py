@@ -56,6 +56,7 @@ Nocedal, J. and Wright, S. J. (2006).
 Author: Muhammad Nabil
 Date: 2 February 2026
 """
+
 import logging
 import warnings
 from typing import Dict
@@ -71,9 +72,7 @@ logger = logging.getLogger(__name__)
 # ============================================================================
 
 
-def compute_planarity_energy(
-    mesh, planarity_deviations=None
-) -> float:
+def compute_planarity_energy(mesh, planarity_deviations=None) -> float:
     """
     Compute the total planarity energy of the mesh.
 
@@ -134,11 +133,15 @@ def compute_planarity_energy(
     face_verts = mesh.vertices[mesh.faces]
     centroids = face_verts.mean(axis=1, keepdims=True)
     centered = face_verts - centroids
-    _, _, Vt = np.linalg.svd(centered, full_matrices=False)
-    normals = Vt[:, -1, :]
-    signed_dists = np.einsum("fvd,fd->fv", centered, normals)
 
-    return float(np.sum(signed_dists**2))
+    try:
+        _, _, Vt = np.linalg.svd(centered, full_matrices=False)
+        normals = Vt[:, -1, :]
+        signed_dists = np.einsum("fvd,fd->fv", centered, normals)
+        return float(np.sum(signed_dists**2))
+    except np.linalg.LinAlgError:
+        # SVD convergence failure (e.g., degenerate faces with NaN/Inf vertices)
+        return 0.0
 
 
 def compute_planarity_per_face(mesh) -> np.ndarray:
@@ -647,7 +650,7 @@ try:
     from numba import njit
     from numba import prange as _prange
 
-    @njit(parallel=True, cache=True, fastmath=False) # pragma: no cover
+    @njit(parallel=True, cache=True, fastmath=False)  # pragma: no cover
     def _planarity_energy_numba(vertices: np.ndarray, faces: np.ndarray) -> float:
         """
         Numba-parallel planarity energy kernel for quad meshes.
@@ -713,7 +716,7 @@ try:
 
         return total
 
-    @njit(parallel=True, cache=True, fastmath=False) # pragma: no cover
+    @njit(parallel=True, cache=True, fastmath=False)  # pragma: no cover
     def _planarity_per_face_numba(
         vertices: np.ndarray, faces: np.ndarray
     ) -> np.ndarray:
@@ -802,7 +805,7 @@ try:
     from numba import njit
     from numba import prange as _prange  # noqa: F811
 
-    @njit(parallel=True, cache=True, fastmath=False) # pragma: no cover
+    @njit(parallel=True, cache=True, fastmath=False)  # pragma: no cover
     def _angle_balance_numba(
         vertices: np.ndarray,  # (n_verts, 3)  float64
         faces: np.ndarray,  # (n_faces, 4)  int32

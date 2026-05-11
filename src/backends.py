@@ -67,6 +67,7 @@ Okuta, R., Unno, Y., Nishino, D., Hido, S., and Loomis, C. (2017).
   Proceedings of Workshop on Machine Learning Systems (LearningSys)
   at NeurIPS 2017.
 """
+
 import os
 import platform
 import time
@@ -117,11 +118,11 @@ def _detect_backend() -> BackendType:
             _probe = (_probe**2).sum()
             cp.cuda.Stream.null.synchronize()
             # pylint: disable=c-extension-no-member
-            if cp.cuda.runtime.getDeviceCount() > 0:    # pragma: no cover
-                return "cupy"   # pragma: no cover
+            if cp.cuda.runtime.getDeviceCount() > 0:  # pragma: no cover
+                return "cupy"  # pragma: no cover
         except Exception:  # pylint: disable=broad-exception-caught
             pass
-        if requested == "cupy": # pragma: no cover
+        if requested == "cupy":  # pragma: no cover
             warnings.warn(
                 "PQ_BACKEND=cupy requested but CuPy initialisation failed "
                 "(missing CUDA runtime, nvrtc, cusolver, or no compatible GPU). "
@@ -130,12 +131,12 @@ def _detect_backend() -> BackendType:
                 "then reinstall cupy-cuda13x.",
                 RuntimeWarning,
                 stacklevel=3,
-            ) # pragma: no cover
+            )  # pragma: no cover
 
             # After a forced CuPy failure, continue automatic backend
             # detection so that we actually attempt to use numba before
             # falling back to the NumPy baseline.
-            requested = "auto" # pragma: no cover
+            requested = "auto"  # pragma: no cover
 
     if requested in ("numba", "auto"):
         try:
@@ -145,13 +146,13 @@ def _detect_backend() -> BackendType:
             return "numba"
         except ImportError:
             pass
-        if requested == "numba":    # pragma: no cover
+        if requested == "numba":  # pragma: no cover
             warnings.warn(
                 "PQ_BACKEND=numba requested but numba is not installed. "
                 "Falling back to numpy. Install with: pip install numba",
                 RuntimeWarning,
                 stacklevel=3,
-            )   # pragma: no cover
+            )  # pragma: no cover
 
     return "numpy"
 
@@ -172,9 +173,7 @@ if BACKEND in ("cupy", "numba"):
     except ImportError:
         pass
 
-IS_APPLE_SILICON: bool = (
-    platform.system() == "Darwin" and platform.machine() == "arm64"
-)
+IS_APPLE_SILICON: bool = platform.system() == "Darwin" and platform.machine() == "arm64"
 
 
 # ── Array-module helpers ──────────────────────────────────────────────────────
@@ -258,8 +257,8 @@ def to_numpy(arr) -> np.ndarray:
     except ImportError:
         cp = None  # type: ignore[assignment]
     else:
-        if isinstance(arr, cp.ndarray): # pragma: no cover
-            return cp.asnumpy(arr) # pragma: no cover
+        if isinstance(arr, cp.ndarray):  # pragma: no cover
+            return cp.asnumpy(arr)  # pragma: no cover
     return np.asarray(arr)
 
 
@@ -333,7 +332,9 @@ def gpu_memory_guard():
     try:
         yield
     except Exception as exc:  # pragma: no cover
-        if gpu_error_types is not None and isinstance(exc, gpu_error_types): # pragma: no cover
+        if gpu_error_types is not None and isinstance(
+            exc, gpu_error_types
+        ):  # pragma: no cover
             target_backend = "numpy"
             has_numba = False
             try:
@@ -563,15 +564,15 @@ def warmup_numba_kernels() -> None:
             f"total compile time: {_elapsed:.1f} s. "
             "Future runs will be instant (cache=True)."
         )
-    elif not _energy_ok and not _gradient_ok:   # pragma: no cover
+    elif not _energy_ok and not _gradient_ok:  # pragma: no cover
         print(
             "[PQ Mesh Optimiser] WARNING — both Numba kernels failed to compile. "
             "Optimisation will use the NumPy baseline automatically."
-        )   # pragma: no cover
-    else:   # pragma: no cover
+        )  # pragma: no cover
+    else:  # pragma: no cover
         print(
             f"[PQ Mesh Optimiser] Partial Numba warm-up completed in {_elapsed:.1f} s "
             f"(energy={'OK' if _energy_ok else 'FAILED'}, "
             f"gradient={'OK' if _gradient_ok else 'FAILED'}). "
             "See warnings above for details."
-        )   # pragma: no cover
+        )  # pragma: no cover

@@ -33,47 +33,49 @@ Liu, Y., Pottmann, H., Wallner, J., Yang, Y.-L., and Wang, W. (2006).
 Pottmann, H., Eigensatz, M., Vaxman, A., and Wallner, J. (2015).
   "Architectural geometry." Computers and Graphics, 47, pp. 145-164.
 """
+
 from typing import Any
 
 import numpy as np
 from numpy import dtype, ndarray
 
+
 def compute_face_planarity_deviation(face_vertices: np.ndarray) -> float:
     """
-     Compute the planarity deviation of a single quad face.
+    Compute the planarity deviation of a single quad face.
 
-     A quad face is planar if all four of its vertices lie exactly on a
-     common plane. In practice, optimised faces are only approximately
-     planar. This function measures the deviation from planarity as the
-     maximum absolute distance of any vertex from the face's best-fit plane.
+    A quad face is planar if all four of its vertices lie exactly on a
+    common plane. In practice, optimised faces are only approximately
+    planar. This function measures the deviation from planarity as the
+    maximum absolute distance of any vertex from the face's best-fit plane.
 
-     The best-fit plane is found by computing the singular value
-     decomposition of the matrix of centred vertex positions. The right
-     singular vector corresponding to the smallest singular value is the
-     normal to the plane that minimises the sum of squared vertex distances.
-     This is the standard approach for fitting a plane to a set of points
-     in three dimensions.
+    The best-fit plane is found by computing the singular value
+    decomposition of the matrix of centred vertex positions. The right
+    singular vector corresponding to the smallest singular value is the
+    normal to the plane that minimises the sum of squared vertex distances.
+    This is the standard approach for fitting a plane to a set of points
+    in three dimensions.
 
-     For a triangle face, the deviation is always zero because three points
-     are always coplanar, and 0.0 is returned immediately without computation.
+    For a triangle face, the deviation is always zero because three points
+    are always coplanar, and 0.0 is returned immediately without computation.
 
-     Parameters
-     ----------
-     face_vertices : numpy.ndarray
-         Vertex positions of the face, shape (n, 3) where n is 3 or 4.
-         dtype float64.
+    Parameters
+    ----------
+    face_vertices : numpy.ndarray
+        Vertex positions of the face, shape (n, 3) where n is 3 or 4.
+        dtype float64.
 
-     Returns
-     -------
-     float
-         Maximum distance from any vertex to the best-fit plane. Zero for
-         a perfectly planar face or for a triangle face. Always non-negative.
+    Returns
+    -------
+    float
+        Maximum distance from any vertex to the best-fit plane. Zero for
+        a perfectly planar face or for a triangle face. Always non-negative.
 
-     References
-     ----------
-     Pottmann, H., Eigensatz, M., Vaxman, A., and Wallner, J. (2015).
-     "Architectural geometry." Computers and Graphics, 47, pp. 145-164.
-     """
+    References
+    ----------
+    Pottmann, H., Eigensatz, M., Vaxman, A., and Wallner, J. (2015).
+    "Architectural geometry." Computers and Graphics, 47, pp. 145-164.
+    """
     if face_vertices.shape[0] == 3:
         # Triangle is always planar
         return 0.0

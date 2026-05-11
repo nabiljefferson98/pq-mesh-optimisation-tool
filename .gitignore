@@ -216,6 +216,7 @@ __marimo__/
 
 # JetBrains IDEs (e.g. PyCharm)
 .idea
+.junie
 
 .DS_Store
 

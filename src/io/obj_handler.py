@@ -55,12 +55,14 @@ Wavefront Technologies (1992). "Object Files (.obj)." Wavefront OBJ format
 Author: Muhammad Nabil
 Date: March 2026
 """
+
 from pathlib import Path
 from typing import List, Tuple
 
 import numpy as np
 
 from src.core.mesh import QuadMesh
+
 
 # ============================================================================
 # PUBLIC API

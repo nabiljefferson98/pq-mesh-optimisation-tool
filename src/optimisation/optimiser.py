@@ -111,6 +111,7 @@ produce meaningless percentage improvements in the printed summary.
 """
 _NEAR_ZERO_ENERGY: float = 1e-15
 
+
 def _compute_angle_balance_component(mesh: QuadMesh) -> float:
     """
     Compute the raw angle balance energy for use in result reporting.
@@ -197,6 +198,7 @@ class OptimisationConfig:
         temporarily worsen shape fidelity. Recommended range: 3.0 to 10.0.
         Default is 5.0.
     """
+
     weights: Dict[str, float] = field(
         default_factory=lambda: {"planarity": 100.0, "fairness": 1.0, "closeness": 10.0}
     )
@@ -259,52 +261,53 @@ class OptimisationConfig:
 @dataclass
 class OptimisationResult:
     """
-     Complete record of a finished mesh optimisation run.
+    Complete record of a finished mesh optimisation run.
 
-     Returned by 'MeshOptimiser.optimise()' and 'optimise_mesh_simple()'.
-     Contains the optimised mesh, all summary statistics, per-component
-     energy breakdowns, and optionally the full iteration history.
+    Returned by 'MeshOptimiser.optimise()' and 'optimise_mesh_simple()'.
+    Contains the optimised mesh, all summary statistics, per-component
+    energy breakdowns, and optionally the full iteration history.
 
-     Attributes
-     ----------
-     success : bool
-         True if SciPy reported successful convergence. False if the
-         iteration limit was reached or an error occurred. Note that
-         'success=False' does not necessarily mean the result is unusable:
-         a mesh that improved by 95% but hit the iteration limit is still
-         a valid result.
-     message : str
-         The status message returned by 'scipy.optimize.minimize'. Useful
-         for diagnosing why the optimiser stopped.
-     optimised_mesh : QuadMesh
-         The mesh with vertex positions updated to the optimised values.
-         This is the same object passed in to 'optimise()', modified
-         in-place, and also stored here for convenience.
-     initial_energy : float
-         Total weighted energy before optimisation.
-     final_energy : float
-         Total weighted energy after optimisation.
-     n_iterations : int
-         Total number of L-BFGS-B iterations across both stages.
-     n_function_evaluations : int
-         Total number of times the energy function was evaluated.
-     n_gradient_evaluations : int
-         Total number of times the gradient function was evaluated.
-     execution_time : float
-         Total wall-clock time in seconds for the entire optimisation,
-         including both stages.
-     energy_history : list of float or None
-         Energy value recorded at every iteration if 'history_tracking'
-         was True. None otherwise. Use this to produce a convergence plot.
-     gradient_norm_history : list of float or None
-         Gradient norm recorded at every iteration if 'history_tracking'
-         was True. None otherwise.
-     component_energies_initial : dict or None
-         Raw (unweighted) energy for each term before optimisation, with
-         keys 'planarity', 'fairness', 'closeness', 'angle_balance'.
-     component_energies_final : dict or None
-         Raw (unweighted) energy for each term after optimisation.
-     """
+    Attributes
+    ----------
+    success : bool
+        True if SciPy reported successful convergence. False if the
+        iteration limit was reached or an error occurred. Note that
+        'success=False' does not necessarily mean the result is unusable:
+        a mesh that improved by 95% but hit the iteration limit is still
+        a valid result.
+    message : str
+        The status message returned by 'scipy.optimize.minimize'. Useful
+        for diagnosing why the optimiser stopped.
+    optimised_mesh : QuadMesh
+        The mesh with vertex positions updated to the optimised values.
+        This is the same object passed in to 'optimise()', modified
+        in-place, and also stored here for convenience.
+    initial_energy : float
+        Total weighted energy before optimisation.
+    final_energy : float
+        Total weighted energy after optimisation.
+    n_iterations : int
+        Total number of L-BFGS-B iterations across both stages.
+    n_function_evaluations : int
+        Total number of times the energy function was evaluated.
+    n_gradient_evaluations : int
+        Total number of times the gradient function was evaluated.
+    execution_time : float
+        Total wall-clock time in seconds for the entire optimisation,
+        including both stages.
+    energy_history : list of float or None
+        Energy value recorded at every iteration if 'history_tracking'
+        was True. None otherwise. Use this to produce a convergence plot.
+    gradient_norm_history : list of float or None
+        Gradient norm recorded at every iteration if 'history_tracking'
+        was True. None otherwise.
+    component_energies_initial : dict or None
+        Raw (unweighted) energy for each term before optimisation, with
+        keys 'planarity', 'fairness', 'closeness', 'angle_balance'.
+    component_energies_final : dict or None
+        Raw (unweighted) energy for each term after optimisation.
+    """
+
     success: bool
     message: str
     optimised_mesh: QuadMesh
@@ -471,38 +474,38 @@ class OptimisationResult:
 
 class MeshOptimiser:
     """
-     Main optimisation class for planar quad meshes.
+    Main optimisation class for planar quad meshes.
 
-     Wraps the SciPy L-BFGS-B solver with mesh-specific validation,
-     two-stage execution logic, history tracking, and verbose progress
-     reporting. Instantiate with an 'OptimisationConfig', then call
-     'optimise(mesh)' to run the optimisation.
+    Wraps the SciPy L-BFGS-B solver with mesh-specific validation,
+    two-stage execution logic, history tracking, and verbose progress
+    reporting. Instantiate with an 'OptimisationConfig', then call
+    'optimise(mesh)' to run the optimisation.
 
-     The optimiser does not modify the mesh until the solver has found its
-     best solution. If validation fails, an 'OptimisationResult' with
-     'success=False' is returned immediately and the mesh is not changed.
+    The optimiser does not modify the mesh until the solver has found its
+    best solution. If validation fails, an 'OptimisationResult' with
+    'success=False' is returned immediately and the mesh is not changed.
 
-     Examples
-     --------
-     Standard usage with default settings:
+    Examples
+    --------
+    Standard usage with default settings:
 
-         config = OptimisationConfig(weights={"planarity": 100.0,
-                                              "fairness": 1.0,
-                                              "closeness": 10.0})
-         optimiser = MeshOptimiser(config)
-         result = optimiser.optimise(mesh)
-         print(result.summary())
+        config = OptimisationConfig(weights={"planarity": 100.0,
+                                             "fairness": 1.0,
+                                             "closeness": 10.0})
+        optimiser = MeshOptimiser(config)
+        result = optimiser.optimise(mesh)
+        print(result.summary())
 
-     Single-stage run with angle balance enabled:
+    Single-stage run with angle balance enabled:
 
-         config = OptimisationConfig(
-             weights={"planarity": 100.0, "fairness": 1.0,
-                      "closeness": 10.0, "angle_balance": 50.0},
-             two_stage=False,
-             max_iterations=500,
-         )
-         result = MeshOptimiser(config).optimise(mesh)
-     """
+        config = OptimisationConfig(
+            weights={"planarity": 100.0, "fairness": 1.0,
+                     "closeness": 10.0, "angle_balance": 50.0},
+            two_stage=False,
+            max_iterations=500,
+        )
+        result = MeshOptimiser(config).optimise(mesh)
+    """
 
     def __init__(self, config: Optional[OptimisationConfig] = None):
         """
@@ -685,9 +688,7 @@ class MeshOptimiser:
         # 200.  Stage 2 then receives the remainder so the combined total never
         # exceeds max_iterations.
         stage1_max: int = (
-            min(200, self.config.max_iterations // 3)
-            if self.config.two_stage
-            else 0
+            min(200, self.config.max_iterations // 3) if self.config.two_stage else 0
         )
         stage2_max: int = self.config.max_iterations - stage1_max
 
@@ -762,10 +763,10 @@ class MeshOptimiser:
         # Stage 2 options — budget is the remainder after Stage 1.
         stage2_options = {
             "maxiter": stage2_max,
-            "ftol": 1e-9,   # much tighter energy convergence
-            "gtol": 1e-5,   # tighter gradient convergence
-            "maxcor": 20,   # smoother descent in refinement
-            "maxls": 40,    # more backtracking in flat regions
+            "ftol": 1e-9,  # much tighter energy convergence
+            "gtol": 1e-5,  # tighter gradient convergence
+            "maxcor": 20,  # smoother descent in refinement
+            "maxls": 40,  # more backtracking in flat regions
         }
 
         # ── Counters for combined Stage 1 + Stage 2 totals ────────────────────
@@ -962,6 +963,7 @@ class MeshOptimiser:
             A function with signature 'callback(xk)' compatible with
             'scipy.optimize.minimize'.
         """
+
         def callback(xk):
             self._iteration_count += 1
 

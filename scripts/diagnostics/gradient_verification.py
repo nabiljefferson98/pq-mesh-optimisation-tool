@@ -32,7 +32,9 @@ from src.optimisation.gradients import (
 def main():
     import argparse
 
-    parser = argparse.ArgumentParser(description="Gradient verification and diagnostics.")
+    parser = argparse.ArgumentParser(
+        description="Gradient verification and diagnostics."
+    )
     parser.add_argument(
         "--mesh",
         type=str,

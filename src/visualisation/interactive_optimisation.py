@@ -72,6 +72,7 @@ file picker dialogue.
 Author: Muhammad Nabil
 Date: March 2026
 """
+
 import copy
 import subprocess
 import sys
@@ -127,6 +128,7 @@ class _ProgressTrackingOptimiser(MeshOptimiser):
         Maximum number of iterations expected. Used to normalise the
         iteration count to the [0, 1) range.
     """
+
     def __init__(
         self,
         config: OptimisationConfig,
@@ -192,6 +194,7 @@ class InteractiveMeshOptimiser:
         The result of the most recently completed optimisation, or None
         if no optimisation has been run yet in the current session.
     """
+
     def __init__(self, mesh_path: Path):
         self.mesh_path = mesh_path
         self.mesh_original = load_obj(str(mesh_path))
@@ -365,22 +368,22 @@ class InteractiveMeshOptimiser:
 
     def _copy_to_clipboard(self, text: str) -> None:
         """
-         Copy a text string to the system clipboard.
+        Copy a text string to the system clipboard.
 
-         Uses the native clipboard utility for the current platform:
-           macOS: pbcopy
-           Linux: xclip (primary), xsel (fallback)
-           Windows: clip (UTF-16 encoding required)
+        Uses the native clipboard utility for the current platform:
+          macOS: pbcopy
+          Linux: xclip (primary), xsel (fallback)
+          Windows: clip (UTF-16 encoding required)
 
-         If no clipboard utility is available, the text is printed to
-         standard output instead. Errors are caught and reported non-fatally
-         so that a missing clipboard utility does not crash the viewer.
+        If no clipboard utility is available, the text is printed to
+        standard output instead. Errors are caught and reported non-fatally
+        so that a missing clipboard utility does not crash the viewer.
 
-         Parameters
-         ----------
-         text : str
-             The text to copy to the clipboard.
-         """
+        Parameters
+        ----------
+        text : str
+            The text to copy to the clipboard.
+        """
         import platform
 
         system = platform.system()
@@ -907,7 +910,9 @@ class InteractiveMeshOptimiser:
         # Heat map guidance
         # -----------------------------------------------------------------
         psim.TextUnformatted("Heat Map Guidance:")
-        psim.TextUnformatted("Cool colour = even panels         Warm colour = uneven panels")
+        psim.TextUnformatted(
+            "Cool colour = even panels         Warm colour = uneven panels"
+        )
         psim.Separator()
 
         # -----------------------------------------------------------------
@@ -1384,13 +1389,18 @@ def main():
     # freeze on the first "Optimise" click inside the viewer.
     try:
         from src.backends import HAS_NUMBA, warmup_numba_kernels
+
         if HAS_NUMBA:
-            print("Warming up Numba kernels (one-time compile, ~2-5 seconds on first run)...")
+            print(
+                "Warming up Numba kernels (one-time compile, ~2-5 seconds on first run)..."
+            )
             warmup_numba_kernels()
             print("Kernels ready.\n")
     except (ImportError, Exception) as _warmup_exc:
         # Non-fatal: the kernels will compile on first use instead
-        print(f"Note: Numba warmup skipped ({_warmup_exc}). Kernels will compile on first use.\n")
+        print(
+            f"Note: Numba warmup skipped ({_warmup_exc}). Kernels will compile on first use.\n"
+        )
 
     app = InteractiveMeshOptimiser(mesh_path)
     app.run()

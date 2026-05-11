@@ -94,7 +94,8 @@ def plot_convergence_comparison(data_path: Path, output_path: Path):
 
     # -- Left plot: iterations vs vertices
     ax1.plot(
-        vertices, iterations,
+        vertices,
+        iterations,
         "o-",
         color=COLOURS["planarity"],
         label="L-BFGS-B iterations",
@@ -113,7 +114,9 @@ def plot_convergence_comparison(data_path: Path, output_path: Path):
     sd_valid = time_stds[valid]
 
     ax2.errorbar(
-        v_valid, t_valid, yerr=sd_valid,
+        v_valid,
+        t_valid,
+        yerr=sd_valid,
         fmt="o-",
         color=COLOURS["closeness"],
         capsize=4,
@@ -132,9 +135,10 @@ def plot_convergence_comparison(data_path: Path, output_path: Path):
     exponent, intercept_log = coeffs
 
     fit_v = np.logspace(np.log10(v_valid.min()), np.log10(v_valid.max()), 200)
-    fit_t = 10 ** intercept_log * fit_v ** exponent
+    fit_t = 10**intercept_log * fit_v**exponent
     ax2.plot(
-        fit_v, fit_t,
+        fit_v,
+        fit_t,
         "--",
         color=COLOURS["fit_line"],
         alpha=0.8,

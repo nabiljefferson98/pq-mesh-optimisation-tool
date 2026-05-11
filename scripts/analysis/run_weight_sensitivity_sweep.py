@@ -397,7 +397,9 @@ def main():
         if best["planarity_final"] < 1e-3:
             print("    Fabrication status: \u2705 Panels are flat enough to fabricate")
         elif best["planarity_final"] < 0.01:
-            print("    Fabrication status: \u26a0\ufe0f  Nearly flat \u2014 minor gaps expected")
+            print(
+                "    Fabrication status: \u26a0\ufe0f  Nearly flat \u2014 minor gaps expected"
+            )
         else:
             print(
                 "    Fabrication status: \u274c Still curved \u2014 try higher planarity weight"

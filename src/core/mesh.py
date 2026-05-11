@@ -44,6 +44,7 @@ Liu, Y., Pottmann, H., Wallner, J., Yang, Y.-L., and Wang, W. (2006).
 Pottmann, H., Eigensatz, M., Vaxman, A., and Wallner, J. (2015).
   "Architectural geometry." Computers and Graphics, 47, pp. 145-164.
 """
+
 from typing import List, Optional
 
 import numpy as np
@@ -139,7 +140,9 @@ class QuadMesh:
 
         if not np.all((self.faces.shape[1] == 3) | (self.faces.shape[1] == 4)):
             # Allow triangles for now, but warn
-            print(f"Warning: Non-quad faces detected (shape: {self.faces.shape})")  # pragma: no cover
+            print(
+                f"Warning: Non-quad faces detected (shape: {self.faces.shape})"
+            )  # pragma: no cover
 
         # Validate face indices
         if self.faces.size > 0:  # Only check if faces exist

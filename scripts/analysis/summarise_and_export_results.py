@@ -49,6 +49,7 @@ PROJECT_ROOT = Path(__file__).parents[2]
 # Benchmark results analysis
 # ---------------------------------------------------------------------------
 
+
 def analyse_benchmark_results(benchmark_file: Path):
     """
     Load the benchmark JSON and print a full performance summary.
@@ -154,9 +155,7 @@ def analyse_benchmark_results(benchmark_file: Path):
     if len(df) >= 3:
         print("\n### Empirical Complexity Estimate")
         df_sorted = df.sort_values("Vertices")
-        valid = df_sorted[
-            (df_sorted["Vertices"] > 0) & (df_sorted["Time (s)"] > 0)
-        ]
+        valid = df_sorted[(df_sorted["Vertices"] > 0) & (df_sorted["Time (s)"] > 0)]
         if len(valid) >= 2:
             try:
                 from scipy.stats import linregress
@@ -168,7 +167,7 @@ def analyse_benchmark_results(benchmark_file: Path):
                 print(f"  R\u00b2 = {r_val**2:.3f}")
                 print("  Projected times for larger meshes:")
                 for n in [1000, 2500, 5000, 10000]:
-                    pred = np.exp(intercept) * (n ** slope)
+                    pred = np.exp(intercept) * (n**slope)
                     print(f"    {n:>6} vertices -> ~{pred:.1f}s")
             except Exception as e:
                 print(f"  Could not compute complexity estimate: {e}")
@@ -180,6 +179,7 @@ def analyse_benchmark_results(benchmark_file: Path):
 # ---------------------------------------------------------------------------
 # Sensitivity sweep analysis
 # ---------------------------------------------------------------------------
+
 
 def analyse_sensitivity_results(sensitivity_file: Path):
     """
@@ -267,8 +267,12 @@ def analyse_sensitivity_results(sensitivity_file: Path):
         if best:
             print(f"  Best weight: {best['weight']:.3f}")
             print(f"  -> Final planarity:      {best.get('planarity_final', 'N/A')}")
-            print(f"  -> Planarity improvement: {best.get('planarity_improvement', 0)*100:.2f}%")
-            print(f"  -> Energy reduction:      {best.get('energy_reduction', 0)*100:.1f}%")
+            print(
+                f"  -> Planarity improvement: {best.get('planarity_improvement', 0)*100:.2f}%"
+            )
+            print(
+                f"  -> Energy reduction:      {best.get('energy_reduction', 0)*100:.1f}%"
+            )
         else:
             print("  No successful configurations found.")
 
@@ -283,6 +287,7 @@ def analyse_sensitivity_results(sensitivity_file: Path):
 # ---------------------------------------------------------------------------
 # Dissertation table generation
 # ---------------------------------------------------------------------------
+
 
 def generate_dissertation_tables(benchmark_df, output_dir: Path):
     """
@@ -308,9 +313,14 @@ def generate_dissertation_tables(benchmark_df, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     cols_for_latex = [
-        "Mesh", "Vertices", "Faces",
-        "Time (s)", "Memory (MB)", "Iterations",
-        "Planarity Improv. (%)", "Success",
+        "Mesh",
+        "Vertices",
+        "Faces",
+        "Time (s)",
+        "Memory (MB)",
+        "Iterations",
+        "Planarity Improv. (%)",
+        "Success",
     ]
     cols_present = [c for c in cols_for_latex if c in benchmark_df.columns]
 
@@ -333,6 +343,7 @@ def generate_dissertation_tables(benchmark_df, output_dir: Path):
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
+
 
 def main():
     """

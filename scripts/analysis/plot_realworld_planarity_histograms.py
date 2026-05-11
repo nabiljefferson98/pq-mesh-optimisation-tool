@@ -107,8 +107,14 @@ def plot_exp05_histograms(data_path: Path, output_path: Path):
 
         if mesh_name not in results_by_name:
             ax.set_title(f"{label}\n(not found in data)")
-            ax.text(0.5, 0.5, "Data not available",
-                    ha="center", va="center", transform=ax.transAxes)
+            ax.text(
+                0.5,
+                0.5,
+                "Data not available",
+                ha="center",
+                va="center",
+                transform=ax.transAxes,
+            )
             continue
 
         r = results_by_name[mesh_name]
@@ -116,42 +122,53 @@ def plot_exp05_histograms(data_path: Path, output_path: Path):
         pa = r.get("planarity_after", {})
 
         raw_before = r.get("planarity_raw_before", None)
-        raw_after  = r.get("planarity_raw_after",  None)
+        raw_after = r.get("planarity_raw_after", None)
 
         if raw_before is not None and raw_after is not None:
             before_arr = np.array(raw_before)
-            after_arr  = np.array(raw_after)
-            data_note  = ""
+            after_arr = np.array(raw_after)
+            data_note = ""
         else:
             rng = np.random.default_rng(seed=42)
             n_faces = r["n_faces"]
-            before_arr = np.abs(rng.normal(pb.get("mean", 0), pb.get("std", 0), n_faces))
-            after_arr  = np.abs(rng.normal(pa.get("mean", 0), pa.get("std", 0), n_faces))
-            data_note  = " (approx.)"
+            before_arr = np.abs(
+                rng.normal(pb.get("mean", 0), pb.get("std", 0), n_faces)
+            )
+            after_arr = np.abs(rng.normal(pa.get("mean", 0), pa.get("std", 0), n_faces))
+            data_note = " (approx.)"
 
         combined_max = max(before_arr.max(), after_arr.max())
         bins = np.linspace(0, combined_max, 50)
 
         ax.hist(
-            before_arr, bins=bins,
-            color=COLOURS["before"], alpha=0.6,
+            before_arr,
+            bins=bins,
+            color=COLOURS["before"],
+            alpha=0.6,
             label=f"Before{data_note}",
             edgecolor="none",
         )
         ax.hist(
-            after_arr, bins=bins,
-            color=COLOURS["after"], alpha=0.7,
+            after_arr,
+            bins=bins,
+            color=COLOURS["after"],
+            alpha=0.7,
             label=f"After{data_note}",
             edgecolor="none",
         )
         ax.axvline(
-            pa.get("mean", 0), color=COLOURS["after"],
-            linestyle="-", linewidth=1.5, alpha=0.9,
+            pa.get("mean", 0),
+            color=COLOURS["after"],
+            linestyle="-",
+            linewidth=1.5,
+            alpha=0.9,
             label=f"After mean = {pa.get('mean', 0):.4f}",
         )
         ax.axvline(
-            pa.get("p95", 0), color=COLOURS["neutral"],
-            linestyle=":", linewidth=1.2,
+            pa.get("p95", 0),
+            color=COLOURS["neutral"],
+            linestyle=":",
+            linewidth=1.2,
             label=f"After 95th pctile = {pa.get('p95', 0):.4f}",
         )
         ax.set_title(label)
@@ -206,7 +223,8 @@ def plot_oloid_spatial_heatmap(data_path: Path, output_path: Path):
     apply_dissertation_style()
     fig, ax = plt.subplots(figsize=(12, 4))
     ax.bar(
-        np.arange(n_faces), pf,
+        np.arange(n_faces),
+        pf,
         color=COLOURS["planarity"],
         width=1.0,
         edgecolor="none",
@@ -260,7 +278,9 @@ def main():
     if args.output:
         fig48_path = Path(args.output)
     else:
-        fig48_path = PROJECT_ROOT / "data/output/benchmarks/EXP-05_planarity_histogram.png"
+        fig48_path = (
+            PROJECT_ROOT / "data/output/benchmarks/EXP-05_planarity_histogram.png"
+        )
 
     fig49_path = fig48_path.parent / "EXP-05_oloid_spatial_heatmap.png"
 

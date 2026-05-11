@@ -53,6 +53,7 @@ pytestmark = pytest.mark.skipif(
 # Shared mesh-generation helpers
 # =============================================================================
 
+
 def _make_flat_grid(n: int):
     """Return a perfectly planar (n x n) quad grid with z=0 for all vertices."""
     from src.core.mesh import QuadMesh
@@ -60,9 +61,9 @@ def _make_flat_grid(n: int):
     xs = np.linspace(0.0, 1.0, n + 1)
     ys = np.linspace(0.0, 1.0, n + 1)
     xx, yy = np.meshgrid(xs, ys)
-    verts = np.column_stack(
-        [xx.ravel(), yy.ravel(), np.zeros((n + 1) ** 2)]
-    ).astype(np.float64)
+    verts = np.column_stack([xx.ravel(), yy.ravel(), np.zeros((n + 1) ** 2)]).astype(
+        np.float64
+    )
     faces = []
     for j in range(n):
         for i in range(n):
@@ -85,12 +86,12 @@ def _numpy_planarity_gradient_reference(mesh) -> np.ndarray:
     Mirrors the NumPy branch in compute_planarity_gradient() exactly.
     Used as ground truth in all Numba equivalence assertions.
     """
-    face_verts = mesh.vertices[mesh.faces]                          # (F, 4, 3)
-    centroids = face_verts.mean(axis=1, keepdims=True)              # (F, 1, 3)
-    centered = face_verts - centroids                               # (F, 4, 3)
-    _, _, Vt = np.linalg.svd(centered, full_matrices=False)         # Vt: (F, 3, 3)
-    normals = Vt[:, -1, :]                                          # (F, 3)
-    signed_dists = np.einsum("fvd,fd->fv", centered, normals)       # (F, 4)
+    face_verts = mesh.vertices[mesh.faces]  # (F, 4, 3)
+    centroids = face_verts.mean(axis=1, keepdims=True)  # (F, 1, 3)
+    centered = face_verts - centroids  # (F, 4, 3)
+    _, _, Vt = np.linalg.svd(centered, full_matrices=False)  # Vt: (F, 3, 3)
+    normals = Vt[:, -1, :]  # (F, 3)
+    signed_dists = np.einsum("fvd,fd->fv", centered, normals)  # (F, 4)
     contributions = 2.0 * signed_dists[:, :, None] * normals[:, None, :]
     return mesh.scatter_matrix @ contributions.reshape(-1, 3)
 
@@ -110,6 +111,7 @@ def _numpy_angle_balance_gradient_reference(mesh) -> np.ndarray:
 # Fixtures
 # =============================================================================
 
+
 @pytest.fixture
 def flat_mesh_5x5():
     return _make_flat_grid(5)
@@ -123,6 +125,7 @@ def noisy_mesh_5x5():
 # =============================================================================
 # Pre-existing: Planarity ENERGY Numba equivalence
 # =============================================================================
+
 
 class TestPlanarityEnergyNumbaEquivalence:
     """
@@ -162,9 +165,9 @@ class TestPlanarityEnergyNumbaEquivalence:
             flat_mesh_5x5.vertices.astype(np.float64),
             flat_mesh_5x5.faces.astype(np.int64),
         )
-        assert energy < 1e-20, (
-            f"Planarity energy on flat mesh: {energy:.3e} (expected ~0)."
-        )
+        assert (
+            energy < 1e-20
+        ), f"Planarity energy on flat mesh: {energy:.3e} (expected ~0)."
 
     def test_energy_positive_on_noisy_mesh(self, noisy_mesh_5x5):
         from src.optimisation.energy_terms import _planarity_energy_numba
@@ -182,14 +185,13 @@ class TestPlanarityEnergyNumbaEquivalence:
             noisy_mesh_5x5.vertices.astype(np.float64),
             noisy_mesh_5x5.faces.astype(np.int64),
         )
-        assert np.isfinite(energy), (
-            f"Numba planarity energy is non-finite: {energy!r}"
-        )
+        assert np.isfinite(energy), f"Numba planarity energy is non-finite: {energy!r}"
 
 
 # =============================================================================
 # Pre-existing: Angle-balance gradient Numba parity
 # =============================================================================
+
 
 class TestAngleBalanceGradientNumbaParity:
     """
@@ -208,9 +210,8 @@ class TestAngleBalanceGradientNumbaParity:
         grad_numba = _angle_balance_gradient_numba(
             mesh.vertices, mesh.faces, vf, *scratch
         )
-        rel_err = (
-            np.abs(grad_numba - grad_numpy).max()
-            / (np.abs(grad_numpy).max() + 1e-300)
+        rel_err = np.abs(grad_numba - grad_numpy).max() / (
+            np.abs(grad_numpy).max() + 1e-300
         )
         assert rel_err < 1e-10, (
             f"[{grid_size}x{grid_size}] Angle-balance gradient Numba/NumPy "
@@ -222,8 +223,10 @@ class TestAngleBalanceGradientNumbaParity:
 
         mesh = noisy_mesh_5x5
         grad = _angle_balance_gradient_numba(
-            mesh.vertices, mesh.faces,
-            mesh.vertex_face_ids_padded, *mesh.angle_balance_scratch,
+            mesh.vertices,
+            mesh.faces,
+            mesh.vertex_face_ids_padded,
+            *mesh.angle_balance_scratch,
         )
         assert grad.shape == (mesh.n_vertices, 3)
 
@@ -232,17 +235,20 @@ class TestAngleBalanceGradientNumbaParity:
 
         mesh = noisy_mesh_5x5
         grad = _angle_balance_gradient_numba(
-            mesh.vertices, mesh.faces,
-            mesh.vertex_face_ids_padded, *mesh.angle_balance_scratch,
+            mesh.vertices,
+            mesh.faces,
+            mesh.vertex_face_ids_padded,
+            *mesh.angle_balance_scratch,
         )
-        assert np.isfinite(grad).all(), (
-            "Angle-balance Numba gradient contains non-finite components."
-        )
+        assert np.isfinite(
+            grad
+        ).all(), "Angle-balance Numba gradient contains non-finite components."
 
 
 # =============================================================================
 # NEW (15 Mar 2026): Planarity GRADIENT Numba equivalence
 # =============================================================================
+
 
 class TestPlanarityGradientNumbaEquivalence:
     """
@@ -304,9 +310,8 @@ class TestPlanarityGradientNumbaEquivalence:
         mesh = _make_noisy_grid(grid_size)
         grad_numba = self._numba_gradient(mesh)
         grad_numpy = _numpy_planarity_gradient_reference(mesh)
-        rel_err = (
-            np.abs(grad_numba - grad_numpy).max()
-            / (np.abs(grad_numpy).max() + 1e-300)
+        rel_err = np.abs(grad_numba - grad_numpy).max() / (
+            np.abs(grad_numpy).max() + 1e-300
         )
         assert rel_err < 1e-10, (
             f"[{grid_size}x{grid_size}] Planarity gradient Numba/NumPy "
@@ -339,9 +344,8 @@ class TestPlanarityGradientNumbaEquivalence:
         mesh = _make_noisy_grid(grid_size)
         grad_numba = self._numba_gradient(mesh)
         grad_numpy = _numpy_planarity_gradient_reference(mesh)
-        rel_err = (
-            np.abs(grad_numba - grad_numpy).max()
-            / (np.abs(grad_numpy).max() + 1e-300)
+        rel_err = np.abs(grad_numba - grad_numpy).max() / (
+            np.abs(grad_numpy).max() + 1e-300
         )
         assert rel_err < 1e-8, (
             f"[{grid_size}x{grid_size}] Numba/NumPy relative error "
@@ -365,17 +369,17 @@ class TestPlanarityGradientNumbaEquivalence:
             mesh.faces.astype(np.int64),
         )
         assert contrib.shape == (mesh.n_faces, 4, 3), (
-            f"Contribution tensor shape {contrib.shape} != "
-            f"({mesh.n_faces}, 4, 3)."
+            f"Contribution tensor shape {contrib.shape} != " f"({mesh.n_faces}, 4, 3)."
         )
 
     def test_gradient_shape(self, noisy_mesh_5x5):
         """Assembled gradient must be (N, 3) where N = mesh.n_vertices."""
         mesh = noisy_mesh_5x5
         grad = self._numba_gradient(mesh)
-        assert grad.shape == (mesh.n_vertices, 3), (
-            f"Gradient shape {grad.shape} != ({mesh.n_vertices}, 3)."
-        )
+        assert grad.shape == (
+            mesh.n_vertices,
+            3,
+        ), f"Gradient shape {grad.shape} != ({mesh.n_vertices}, 3)."
 
     def test_gradient_dtype_float64(self, noisy_mesh_5x5):
         """
@@ -386,8 +390,7 @@ class TestPlanarityGradientNumbaEquivalence:
         mesh = noisy_mesh_5x5
         grad = self._numba_gradient(mesh)
         assert grad.dtype == np.float64, (
-            f"Gradient dtype is {grad.dtype}; "
-            "SciPy L-BFGS-B requires float64."
+            f"Gradient dtype is {grad.dtype}; " "SciPy L-BFGS-B requires float64."
         )
 
     # -------------------------------------------------------------------------
@@ -472,9 +475,8 @@ class TestPlanarityGradientNumbaEquivalence:
             with mock.patch("src.backends.HAS_NUMBA", True):
                 grad_api = compute_planarity_gradient(mesh)
 
-        rel_err = (
-            np.abs(grad_kernel - grad_api).max()
-            / (np.abs(grad_api).max() + 1e-300)
+        rel_err = np.abs(grad_kernel - grad_api).max() / (
+            np.abs(grad_api).max() + 1e-300
         )
         assert rel_err < 1e-10, (
             f"Numba kernel vs compute_planarity_gradient (Tier-2 path): "
@@ -499,9 +501,8 @@ class TestPlanarityGradientNumbaEquivalence:
             with mock.patch("src.backends.HAS_NUMBA", False):
                 grad_numpy_api = compute_planarity_gradient(mesh)
 
-        rel_err = (
-            np.abs(grad_kernel - grad_numpy_api).max()
-            / (np.abs(grad_numpy_api).max() + 1e-300)
+        rel_err = np.abs(grad_kernel - grad_numpy_api).max() / (
+            np.abs(grad_numpy_api).max() + 1e-300
         )
         assert rel_err < 1e-10, (
             f"Numba kernel vs compute_planarity_gradient (Tier-3 NumPy "

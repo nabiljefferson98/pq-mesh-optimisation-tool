@@ -165,7 +165,7 @@ try:
     from numba import njit as _njit_pg, prange as _prange_pg
     import numpy as _np_pg
 
-    @_njit_pg(parallel=True, cache=True, fastmath=False) # pragma: no cover
+    @_njit_pg(parallel=True, cache=True, fastmath=False)  # pragma: no cover
     def _planarity_gradient_contributions_numba(
         vertices: np.ndarray,
         faces: np.ndarray,
@@ -209,12 +209,15 @@ try:
             v3 = faces[fi, 3]
 
             # ── Centroid ────────────────────────────────────────────────────
-            cx = (vertices[v0, 0] + vertices[v1, 0] +
-                  vertices[v2, 0] + vertices[v3, 0]) * 0.25
-            cy = (vertices[v0, 1] + vertices[v1, 1] +
-                  vertices[v2, 1] + vertices[v3, 1]) * 0.25
-            cz = (vertices[v0, 2] + vertices[v1, 2] +
-                  vertices[v2, 2] + vertices[v3, 2]) * 0.25
+            cx = (
+                vertices[v0, 0] + vertices[v1, 0] + vertices[v2, 0] + vertices[v3, 0]
+            ) * 0.25
+            cy = (
+                vertices[v0, 1] + vertices[v1, 1] + vertices[v2, 1] + vertices[v3, 1]
+            ) * 0.25
+            cz = (
+                vertices[v0, 2] + vertices[v1, 2] + vertices[v2, 2] + vertices[v3, 2]
+            ) * 0.25
 
             # ── Centred positions (4×3) ────────────────────────────────────
             t = _np_pg.empty((4, 3), dtype=_np_pg.float64)
@@ -232,22 +235,46 @@ try:
             t[3, 2] = vertices[v3, 2] - cz
 
             # ── A = M^T M (3×3 symmetric covariance) ───────────────────────
-            a00 = (t[0,0]*t[0,0] + t[1,0]*t[1,0] +
-                   t[2,0]*t[2,0] + t[3,0]*t[3,0])
-            a01 = (t[0,0]*t[0,1] + t[1,0]*t[1,1] +
-                   t[2,0]*t[2,1] + t[3,0]*t[3,1])
-            a02 = (t[0,0]*t[0,2] + t[1,0]*t[1,2] +
-                   t[2,0]*t[2,2] + t[3,0]*t[3,2])
-            a11 = (t[0,1]*t[0,1] + t[1,1]*t[1,1] +
-                   t[2,1]*t[2,1] + t[3,1]*t[3,1])
-            a12 = (t[0,1]*t[0,2] + t[1,1]*t[1,2] +
-                   t[2,1]*t[2,2] + t[3,1]*t[3,2])
-            a22 = (t[0,2]*t[0,2] + t[1,2]*t[1,2] +
-                   t[2,2]*t[2,2] + t[3,2]*t[3,2])
+            a00 = (
+                t[0, 0] * t[0, 0]
+                + t[1, 0] * t[1, 0]
+                + t[2, 0] * t[2, 0]
+                + t[3, 0] * t[3, 0]
+            )
+            a01 = (
+                t[0, 0] * t[0, 1]
+                + t[1, 0] * t[1, 1]
+                + t[2, 0] * t[2, 1]
+                + t[3, 0] * t[3, 1]
+            )
+            a02 = (
+                t[0, 0] * t[0, 2]
+                + t[1, 0] * t[1, 2]
+                + t[2, 0] * t[2, 2]
+                + t[3, 0] * t[3, 2]
+            )
+            a11 = (
+                t[0, 1] * t[0, 1]
+                + t[1, 1] * t[1, 1]
+                + t[2, 1] * t[2, 1]
+                + t[3, 1] * t[3, 1]
+            )
+            a12 = (
+                t[0, 1] * t[0, 2]
+                + t[1, 1] * t[1, 2]
+                + t[2, 1] * t[2, 2]
+                + t[3, 1] * t[3, 2]
+            )
+            a22 = (
+                t[0, 2] * t[0, 2]
+                + t[1, 2] * t[1, 2]
+                + t[2, 2] * t[2, 2]
+                + t[3, 2] * t[3, 2]
+            )
 
             # ── Smallest eigenvector of A ────────────────────────────────────
             # Step 1: Cardano's closed-form eigenvalue λ_min
-            p1 = a01*a01 + a02*a02 + a12*a12
+            p1 = a01 * a01 + a02 * a02 + a12 * a12
 
             if p1 == 0.0:
                 # A is already diagonal, eigenvalue/vector trivial
@@ -258,10 +285,14 @@ try:
                 else:
                     nx, ny, nz = 0.0, 0.0, 1.0
             else:
-                q  = (a00 + a11 + a22) / 3.0
-                p2 = ((a00-q)*(a00-q) + (a11-q)*(a11-q) +
-                      (a22-q)*(a22-q) + 2.0*p1)
-                p  = (p2 / 6.0) ** 0.5
+                q = (a00 + a11 + a22) / 3.0
+                p2 = (
+                    (a00 - q) * (a00 - q)
+                    + (a11 - q) * (a11 - q)
+                    + (a22 - q) * (a22 - q)
+                    + 2.0 * p1
+                )
+                p = (p2 / 6.0) ** 0.5
 
                 b00 = (a00 - q) / p
                 b01 = a01 / p
@@ -270,9 +301,11 @@ try:
                 b12 = a12 / p
                 b22 = (a22 - q) / p
 
-                det_half = (b00*(b11*b22 - b12*b12)
-                            - b01*(b01*b22 - b12*b02)
-                            + b02*(b01*b12 - b11*b02)) * 0.5
+                det_half = (
+                    b00 * (b11 * b22 - b12 * b12)
+                    - b01 * (b01 * b22 - b12 * b02)
+                    + b02 * (b01 * b12 - b11 * b02)
+                ) * 0.5
 
                 # Clamp argument of arccos to [-1, 1]
                 if det_half < -1.0:
@@ -280,7 +313,7 @@ try:
                 elif det_half > 1.0:
                     det_half = 1.0
 
-                phi     = _np_pg.arccos(det_half) / 3.0
+                phi = _np_pg.arccos(det_half) / 3.0
                 # +2π/3 shift selects the smallest of the three eigenvalues
                 lam_min = q + 2.0 * p * _np_pg.cos(phi + 2.0943951023931953)
 
@@ -293,36 +326,36 @@ try:
                 r22 = a22 - lam_min
 
                 # Row0 × Row1  [r00,a01,a02] × [a01,r11,a12]
-                cx0 = a01*a12 - a02*r11
-                cy0 = a02*a01 - r00*a12
-                cz0 = r00*r11 - a01*a01
-                m0  = (cx0*cx0 + cy0*cy0 + cz0*cz0) ** 0.5
+                cx0 = a01 * a12 - a02 * r11
+                cy0 = a02 * a01 - r00 * a12
+                cz0 = r00 * r11 - a01 * a01
+                m0 = (cx0 * cx0 + cy0 * cy0 + cz0 * cz0) ** 0.5
 
                 # Row0 × Row2  [r00,a01,a02] × [a02,a12,r22]
-                cx1 = a01*r22 - a02*a12
-                cy1 = a02*a02 - r00*r22
-                cz1 = r00*a12 - a01*a02
-                m1  = (cx1*cx1 + cy1*cy1 + cz1*cz1) ** 0.5
+                cx1 = a01 * r22 - a02 * a12
+                cy1 = a02 * a02 - r00 * r22
+                cz1 = r00 * a12 - a01 * a02
+                m1 = (cx1 * cx1 + cy1 * cy1 + cz1 * cz1) ** 0.5
 
                 # Row1 × Row2  [a01,r11,a12] × [a02,a12,r22]
-                cx2 = r11*r22 - a12*a12
-                cy2 = a12*a02 - a01*r22
-                cz2 = a01*a12 - r11*a02
-                m2  = (cx2*cx2 + cy2*cy2 + cz2*cz2) ** 0.5
+                cx2 = r11 * r22 - a12 * a12
+                cy2 = a12 * a02 - a01 * r22
+                cz2 = a01 * a12 - r11 * a02
+                m2 = (cx2 * cx2 + cy2 * cy2 + cz2 * cz2) ** 0.5
 
                 if m0 >= m1 and m0 >= m2:
                     inv_m = 1.0 / (m0 + 1e-300)
-                    nx, ny, nz = cx0*inv_m, cy0*inv_m, cz0*inv_m
+                    nx, ny, nz = cx0 * inv_m, cy0 * inv_m, cz0 * inv_m
                 elif m1 >= m0 and m1 >= m2:
                     inv_m = 1.0 / (m1 + 1e-300)
-                    nx, ny, nz = cx1*inv_m, cy1*inv_m, cz1*inv_m
+                    nx, ny, nz = cx1 * inv_m, cy1 * inv_m, cz1 * inv_m
                 else:
                     inv_m = 1.0 / (m2 + 1e-300)
-                    nx, ny, nz = cx2*inv_m, cy2*inv_m, cz2*inv_m
+                    nx, ny, nz = cx2 * inv_m, cy2 * inv_m, cz2 * inv_m
 
             # ── Gradient contributions  2·d_i·n̂_f ─────────────────────────
             for li in range(4):
-                d = t[li, 0]*nx + t[li, 1]*ny + t[li, 2]*nz
+                d = t[li, 0] * nx + t[li, 1] * ny + t[li, 2] * nz
                 contrib[fi, li, 0] = 2.0 * d * nx
                 contrib[fi, li, 1] = 2.0 * d * ny
                 contrib[fi, li, 2] = 2.0 * d * nz
@@ -389,6 +422,7 @@ def compute_planarity_gradient(mesh) -> np.ndarray:
     # ── Tier 1: CuPy GPU ────────────────────────────────────────────────────
     try:
         from src.backends import HAS_CUDA
+
         if HAS_CUDA:
             return _planarity_gradient_gpu(mesh)
     except ImportError:
@@ -397,6 +431,7 @@ def compute_planarity_gradient(mesh) -> np.ndarray:
     # ── Tier 2: Numba CPU-parallel ───────────────────────────────────────────
     try:
         from src.backends import HAS_NUMBA
+
         if HAS_NUMBA and _HAS_NUMBA_PLANARITY_GRAD and _planarity_grad_kern is not None:
             contrib = _planarity_grad_kern(
                 mesh.vertices.astype(np.float64),
@@ -416,20 +451,24 @@ def compute_planarity_gradient(mesh) -> np.ndarray:
 
     # ── Tier 3: NumPy baseline ───────────────────────────────────────────────
     # Vectorised batched SVD, no Python loop over faces.
-    face_verts = mesh.vertices[mesh.faces]                        # (F, 4, 3)
-    centroids  = face_verts.mean(axis=1, keepdims=True)           # (F, 1, 3)
-    centered   = face_verts - centroids                           # (F, 4, 3)
+    face_verts = mesh.vertices[mesh.faces]  # (F, 4, 3)
+    centroids = face_verts.mean(axis=1, keepdims=True)  # (F, 1, 3)
+    centered = face_verts - centroids  # (F, 4, 3)
 
-    _, _, Vt = np.linalg.svd(centered, full_matrices=False)       # Vt: (F, 3, 3)
-    normals  = Vt[:, -1, :]                                       # (F, 3)
+    try:
+        _, _, Vt = np.linalg.svd(centered, full_matrices=False)  # Vt: (F, 3, 3)
+        normals = Vt[:, -1, :]  # (F, 3)
 
-    signed_dists  = np.einsum("fvd,fd->fv", centered, normals)   # (F, 4)
-    contributions = (                                              # (F, 4, 3)
-        2.0 * signed_dists[:, :, None] * normals[:, None, :]
-    )
+        signed_dists = np.einsum("fvd,fd->fv", centered, normals)  # (F, 4)
+        contributions = (  # (F, 4, 3)
+            2.0 * signed_dists[:, :, None] * normals[:, None, :]
+        )
 
-    # Scatter-add via precomputed sparse matrix (BLAS matmul, no Python loop).
-    return mesh.scatter_matrix @ contributions.reshape(-1, 3)
+        # Scatter-add via precomputed sparse matrix (BLAS matmul, no Python loop).
+        return mesh.scatter_matrix @ contributions.reshape(-1, 3)
+    except np.linalg.LinAlgError:
+        # SVD convergence failure (e.g., degenerate faces with NaN/Inf vertices)
+        return np.zeros((mesh.n_vertices, 3), dtype=np.float64)
 
 
 def compute_fairness_gradient(mesh) -> np.ndarray:
@@ -469,6 +508,7 @@ def compute_fairness_gradient(mesh) -> np.ndarray:
     # ── Tier 1: CuPy GPU ────────────────────────────────────────────────────
     try:
         from src.backends import HAS_CUDA
+
         if HAS_CUDA:
             return _fairness_gradient_gpu(mesh)
     except ImportError:
@@ -512,9 +552,11 @@ def compute_closeness_gradient(mesh) -> np.ndarray:
     """
     try:
         from src.backends import HAS_CUDA
+
         if HAS_CUDA:
             from src.backends import to_device, to_numpy
-            v_gpu  = to_device(mesh.vertices)
+
+            v_gpu = to_device(mesh.vertices)
             v0_gpu = to_device(mesh.vertices_original)
             return to_numpy(2.0 * (v_gpu - v0_gpu))
     except (ImportError, Exception):
@@ -576,8 +618,9 @@ def compute_angle_balance_gradient(mesh) -> np.ndarray:
     # ── Tier 2: Numba CPU-parallel ───────────────────────────────────────────
     try:
         from src.backends import HAS_NUMBA
+
         if HAS_NUMBA:
-            vf      = mesh.vertex_face_ids_padded
+            vf = mesh.vertex_face_ids_padded
             scratch = mesh.angle_balance_scratch
             return _angle_balance_gradient_numba(
                 mesh.vertices, mesh.faces, vf, *scratch
@@ -604,25 +647,25 @@ def compute_angle_balance_gradient(mesh) -> np.ndarray:
 
         v = mesh.vertices[vid]
 
-        angles: list       = []   # α_i for i=0..3
-        grad_v: list       = []   # ∂α_i/∂v (shape 3)
-        grad_v_prev: list  = []   # ∂α_i/∂v_prev (shape 3)
-        grad_v_next: list  = []   # ∂α_i/∂v_next (shape 3)
-        prev_ids: list     = []   # vertex index of v_prev in face i
-        next_ids: list     = []   # vertex index of v_next in face i
+        angles: list = []  # α_i for i=0..3
+        grad_v: list = []  # ∂α_i/∂v (shape 3)
+        grad_v_prev: list = []  # ∂α_i/∂v_prev (shape 3)
+        grad_v_next: list = []  # ∂α_i/∂v_next (shape 3)
+        prev_ids: list = []  # vertex index of v_prev in face i
+        next_ids: list = []  # vertex index of v_next in face i
 
         for face_id in incident:
-            face      = mesh.faces[face_id]
-            n_f       = len(face)
+            face = mesh.faces[face_id]
+            n_f = len(face)
             local_idx = int(np.where(face == vid)[0][0])
 
-            vp_id  = int(face[(local_idx - 1) % n_f])
-            vn_id  = int(face[(local_idx + 1) % n_f])
+            vp_id = int(face[(local_idx - 1) % n_f])
+            vn_id = int(face[(local_idx + 1) % n_f])
             v_prev = mesh.vertices[vp_id]
             v_next = mesh.vertices[vn_id]
 
-            e1 = v_prev - v   # (3,)
-            e2 = v_next - v   # (3,)
+            e1 = v_prev - v  # (3,)
+            e2 = v_next - v  # (3,)
             l1 = np.linalg.norm(e1)
             l2 = np.linalg.norm(e2)
 
@@ -637,13 +680,13 @@ def compute_angle_balance_gradient(mesh) -> np.ndarray:
 
             e1h = e1 / l1
             e2h = e2 / l2
-            c   = float(np.clip(np.dot(e1h, e2h), -1.0 + 1e-8, 1.0 - 1e-8))
-            s   = float(max(np.sqrt(1.0 - c * c), _SIN_MIN_ANGLE_GRAD))
+            c = float(np.clip(np.dot(e1h, e2h), -1.0 + 1e-8, 1.0 - 1e-8))
+            s = float(max(np.sqrt(1.0 - c * c), _SIN_MIN_ANGLE_GRAD))
 
             alpha = float(np.arccos(c))
             inv_s = 1.0 / s
 
-            dv  = inv_s * ((e2h - c * e1h) / l1 + (e1h - c * e2h) / l2)
+            dv = inv_s * ((e2h - c * e1h) / l1 + (e1h - c * e2h) / l2)
             dvp = (-inv_s) * (e2h - c * e1h) / l1
             dvn = (-inv_s) * (e1h - c * e2h) / l2
 
@@ -657,15 +700,15 @@ def compute_angle_balance_gradient(mesh) -> np.ndarray:
         if len(angles) < 4:
             continue
 
-        delta     = (angles[0] + angles[2]) - (angles[1] + angles[3])
-        signs     = [+1.0, -1.0, +1.0, -1.0]
+        delta = (angles[0] + angles[2]) - (angles[1] + angles[3])
+        signs = [+1.0, -1.0, +1.0, -1.0]
         two_delta = 2.0 * delta
 
         for i in range(4):
             si = signs[i]
-            grad[vid]          += two_delta * si * grad_v[i]
-            grad[prev_ids[i]]  += two_delta * si * grad_v_prev[i]
-            grad[next_ids[i]]  += two_delta * si * grad_v_next[i]
+            grad[vid] += two_delta * si * grad_v[i]
+            grad[prev_ids[i]] += two_delta * si * grad_v_prev[i]
+            grad[next_ids[i]] += two_delta * si * grad_v_next[i]
 
     return grad
 
@@ -690,6 +733,7 @@ def compute_angle_balance_energy_scalar(mesh) -> float:
         Total angle balance energy.
     """
     from src.optimisation.energy_terms import compute_angle_balance_energy
+
     return compute_angle_balance_energy(mesh)
 
 
@@ -738,6 +782,7 @@ def compute_total_gradient(
     """
     if use_numerical:
         from src.optimisation.energy_terms import compute_total_energy
+
         return compute_numerical_gradient(
             mesh, lambda m: compute_total_energy(m, weights), epsilon=1e-6
         )
@@ -750,12 +795,12 @@ def compute_total_gradient(
             )
 
     grad_planarity = compute_planarity_gradient(mesh)
-    grad_fairness  = compute_fairness_gradient(mesh)
+    grad_fairness = compute_fairness_gradient(mesh)
     grad_closeness = compute_closeness_gradient(mesh)
 
     grad_total = (
         weights["planarity"] * grad_planarity
-        + weights["fairness"]  * grad_fairness
+        + weights["fairness"] * grad_fairness
         + weights["closeness"] * grad_closeness
     )
 
@@ -809,7 +854,7 @@ def compute_numerical_gradient(mesh, energy_func, epsilon: float = 1e-6) -> np.n
     intended only for testing and verification. Use 'compute_total_gradient'
     with 'use_numerical=False' for all production use.
     """
-    n_verts  = mesh.n_vertices
+    n_verts = mesh.n_vertices
     gradient = np.zeros((n_verts, 3))
 
     for i in range(n_verts):
@@ -817,7 +862,7 @@ def compute_numerical_gradient(mesh, energy_func, epsilon: float = 1e-6) -> np.n
             original = mesh.vertices[i, j]
             try:
                 mesh.vertices[i, j] = original + epsilon
-                E_plus  = energy_func(mesh)
+                E_plus = energy_func(mesh)
                 mesh.vertices[i, j] = original - epsilon
                 E_minus = energy_func(mesh)
                 gradient[i, j] = (E_plus - E_minus) / (2.0 * epsilon)
@@ -892,14 +937,13 @@ def verify_gradient(
         is a bool and 'relative_error' is a float.
     """
     grad_analytical = compute_total_gradient(mesh, weights, use_numerical=False)
-    grad_numerical  = compute_total_gradient(mesh, weights, use_numerical=True)
+    grad_numerical = compute_total_gradient(mesh, weights, use_numerical=True)
 
-    diff          = grad_analytical - grad_numerical
-    error_abs     = np.linalg.norm(diff)
+    diff = grad_analytical - grad_numerical
+    error_abs = np.linalg.norm(diff)
     norm_numerical = np.linalg.norm(grad_numerical)
 
-    relative_error = (error_abs / norm_numerical
-                      if norm_numerical > 1e-10 else error_abs)
+    relative_error = error_abs / norm_numerical if norm_numerical > 1e-10 else error_abs
     is_correct = bool(relative_error < tolerance)
 
     if verbose:
@@ -953,12 +997,12 @@ def compute_gradient_statistics(gradient: np.ndarray) -> Dict[str, float]:
     """
     vertex_magnitudes = np.linalg.norm(gradient, axis=1)
     return {
-        "norm"           : float(np.linalg.norm(gradient)),
-        "max_magnitude"  : float(np.max(vertex_magnitudes)),
-        "mean_magnitude" : float(np.mean(vertex_magnitudes)),
-        "std_magnitude"  : float(np.std(vertex_magnitudes)),
-        "max_component"  : float(np.max(np.abs(gradient))),
-        "min_magnitude"  : float(np.min(vertex_magnitudes)),
+        "norm": float(np.linalg.norm(gradient)),
+        "max_magnitude": float(np.max(vertex_magnitudes)),
+        "mean_magnitude": float(np.mean(vertex_magnitudes)),
+        "std_magnitude": float(np.std(vertex_magnitudes)),
+        "max_component": float(np.max(np.abs(gradient))),
+        "min_magnitude": float(np.min(vertex_magnitudes)),
     }
 
 
@@ -989,10 +1033,10 @@ def print_gradient_analysis(mesh, weights: Dict[str, float]):
         Results are printed to standard output only.
     """
     grad_planarity = compute_planarity_gradient(mesh)
-    grad_fairness  = compute_fairness_gradient(mesh)
+    grad_fairness = compute_fairness_gradient(mesh)
     grad_closeness = compute_closeness_gradient(mesh)
-    grad_total     = compute_total_gradient(mesh, weights)
-    stats          = compute_gradient_statistics(grad_total)
+    grad_total = compute_total_gradient(mesh, weights)
+    stats = compute_gradient_statistics(grad_total)
 
     print("=" * 70)
     print("GRADIENT ANALYSIS")
@@ -1004,12 +1048,18 @@ def print_gradient_analysis(mesh, weights: Dict[str, float]):
     print(f"  Std deviation  : {stats['std_magnitude']:.6f}")
     print()
     print("Component gradients:")
-    print(f"  Planarity : norm = {np.linalg.norm(grad_planarity):.6f}"
-          f"  (weight: {weights['planarity']})")
-    print(f"  Fairness  : norm = {np.linalg.norm(grad_fairness):.6f}"
-          f"  (weight: {weights['fairness']})")
-    print(f"  Closeness : norm = {np.linalg.norm(grad_closeness):.6f}"
-          f"  (weight: {weights['closeness']})")
+    print(
+        f"  Planarity : norm = {np.linalg.norm(grad_planarity):.6f}"
+        f"  (weight: {weights['planarity']})"
+    )
+    print(
+        f"  Fairness  : norm = {np.linalg.norm(grad_fairness):.6f}"
+        f"  (weight: {weights['fairness']})"
+    )
+    print(
+        f"  Closeness : norm = {np.linalg.norm(grad_closeness):.6f}"
+        f"  (weight: {weights['closeness']})"
+    )
     print("=" * 70)
 
 
@@ -1057,16 +1107,16 @@ def _planarity_gradient_gpu(mesh) -> np.ndarray:
     result = None
 
     with gpu_memory_guard():
-        verts_gpu  = to_device(mesh.vertices)
-        faces_gpu  = to_device(mesh.faces)
+        verts_gpu = to_device(mesh.vertices)
+        faces_gpu = to_device(mesh.faces)
         face_verts = verts_gpu[faces_gpu]
-        centroids  = face_verts.mean(axis=1, keepdims=True)
-        centered   = face_verts - centroids
+        centroids = face_verts.mean(axis=1, keepdims=True)
+        centered = face_verts - centroids
 
-        _, _, Vt   = cp.linalg.svd(centered, full_matrices=False)
-        normals    = Vt[:, -1, :]
+        _, _, Vt = cp.linalg.svd(centered, full_matrices=False)
+        normals = Vt[:, -1, :]
 
-        signed_dists  = cp.einsum("fvd,fd->fv", centered, normals)
+        signed_dists = cp.einsum("fvd,fd->fv", centered, normals)
         contributions = 2.0 * signed_dists[:, :, None] * normals[:, None, :]
 
         # Build and cache the GPU scatter matrix (SciPy CSR → CuPy CSR).
@@ -1074,7 +1124,7 @@ def _planarity_gradient_gpu(mesh) -> np.ndarray:
             mesh._scatter_matrix_gpu = cpsp.csr_matrix(mesh.scatter_matrix)
 
         grad_gpu = mesh._scatter_matrix_gpu @ contributions.reshape(-1, 3)
-        result   = to_numpy(grad_gpu)
+        result = to_numpy(grad_gpu)
         _gpu_succeeded = True
 
     if not _gpu_succeeded or result is None:
@@ -1082,7 +1132,12 @@ def _planarity_gradient_gpu(mesh) -> np.ndarray:
         # Respect the full three-tier hierarchy rather than bypassing Tier 2.
         try:
             from src.backends import HAS_NUMBA
-            if HAS_NUMBA and _HAS_NUMBA_PLANARITY_GRAD and _planarity_grad_kern is not None:
+
+            if (
+                HAS_NUMBA
+                and _HAS_NUMBA_PLANARITY_GRAD
+                and _planarity_grad_kern is not None
+            ):
                 contrib = _planarity_grad_kern(
                     mesh.vertices.astype(np.float64),
                     mesh.faces.astype(np.int64),
@@ -1091,12 +1146,12 @@ def _planarity_gradient_gpu(mesh) -> np.ndarray:
         except Exception:
             pass
         # Final fallback: NumPy baseline
-        fv      = mesh.vertices[mesh.faces]
-        c_      = fv - fv.mean(axis=1, keepdims=True)
+        fv = mesh.vertices[mesh.faces]
+        c_ = fv - fv.mean(axis=1, keepdims=True)
         _, _, V = np.linalg.svd(c_, full_matrices=False)
-        n_      = V[:, -1, :]
-        d_      = np.einsum("fvd,fd->fv", c_, n_)
-        cont_   = 2.0 * d_[:, :, None] * n_[:, None, :]
+        n_ = V[:, -1, :]
+        d_ = np.einsum("fvd,fd->fv", c_, n_)
+        cont_ = 2.0 * d_[:, :, None] * n_[:, None, :]
         return mesh.scatter_matrix @ cont_.reshape(-1, 3)
 
     return result
@@ -1135,8 +1190,8 @@ def _fairness_gradient_gpu(mesh) -> np.ndarray:
     with gpu_memory_guard():
         if not hasattr(mesh, "_laplacian_gpu") or mesh._laplacian_gpu is None:
             mesh._laplacian_gpu = cpsp.csr_matrix(mesh.laplacian)
-        L      = mesh._laplacian_gpu
-        V      = to_device(mesh.vertices)
+        L = mesh._laplacian_gpu
+        V = to_device(mesh.vertices)
         result = to_numpy(2.0 * (L.T @ (L @ V)))
         _gpu_succeeded = True
 
@@ -1156,7 +1211,7 @@ try:
     from numba import njit
     from numba import prange as _prange
 
-    @njit(parallel=True, cache=True, fastmath=False) # pragma: no cover
+    @njit(parallel=True, cache=True, fastmath=False)  # pragma: no cover
     def _angle_balance_gradient_numba(
         vertices: np.ndarray,
         faces: np.ndarray,
@@ -1222,7 +1277,7 @@ try:
             Gradient array of shape (n_vertices, 3), dtype float64.
         """
         n_verts = vertices.shape[0]
-        grad    = _np_grad.zeros((n_verts, 3), dtype=_np_grad.float64)
+        grad = _np_grad.zeros((n_verts, 3), dtype=_np_grad.float64)
         SIN_MIN = 1e-2
 
         # ── Reset scratch buffers in-place ───────────────────────────────────
@@ -1245,10 +1300,10 @@ try:
             if n_valid != 4:
                 continue
 
-            angles   = _np_grad.empty(4, dtype=_np_grad.float64)
-            gv       = _np_grad.empty((4, 3), dtype=_np_grad.float64)
-            gvp_loc  = _np_grad.empty((4, 3), dtype=_np_grad.float64)
-            gvn_loc  = _np_grad.empty((4, 3), dtype=_np_grad.float64)
+            angles = _np_grad.empty(4, dtype=_np_grad.float64)
+            gv = _np_grad.empty((4, 3), dtype=_np_grad.float64)
+            gvp_loc = _np_grad.empty((4, 3), dtype=_np_grad.float64)
+            gvn_loc = _np_grad.empty((4, 3), dtype=_np_grad.float64)
             prev_ids = _np_grad.empty(4, dtype=_np_grad.int64)
             next_ids = _np_grad.empty(4, dtype=_np_grad.int64)
 
@@ -1257,13 +1312,13 @@ try:
                 prev_ids[i] = -1
                 next_ids[i] = -1
                 for d in range(3):
-                    gv[i, d]      = 0.0
+                    gv[i, d] = 0.0
                     gvp_loc[i, d] = 0.0
                     gvn_loc[i, d] = 0.0
 
             for k in range(4):
-                fid    = int(vertex_face_ids[vid, k])
-                n_f    = faces.shape[1]
+                fid = int(vertex_face_ids[vid, k])
+                n_f = faces.shape[1]
                 local_idx = -1
                 for j in range(n_f):
                     if faces[fid, j] == vid:
@@ -1279,70 +1334,74 @@ try:
                 prev_ids[k] = vp_id
                 next_ids[k] = vn_id
 
-                e1x = vertices[vp_id,0]-vertices[vid,0]
-                e1y = vertices[vp_id,1]-vertices[vid,1]
-                e1z = vertices[vp_id,2]-vertices[vid,2]
-                e2x = vertices[vn_id,0]-vertices[vid,0]
-                e2y = vertices[vn_id,1]-vertices[vid,1]
-                e2z = vertices[vn_id,2]-vertices[vid,2]
-                l1  = _np_grad.sqrt(e1x*e1x + e1y*e1y + e1z*e1z)
-                l2  = _np_grad.sqrt(e2x*e2x + e2y*e2y + e2z*e2z)
+                e1x = vertices[vp_id, 0] - vertices[vid, 0]
+                e1y = vertices[vp_id, 1] - vertices[vid, 1]
+                e1z = vertices[vp_id, 2] - vertices[vid, 2]
+                e2x = vertices[vn_id, 0] - vertices[vid, 0]
+                e2y = vertices[vn_id, 1] - vertices[vid, 1]
+                e2z = vertices[vn_id, 2] - vertices[vid, 2]
+                l1 = _np_grad.sqrt(e1x * e1x + e1y * e1y + e1z * e1z)
+                l2 = _np_grad.sqrt(e2x * e2x + e2y * e2y + e2z * e2z)
 
                 if l1 < 1e-12 or l2 < 1e-12:
                     continue
 
-                e1hx=e1x/l1; e1hy=e1y/l1; e1hz=e1z/l1
-                e2hx=e2x/l2; e2hy=e2y/l2; e2hz=e2z/l2
-                c = e1hx*e2hx + e1hy*e2hy + e1hz*e2hz
-                c = max(-1.0+1e-8, min(1.0-1e-8, c))
-                s = max(_np_grad.sqrt(1.0-c*c), SIN_MIN)
+                e1hx = e1x / l1
+                e1hy = e1y / l1
+                e1hz = e1z / l1
+                e2hx = e2x / l2
+                e2hy = e2y / l2
+                e2hz = e2z / l2
+                c = e1hx * e2hx + e1hy * e2hy + e1hz * e2hz
+                c = max(-1.0 + 1e-8, min(1.0 - 1e-8, c))
+                s = max(_np_grad.sqrt(1.0 - c * c), SIN_MIN)
                 angles[k] = _np_grad.arccos(c)
 
-                inv_s = 1.0/s
-                gv[k,0]=inv_s*((e2hx-c*e1hx)/l1+(e1hx-c*e2hx)/l2)
-                gv[k,1]=inv_s*((e2hy-c*e1hy)/l1+(e1hy-c*e2hy)/l2)
-                gv[k,2]=inv_s*((e2hz-c*e1hz)/l1+(e1hz-c*e2hz)/l2)
-                gvp_loc[k,0]=-inv_s*(e2hx-c*e1hx)/l1
-                gvp_loc[k,1]=-inv_s*(e2hy-c*e1hy)/l1
-                gvp_loc[k,2]=-inv_s*(e2hz-c*e1hz)/l1
-                gvn_loc[k,0]=-inv_s*(e1hx-c*e2hx)/l2
-                gvn_loc[k,1]=-inv_s*(e1hy-c*e2hy)/l2
-                gvn_loc[k,2]=-inv_s*(e1hz-c*e2hz)/l2
+                inv_s = 1.0 / s
+                gv[k, 0] = inv_s * ((e2hx - c * e1hx) / l1 + (e1hx - c * e2hx) / l2)
+                gv[k, 1] = inv_s * ((e2hy - c * e1hy) / l1 + (e1hy - c * e2hy) / l2)
+                gv[k, 2] = inv_s * ((e2hz - c * e1hz) / l1 + (e1hz - c * e2hz) / l2)
+                gvp_loc[k, 0] = -inv_s * (e2hx - c * e1hx) / l1
+                gvp_loc[k, 1] = -inv_s * (e2hy - c * e1hy) / l1
+                gvp_loc[k, 2] = -inv_s * (e2hz - c * e1hz) / l1
+                gvn_loc[k, 0] = -inv_s * (e1hx - c * e2hx) / l2
+                gvn_loc[k, 1] = -inv_s * (e1hy - c * e2hy) / l2
+                gvn_loc[k, 2] = -inv_s * (e1hz - c * e2hz) / l2
 
-            delta     = (angles[0]+angles[2]) - (angles[1]+angles[3])
+            delta = (angles[0] + angles[2]) - (angles[1] + angles[3])
             two_delta = 2.0 * delta
 
             for i in range(4):
                 si = _ANGLE_SIGNS[i]
-                grad[vid,0] += two_delta*si*gv[i,0]
-                grad[vid,1] += two_delta*si*gv[i,1]
-                grad[vid,2] += two_delta*si*gv[i,2]
+                grad[vid, 0] += two_delta * si * gv[i, 0]
+                grad[vid, 1] += two_delta * si * gv[i, 1]
+                grad[vid, 2] += two_delta * si * gv[i, 2]
 
             for i in range(4):
-                si     = _ANGLE_SIGNS[i]
-                td_si  = two_delta * si
-                scratch_gvp[vid,i,0]=td_si*gvp_loc[i,0]
-                scratch_gvp[vid,i,1]=td_si*gvp_loc[i,1]
-                scratch_gvp[vid,i,2]=td_si*gvp_loc[i,2]
-                scratch_gvn[vid,i,0]=td_si*gvn_loc[i,0]
-                scratch_gvn[vid,i,1]=td_si*gvn_loc[i,1]
-                scratch_gvn[vid,i,2]=td_si*gvn_loc[i,2]
-                scratch_prev[vid,i]=prev_ids[i]
-                scratch_next[vid,i]=next_ids[i]
-                scratch_active[vid]=1
+                si = _ANGLE_SIGNS[i]
+                td_si = two_delta * si
+                scratch_gvp[vid, i, 0] = td_si * gvp_loc[i, 0]
+                scratch_gvp[vid, i, 1] = td_si * gvp_loc[i, 1]
+                scratch_gvp[vid, i, 2] = td_si * gvp_loc[i, 2]
+                scratch_gvn[vid, i, 0] = td_si * gvn_loc[i, 0]
+                scratch_gvn[vid, i, 1] = td_si * gvn_loc[i, 1]
+                scratch_gvn[vid, i, 2] = td_si * gvn_loc[i, 2]
+                scratch_prev[vid, i] = prev_ids[i]
+                scratch_next[vid, i] = next_ids[i]
+                scratch_active[vid] = 1
 
         # ── Pass 2: serial — neighbour scatter ───────────────────────────────
         for vid in range(n_verts):
             if scratch_active[vid] == 0:
                 continue
             for i in range(4):
-                p  = scratch_prev[vid, i]
+                p = scratch_prev[vid, i]
                 n_ = scratch_next[vid, i]
                 if p < 0 or n_ < 0:
                     continue
-                grad[p, 0]  += scratch_gvp[vid, i, 0]
-                grad[p, 1]  += scratch_gvp[vid, i, 1]
-                grad[p, 2]  += scratch_gvp[vid, i, 2]
+                grad[p, 0] += scratch_gvp[vid, i, 0]
+                grad[p, 1] += scratch_gvp[vid, i, 1]
+                grad[p, 2] += scratch_gvp[vid, i, 2]
                 grad[n_, 0] += scratch_gvn[vid, i, 0]
                 grad[n_, 1] += scratch_gvn[vid, i, 1]
                 grad[n_, 2] += scratch_gvn[vid, i, 2]
@@ -1359,8 +1418,14 @@ except Exception as _numba_angle_grad_exc:
     )
 
     def _angle_balance_gradient_numba(
-        vertices, faces, vertex_face_ids,
-        scratch_gvp, scratch_gvn, scratch_prev, scratch_next, scratch_active,
+        vertices,
+        faces,
+        vertex_face_ids,
+        scratch_gvp,
+        scratch_gvn,
+        scratch_prev,
+        scratch_next,
+        scratch_active,
     ):
         raise RuntimeError(
             f"_angle_balance_gradient_numba unavailable: "
@@ -1413,7 +1478,7 @@ def gradient_for_scipy(
 
     if not np.isfinite(grad).all():
         n_bad = int(np.sum(~np.isfinite(grad)))
-        grad  = np.nan_to_num(grad, nan=0.0, posinf=0.0, neginf=0.0)
+        grad = np.nan_to_num(grad, nan=0.0, posinf=0.0, neginf=0.0)
         print(
             f"  ⚠️  gradient_for_scipy: {n_bad} non-finite gradient component(s) "
             "replaced with 0 — check mesh for degenerate faces."
@@ -1422,9 +1487,7 @@ def gradient_for_scipy(
     return grad.flatten()
 
 
-def energy_for_scipy(
-    x_flat: np.ndarray, mesh, weights: Dict[str, float]
-) -> float:
+def energy_for_scipy(x_flat: np.ndarray, mesh, weights: Dict[str, float]) -> float:
     """
     Energy function in the format required by scipy.optimize.minimize.
 

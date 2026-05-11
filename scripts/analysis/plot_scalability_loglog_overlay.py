@@ -110,7 +110,8 @@ def plot_overlay(series_a: list, series_b: list, output_path: Path):
         va, ta = _extract(series_a)
         order = np.argsort(va)
         ax.loglog(
-            va[order], ta[order],
+            va[order],
+            ta[order],
             marker=MARKERS.get("spot", "o"),
             color=COLOURS["planarity"],
             linestyle="-",
@@ -126,15 +127,24 @@ def plot_overlay(series_a: list, series_b: list, output_path: Path):
             exp_a, c_a = coeffs
 
             fit_v = np.logspace(
-                np.log10(min(va[valid].min(),
-                             series_b[0]["n_vertices"] if series_b else va.min())),
-                np.log10(max(va[valid].max(),
-                             series_b[-1]["n_vertices"] if series_b else va.max())),
+                np.log10(
+                    min(
+                        va[valid].min(),
+                        series_b[0]["n_vertices"] if series_b else va.min(),
+                    )
+                ),
+                np.log10(
+                    max(
+                        va[valid].max(),
+                        series_b[-1]["n_vertices"] if series_b else va.max(),
+                    )
+                ),
                 200,
             )
-            fit_t = 10 ** c_a * fit_v ** exp_a
+            fit_t = 10**c_a * fit_v**exp_a
             ax.loglog(
-                fit_v, fit_t,
+                fit_v,
+                fit_t,
                 "--",
                 color=COLOURS["fit_line"],
                 alpha=0.8,
@@ -147,7 +157,8 @@ def plot_overlay(series_a: list, series_b: list, output_path: Path):
         vb, tb = _extract(series_b)
         order = np.argsort(vb)
         ax.loglog(
-            vb[order], tb[order],
+            vb[order],
+            tb[order],
             marker=MARKERS.get("oloid", "^"),
             color=COLOURS["oloid"],
             linestyle="--",
@@ -156,9 +167,7 @@ def plot_overlay(series_a: list, series_b: list, output_path: Path):
 
     ax.set_xlabel("Number of Vertices")
     ax.set_ylabel("Execution Time (seconds)")
-    ax.set_title(
-        "Figure 4.3: Scalability \u2014 Synthetic Grids vs. Oloid (log-log)"
-    )
+    ax.set_title("Figure 4.3: Scalability \u2014 Synthetic Grids vs. Oloid (log-log)")
     ax.legend()
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

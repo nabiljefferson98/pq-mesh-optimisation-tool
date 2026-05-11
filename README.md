@@ -111,19 +111,29 @@ pq-mesh-optimisation/
 │       ├── interactive_optimisation.py  # Polyscope 3D viewer; planarity & conical heatmaps
 │       └── VISUALISATION_GUIDE.md    # Visualisation usage guide
 ├── scripts/                          # Research and analysis pipeline
+│   ├── SCRIPTS_OVERVIEW.md           # Overview of all scripts and their purpose
 │   ├── mesh_generation/
+│   │   ├── README.md
 │   │   └── generate_test_meshes.py   # Curved surface test mesh generation
 │   ├── benchmarking/
+│   │   ├── README.md
 │   │   ├── benchmark_optimisation.py # Performance timing across mesh sizes
 │   │   └── stress_test.py            # Upper mesh-size limit with RAM profiling
 │   ├── diagnostics/
+│   │   ├── README.md
 │   │   ├── energy_analysis.py        # Energy component breakdown and weight recommendations
 │   │   └── gradient_verification.py  # Analytical vs numerical gradient check
-│   └── analysis/
-│       ├── analyse_results.py        # Statistics, complexity, LaTeX/CSV tables
-│       ├── plot_convergence.py       # Convergence and scaling plots
-│       ├── plot_sensitivity.py       # Pareto frontier and weight heatmaps
-│       └── sensitivity_sweep.py      # 80-config weight sweep, Pareto analysis
+│   ├── analysis/
+│   │   ├── README.md
+│   │   ├── run_weight_sensitivity_sweep.py    # 80-config weight sweep, Pareto analysis
+│   │   ├── summarise_and_export_results.py    # Statistics, complexity, LaTeX/CSV tables
+│   │   ├── plot_convergence_and_scaling.py    # Convergence and scaling plots
+│   │   ├── plot_scalability_loglog_overlay.py # Log-log scalability overlay plot
+│   │   ├── plot_realworld_planarity_histograms.py  # Planarity histograms for real-world meshes
+│   │   ├── plot_weight_sensitivity_pareto.py  # Pareto frontier and weight heatmaps
+│   │   └── plot_style_config.py               # Shared Matplotlib style configuration
+│   └── plotting/
+│       └── plot_benchmarks.py        # Benchmark timing and performance plots
 ├── tests/                            # 321 tests, 0 failures (≥81% coverage excl. GUI)
 │   ├── TESTING_GUIDE.md              # Test module catalogue and running instructions
 │   ├── test_mesh.py
@@ -148,19 +158,24 @@ pq-mesh-optimisation/
 │   └── test_quad_loading.py          # Quad-vs-triangle loading comparison
 ├── data/
 │   ├── input/
+│   │   ├── INPUT_MESHES.md           # Input mesh documentation and provenance
 │   │   ├── generated/                # Synthetic noisy plane grids + curved surfaces (OBJ)
-│   │   └── reference_datasets/       # Contains blub, bob, oloid and spot folder mesh
+│   │   └── reference_datasets/       # Real-world benchmark meshes
+│   │       ├── blub/                 # Blub model
+│   │       ├── bob/                  # Bob model
+│   │       ├── oloid/                # Oloid model
+│   │       └── spot/                 # Spot (Keenan Crane) model
 │   └── output/
-│       ├── optimised_meshes/         # Saved .obj results + convergence plots
-│       ├── panels/                   # DXF and SVG fabrication exports
 │       ├── benchmarks/               # JSON performance data + analysis plots
-│       ├── weight_sensitivity/       # Weight sweep JSON, plots, report
-│       └── tables/                   # LaTeX and CSV dissertation tables
+│       ├── diagnostics/              # Energy and gradient diagnostic outputs
+│       ├── figures/                  # Generated dissertation figures
+│       ├── tables/                   # LaTeX and CSV dissertation tables
+│       └── weight_sensitivity/       # Weight sweep JSON, plots, report
 ├── docs/
 │   ├── README.md                     # Documentation overview
 │   ├── architecture.md               # System architecture: modules, data flow, design decisions
 │   ├── methodology.md                # Mathematical methodology: energy formulation, gradients, algorithm
-│   ├── results.md                    # Results and analysis
+│   ├── results/                      # Results and analysis documents
 │   └── images/                       # Figures and comparison screenshots
 ├── .github/
 │   └── workflows/ci.yml              # GitHub Actions: lint, test matrix, type-check, security
@@ -322,6 +337,7 @@ pytest tests/ -m "not slow" -v
 - **[Methodology](docs/methodology.md)**: Mathematical derivations — energy formulation, analytical gradients, optimisation algorithm
 - **[src/OVERVIEW.md](src/OVERVIEW.md)**: Internal library documentation with full module reference
 - **[tests/TESTING_GUIDE.md](tests/TESTING_GUIDE.md)**: Test module catalogue and running instructions
+- **[scripts/SCRIPTS_OVERVIEW.md](scripts/SCRIPTS_OVERVIEW.md)**: Overview of all research and analysis scripts
 
 ---
 

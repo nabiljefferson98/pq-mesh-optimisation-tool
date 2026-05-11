@@ -112,14 +112,15 @@ class TestBackendsReachablePaths:
         np.testing.assert_array_equal(result, arr)
 
     def test_get_sparse_module_returns_scipy_sparse_on_cpu(self):
-        from src.backends import get_sparse_module
         import scipy.sparse
+
+        from src.backends import get_sparse_module
 
         sparse_mod = get_sparse_module()
         assert sparse_mod is scipy.sparse
 
     def test_backend_constants_are_booleans(self):
-        from src.backends import HAS_CUDA, HAS_NUMBA, BACKEND
+        from src.backends import BACKEND, HAS_CUDA, HAS_NUMBA
 
         assert isinstance(HAS_CUDA, bool)
         assert isinstance(HAS_NUMBA, bool)
@@ -357,8 +358,8 @@ class TestOptimiserConstant:
         summary() must not raise when a component's initial energy is at
         floating-point noise level (exercises the <= _NEAR_ZERO_ENERGY branches).
         """
-        from src.optimisation.optimiser import OptimisationResult
         from src.core.mesh import QuadMesh
+        from src.optimisation.optimiser import OptimisationResult
 
         mesh = _make_quad_mesh(noise=0.0)
         result = OptimisationResult(
@@ -494,8 +495,8 @@ class TestGradientsDiagnostics:
 
     def test_compute_numerical_gradient_shape(self):
         """compute_numerical_gradient() must return (n_verts, 3) float64 array."""
-        from src.optimisation.gradients import compute_numerical_gradient
         from src.optimisation.energy_terms import compute_total_energy
+        from src.optimisation.gradients import compute_numerical_gradient
 
         mesh = _make_quad_mesh(noise=0.05)
         weights = {"planarity": 10.0, "fairness": 1.0, "closeness": 1.0}
@@ -718,8 +719,8 @@ class TestOptimiserUncoveredPaths:
     def test_mesh_optimiser_validate_mesh_too_few_vertices(self):
         """MeshOptimiser.validate_mesh() with < 4 vertices returns (False, str)
         — covers lines 271 (n_vertices < 4 branch)."""
-        from src.optimisation.optimiser import MeshOptimiser, OptimisationConfig
         from src.core.mesh import QuadMesh
+        from src.optimisation.optimiser import MeshOptimiser, OptimisationConfig
 
         opt = MeshOptimiser()
         tiny = QuadMesh(
@@ -740,8 +741,8 @@ class TestOptimiserUncoveredPaths:
     def test_mesh_optimiser_optimise_returns_invalid_result_on_bad_mesh(self):
         """MeshOptimiser.optimise() with an invalid mesh returns success=False
         without calling scipy — covers lines 413 (validation failure branch)."""
-        from src.optimisation.optimiser import MeshOptimiser, OptimisationConfig
         from src.core.mesh import QuadMesh
+        from src.optimisation.optimiser import MeshOptimiser, OptimisationConfig
 
         cfg = OptimisationConfig(
             weights={"planarity": 10.0, "fairness": 1.0, "closeness": 1.0},
@@ -931,7 +932,7 @@ class TestBackendsEnvVarPaths:
     def test_warmup_numba_kernels_executes_without_raising(self):
         """warmup_numba_kernels() with HAS_NUMBA=True must not raise
         — covers lines 337-406 print/import block."""
-        from src.backends import warmup_numba_kernels, HAS_NUMBA
+        from src.backends import HAS_NUMBA, warmup_numba_kernels
 
         if not HAS_NUMBA:
             pytest.skip("Numba not installed — warmup path not reachable")
@@ -959,7 +960,7 @@ class TestBackendsEnvVarPaths:
     def test_print_backend_info_numba_version_line(self, capsys):
         """print_backend_info() with HAS_NUMBA prints Numba version
         — covers lines 290-298."""
-        from src.backends import print_backend_info, HAS_NUMBA
+        from src.backends import HAS_NUMBA, print_backend_info
 
         print_backend_info()
         captured = capsys.readouterr()

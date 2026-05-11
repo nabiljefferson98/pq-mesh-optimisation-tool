@@ -15,15 +15,16 @@ Output:
     data/output/figures/FIG-07_platform_timing_heatmap.png
 """
 
+import glob
 import json
 import os
-import glob
-import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.gridspec import GridSpec
 from pathlib import Path
+
+import matplotlib
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.gridspec import GridSpec
 
 # ── Global style ────────────────────────────────────────────────────────────
 matplotlib.rcParams.update(

@@ -162,8 +162,9 @@ _HAS_NUMBA_PLANARITY_GRAD = False
 _planarity_grad_kern = None  # set to the @njit function if compilation succeeds
 
 try:
-    from numba import njit as _njit_pg, prange as _prange_pg
     import numpy as _np_pg
+    from numba import njit as _njit_pg
+    from numba import prange as _prange_pg
 
     @_njit_pg(parallel=True, cache=True, fastmath=False)  # pragma: no cover
     def _planarity_gradient_contributions_numba(

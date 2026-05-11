@@ -1,4 +1,4 @@
-# PQ Mesh Optimisation Tool - Still in draft
+# PQ Mesh Optimisation Tool
 
 **Real-Time Planar Quad (PQ) Mesh Optimisation and Visualisation Tool for Designing Developable Surfaces**
 
@@ -19,13 +19,11 @@ A computational geometry tool for optimising quad meshes to achieve planar faces
 
 - **✨ Planar Quad Optimisation**: Reduces face planarity deviation by >96× (average 96.4% improvement)
 - **🚀 Hardware Acceleration**: Automatic backend detection for NVIDIA GPU (`cupy`), Parallel CPU (`numba`), and Baseline CPU (`numpy`)
-- **⚡ Interactive Performance**: Optimises typical meshes (100-400 faces) in <2 seconds
+- **⚡ Interactive Performance**: Optimises typical meshes (100–400 faces) in <2 seconds
 - **🎨 Real-Time Visualisation**: Side-by-side comparison with planarity heatmaps using Polyscope
 - **🎛️ Interactive UI**: Adjustable weight parameters with live optimisation
 - **📊 Comprehensive Analysis**: Built-in benchmarking, convergence tracking, and sensitivity analysis
-- **🧪 Robust Testing**: 229 tests, 0 failures, 1 skipped (GUI-only); ≥81% coverage (excl. GUI); 0 flake8/bandit/mypy violations
-- **🔒 Security & Robustness**: Path-traversal protection, NaN/Inf guards in energy/gradient, atomic DXF/SVG writes, input sanitisation
-- **🧪 Robust Testing**: 229 tests, 0 failures, 1 skipped (GUI-only); ≥79% coverage (excl. GUI); 0 flake8/bandit/mypy violations
+- **🧪 Robust Testing**: 321 tests, 0 failures, 1 skipped (GUI-only); ≥81% coverage (excl. GUI); 0 flake8/bandit/mypy violations
 - **🔒 Security & Robustness**: Path-traversal protection, NaN/Inf guards in energy/gradient, atomic DXF/SVG writes, input sanitisation, active return-type contract assertions in optimiser
 - **📈 Scalable**: O(n^1.27) complexity; practical ceiling ~5,625 faces (75×75 grid, ~80 s)
 - **🏗️ CI/CD Pipeline**: GitHub Actions matrix (Ubuntu + macOS, Python 3.10–3.12) with type checking, security scanning, and Codecov
@@ -39,23 +37,22 @@ A computational geometry tool for optimising quad meshes to achieve planar faces
 
 ```bash
 # Clone repository
-git clone https://github.com/<your-username>/pq-mesh-optimisation-tool.git
+git clone https://github.com/nabiljefferson98/pq-mesh-optimisation-tool.git
 cd pq-mesh-optimisation-tool
 
 # Create virtual environment
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
- # Install dependencies (includes optional hardware-acceleration packages,  see requirements.txt)
+# Install dependencies (includes optional hardware-acceleration packages, see requirements.txt)
 pip install -r requirements.txt
 
- # Note: GPU/Numba packages in requirements.txt may not be available on all platforms.
- # For CPU-only builds, you can install requirements_without_CUDA.txt instead.
+# Note: GPU/Numba packages in requirements.txt may not be available on all platforms.
+# For CPU-only builds, install requirements_without_CUDA.txt instead.
 pip install -r requirements_without_CUDA.txt
 
-
 # Verify installation
-python -m pytest tests/ -v  # Verify: Total 241 passed or skipped, depending on your setup
+python -m pytest tests/ -v  # Expect: 321 passed or skipped, depending on your setup
 ```
 
 ### Interactive Optimisation
@@ -71,7 +68,7 @@ python src/visualisation/interactive_optimisation.py data/input/generated/plane_
 # With conical constraint and custom iteration budget
 python src/visualisation/interactive_optimisation.py data/input/generated/sphere_cap_10x8.obj
 
-# If you want to force a specific backend are as follows (runs with cylinder_10x8.obj by default if no argument given):
+# Force a specific backend (runs with cylinder_10x8.obj by default if no argument given):
 
 # ── NumPy baseline (your Mac, or force on PC) ────────────────────────────────
 PQ_BACKEND=numpy python src/visualisation/interactive_optimisation.py
@@ -83,8 +80,7 @@ PQ_BACKEND=numba python src/visualisation/interactive_optimisation.py
 PQ_BACKEND=cupy python src/visualisation/interactive_optimisation.py
 
 # ── With a specific mesh file ────────────────────────────────────────────────
-PQ_BACKEND=numba python src/visualisation/interactive_optimisation.py data/input/generated/plane5x5noisy.obj
-
+PQ_BACKEND=numba python src/visualisation/interactive_optimisation.py data/input/generated/plane_5x5_noisy.obj
 ```
 
 ---
@@ -94,23 +90,26 @@ PQ_BACKEND=numba python src/visualisation/interactive_optimisation.py data/input
 ```
 pq-mesh-optimisation/
 ├── README.md                         # Project overview and quick-start
+├── check.py                          # Ad-hoc diagnostic script
 ├── src/                              # Core library — import only, do not run directly
-│   ├── README.md                     # Internal library documentation
-│   ├── backends.py                  # Hardware backend detection (GPU/Parallel CPU)
+│   ├── OVERVIEW.md                   # Internal library documentation
+│   ├── backends.py                   # Hardware backend detection (GPU/Parallel CPU/NumPy)
 │   ├── core/
-│   │   └── mesh.py                  # QuadMesh data structure; lazy scatter matrix
+│   │   └── mesh.py                   # QuadMesh data structure; lazy scatter matrix
 │   ├── optimisation/
-│   │   ├── energy_terms.py          # Planarity (SVD), fairness, closeness, angle-balance energies
-│   │   ├── mesh_geometry.py         # Geometric utilities (face planarity, conical imbalance)
-│   │   ├── gradients.py             # Analytical gradient ∂E/∂V for all energy terms
-│   │   └── optimiser.py             # L-BFGS-B wrapper; OptimisationConfig/Result dataclasses
+│   │   ├── energy_terms.py           # Planarity (SVD), fairness, closeness, angle-balance energies
+│   │   ├── mesh_geometry.py          # Geometric utilities (face planarity, conical imbalance)
+│   │   ├── gradients.py              # Analytical gradient ∂E/∂V for all energy terms
+│   │   ├── optimiser.py              # L-BFGS-B wrapper; OptimisationConfig/Result dataclasses
+│   │   └── OPTIMISATION_PIPELINE.md  # Full optimiser pipeline documentation
 │   ├── io/
-│   │   ├── obj_handler.py           # Wavefront OBJ reader/writer (preserves quads)
-│   │   └── panel_exporter.py        # Export flat panels to DXF and SVG
+│   │   ├── obj_handler.py            # Wavefront OBJ reader/writer (preserves quads)
+│   │   └── panel_exporter.py         # Export flat panels to DXF and SVG
 │   ├── preprocessing/
-│   │   └── preprocessor.py          # Normalisation, degenerate-face detection, weight suggestions
+│   │   └── preprocessor.py           # Normalisation, degenerate-face detection, weight suggestions
 │   └── visualisation/
-│       └── interactive_optimisation.py  # Polyscope 3D viewer; planarity & conical heatmaps
+│       ├── interactive_optimisation.py  # Polyscope 3D viewer; planarity & conical heatmaps
+│       └── VISUALISATION_GUIDE.md    # Visualisation usage guide
 ├── scripts/                          # Research and analysis pipeline
 │   ├── mesh_generation/
 │   │   └── generate_test_meshes.py   # Curved surface test mesh generation
@@ -125,7 +124,8 @@ pq-mesh-optimisation/
 │       ├── plot_convergence.py       # Convergence and scaling plots
 │       ├── plot_sensitivity.py       # Pareto frontier and weight heatmaps
 │       └── sensitivity_sweep.py      # 80-config weight sweep, Pareto analysis
-├── tests/                            # 205 tests, 0 failures (≥79% coverage excl. GUI)
+├── tests/                            # 321 tests, 0 failures (≥81% coverage excl. GUI)
+│   ├── TESTING_GUIDE.md              # Test module catalogue and running instructions
 │   ├── test_mesh.py
 │   ├── test_quad_topology_preservation.py
 │   ├── test_geometry.py
@@ -140,17 +140,16 @@ pq-mesh-optimisation/
 │   ├── test_scalability.py
 │   ├── test_error_handling.py
 │   ├── test_coverage_extended.py
+│   ├── test_coverage_gaps.py         # Additional branch coverage for backends/preprocessor/energy
 │   ├── test_robustness.py
 │   ├── test_backends.py              # Backend detection and fallback logic
 │   ├── test_numerical_equivalence.py # Numerical consistency across backends
 │   ├── test_vertex_face_ids.py       # Vertex-to-face topology cache correctness
-│   └── test_quad_loading.py          # igl quad-vs-triangle loading comparison
+│   └── test_quad_loading.py          # Quad-vs-triangle loading comparison
 ├── data/
 │   ├── input/
 │   │   ├── generated/                # Synthetic noisy plane grids + curved surfaces (OBJ)
-│   │   ├── benchmark/                # Keenan Crane model (spot_quadrangulated.obj)
-│   │   ├── cad/                      # ABC Dataset download instructions
-│   │   └── thingi10k/                # Thingi10K download instructions
+│   │   └── reference_datasets/       # Contains blub, bob, oloid and spot folder mesh
 │   └── output/
 │       ├── optimised_meshes/         # Saved .obj results + convergence plots
 │       ├── panels/                   # DXF and SVG fabrication exports
@@ -162,24 +161,18 @@ pq-mesh-optimisation/
 │   ├── architecture.md               # System architecture: modules, data flow, design decisions
 │   ├── methodology.md                # Mathematical methodology: energy formulation, gradients, algorithm
 │   ├── results.md                    # Results and analysis
-│   ├── LOGBOOK.md                    # Weekly progress log
-│   ├── images/                       # Figures and comparison screenshots
-│   └── dissertation/                 # LaTeX dissertation source
-│       ├── main.tex                  # Top-level document (\input all chapters)
-│       ├── chapter4_results.tex      # Chapter 4: Results
-│       ├── chapter5_discussion.tex   # Chapter 5: Discussion
-│       └── figures.tex               # \includegraphics calls for all dissertation figures
+│   └── images/                       # Figures and comparison screenshots
 ├── .github/
 │   └── workflows/ci.yml              # GitHub Actions: lint, test matrix, type-check, security
 ├── .pre-commit-config.yaml           # Pre-commit hooks (black, isort, flake8, bandit)
+├── .pylintrc                         # Pylint configuration
 ├── Makefile                          # Developer quality pipeline
 ├── pyproject.toml                    # Project config (isort, flake8, coverage)
-├── requirements.txt                  # Python dependencies
+├── requirements.txt                  # Python dependencies (includes CUDA/Numba)
 ├── requirements_without_CUDA.txt     # Python dependencies without CUDA packages
 ├── conftest.py                       # Pytest configuration / shared fixtures
 └── LICENSE
 ```
-
 
 ---
 
@@ -189,19 +182,21 @@ pq-mesh-optimisation/
 
 The tool implements a **constrained nonlinear optimisation** approach:
 
-1. **Energy Formulation** (Section 3.3 of dissertation)
-    - **Planarity Energy**: SVD-based measure of face non-planarity
-    - **Fairness Energy**: Discrete Laplacian for mesh smoothness
-    - **Closeness Energy**: Deviation from original design
-2. **Optimisation Method** (Section 3.4)
+1. **Energy Formulation** (Chapter 3 of dissertation)
+    - **Planarity Energy**: SVD-based measure of face non-planarity (`w_p * sum_f sigma_min(M_f)^2`)
+    - **Fairness Energy**: Discrete Laplacian for mesh smoothness (`w_f * ||LV||^2_F`)
+    - **Closeness Energy**: Deviation from original design (`w_c * ||V - V_0||^2_F`)
+    - **Angle-Balance Energy**: Conical constraint for manufacturable panel joints (`w_a * sum_v (sum_f alpha_{v,f})^2`)
+2. **Optimisation Method** (Chapter 3 of dissertation)
     - **Algorithm**: L-BFGS-B (Limited-memory BFGS with bounds)
-    - **Gradients**: Analytical (closed-form derivation for all three energy terms)
+    - **Gradients**: Analytical (closed-form derivation for all four energy terms)
+    - **Two-Stage**: Stage 1 rapid planarity pass, Stage 2 balanced refinement
     - **Convergence**: ftol=10⁻⁹, gtol=10⁻⁵, maxcor=20, maxls=40
 3. **Complexity**
-    - **Time**: O(n^1.27) where n = number of vertices (NumPy)
+    - **Time**: O(n^1.27) where n = number of vertices (NumPy baseline)
     - **Speedup**: Up to 10× with CUDA GPU acceleration (`cupy`) on 10k+ vertex meshes
     - **Memory**: O(n) via limited-memory Hessian approximation
-    - **Iterations**: Typically 9-13 iterations to convergence
+    - **Iterations**: Typically 9–13 iterations to convergence
 
 ### CLI Output
 
@@ -292,12 +287,13 @@ Run the test suite:
 pytest tests/ -v
 
 # Specific test categories
-pytest tests/test_optimiser.py -v          # Optimisation tests
-pytest tests/test_gradients.py -v          # Gradient verification
-pytest tests/test_scalability.py -v        # Scalability tests
-pytest tests/test_robustness.py -v         # Robustness and security regression tests
-pytest tests/test_backends.py -v           # Hardware backend tests
-pytest tests/test_numerical_equivalence.py -v  # Numba vs NumPy equivalence (229 total incl. 10 planarity gradient tests)
+pytest tests/test_optimiser.py -v              # Optimisation tests
+pytest tests/test_gradients.py -v              # Gradient verification
+pytest tests/test_scalability.py -v            # Scalability tests
+pytest tests/test_robustness.py -v             # Robustness and security regression tests
+pytest tests/test_backends.py -v               # Hardware backend tests
+pytest tests/test_numerical_equivalence.py -v  # Numba vs NumPy numerical equivalence
+pytest tests/test_coverage_gaps.py -v          # Branch coverage for backends/preprocessor/energy
 
 # With coverage report
 pytest tests/ --cov=src --cov-report=html
@@ -309,7 +305,14 @@ make check
 pre-commit run --all-files
 ```
 
-**Test Results**: 229 passed, 1 skipped | **Coverage**: ≥81% (excluding GUI module) | **0 flake8/bandit/mypy violations**
+**Test Results**: 321 passed, 1 skipped | **Coverage**: ≥81% (excluding GUI module) | **0 flake8/bandit/mypy violations**
+
+The CI environment (GitHub Actions) does not install Numba; all `test_numerical_equivalence.py` tests are therefore automatically skipped in CI and the NumPy backend is used exclusively. To replicate the CI environment locally:
+
+```bash
+pip install pytest numpy scipy
+pytest tests/ -m "not slow" -v
+```
 
 ---
 
@@ -317,8 +320,8 @@ pre-commit run --all-files
 
 - **[Architecture](docs/architecture.md)**: System design — module reference, data flow, design decisions
 - **[Methodology](docs/methodology.md)**: Mathematical derivations — energy formulation, analytical gradients, optimisation algorithm
-- **[Logbook](docs/LOGBOOK.md)**: Weekly progress log
-- **[Dissertation LaTeX](docs/dissertation/)**: Chapter source files and figure includes
+- **[src/OVERVIEW.md](src/OVERVIEW.md)**: Internal library documentation with full module reference
+- **[tests/TESTING_GUIDE.md](tests/TESTING_GUIDE.md)**: Test module catalogue and running instructions
 
 ---
 
@@ -333,8 +336,8 @@ This tool was developed as part of an undergraduate dissertation at the **Univer
 **Key References**:
 
 1. Liu, Y., Pottmann, H., et al. (2006). *Geometric modeling with conical meshes and developable surfaces*. ACM TOG, 25(3), 681–689.
-2. Pottmann, H., et al. (2007). *Architectural geometry*. Computers \& Graphics, 31(6), 785–800.
-3. Nocedal, J., \& Wright, S. (2006). *Numerical Optimization* (2nd ed.). Springer.
+2. Pottmann, H., et al. (2007). *Architectural geometry*. Computers & Graphics, 31(6), 785–800.
+3. Nocedal, J., & Wright, S. (2006). *Numerical Optimization* (2nd ed.). Springer.
 
 See dissertation for complete bibliography.
 
@@ -364,9 +367,10 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fi
 ## 🙏 Acknowledgements
 
 - **Professor Hamish Carr** — Academic supervisor and guidance
-- **Dr Sebastian Ordyniak** - Academic Assessor and guidance
-- **Dr Samuel Wilson** - Director of Student Education and his support and guidance
-- **Professor Gordon Love** - Head of the School of Computer Science and his support
+- **Dr Sebastian Ordyniak** — Academic Assessor and guidance
+- **Dr Samuel Wilson** — Director of Student Education and his support and guidance
+- **Professor Gordon Love** — Head of the School of Computer Science and his support
+- **Keenan Crane** — Benchmark mesh (`spot_quadrangulated.obj`) used in experimental evaluation
 - **Helmut Pottmann et al.** — Foundational research on architectural geometry
 - **SciPy Contributors** — Excellent optimisation library
 - **Polyscope Team** — Beautiful 3D visualisation framework
@@ -376,7 +380,7 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fi
 ## 📧 Contact
 
 **Author**: Muhammad Nabil Bin Muhammad Saiful Wong
-**Email**: sc23mnbm@leeds.ac.uk
+**Email**: [sc23mnbm@leeds.ac.uk](mailto:sc23mnbm@leeds.ac.uk)
 **GitHub**: [@nabiljefferson98](https://github.com/nabiljefferson98)
 
 **University of Leeds**
@@ -410,4 +414,4 @@ Report bugs: [GitHub Issues](https://github.com/nabiljefferson98/pq-mesh-optimis
 
 ---
 
-*Last updated: 03 April 2026*
+*Last updated: 12 May 2026*

@@ -7,8 +7,16 @@
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![CI](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/actions/workflows/ci.yml/badge.svg)](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation-tool/branch/main/graph/badge.svg)](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation)
+[![Wiki](https://img.shields.io/badge/docs-Wiki-blue)](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/wiki)
 
 A computational geometry tool for optimising quad meshes to achieve planar faces, enabling fabrication of architectural surfaces from flat panels. Implements SVD-based planarity formulation with L-BFGS-B optimisation.
+
+> 📖 **Full documentation is available in the [GitHub Wiki](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/wiki).**
+> The Wiki covers mathematical foundations, API reference, architecture, experiments, testing, reproducibility, and a complete FAQ.
+
+---
+
+## 📸 Screenshot
 
 ![Banner](docs/images/banner_comparison.png)
 *Before (left) and after (right) optimisation with planarity heatmap*
@@ -20,7 +28,6 @@ A computational geometry tool for optimising quad meshes to achieve planar faces
 ![Interactive optimisation demo](docs/images/demo.gif)
 
 ---
-
 
 ## 🎯 Features
 
@@ -340,6 +347,10 @@ pytest tests/ -m "not slow" -v
 
 ## 📖 Documentation
 
+> **Comprehensive documentation — including mathematical foundations, full API reference, architecture diagrams, experimental results, testing guidance, and a complete FAQ — is available in the [GitHub Wiki](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/wiki).**
+
+In-repository documentation:
+
 - **[Architecture](docs/architecture.md)**: System design — module reference, data flow, design decisions
 - **[Methodology](docs/methodology.md)**: Mathematical derivations — energy formulation, analytical gradients, optimisation algorithm
 - **[src/OVERVIEW.md](src/OVERVIEW.md)**: Internal library documentation with full module reference
@@ -350,19 +361,23 @@ pytest tests/ -m "not slow" -v
 
 ## 🎓 Academic Context
 
-This tool was developed as part of an undergraduate dissertation at the **University of Leeds, School of Computing** (2025/26).
+This tool was developed as the primary software artefact of an undergraduate dissertation submitted to the **University of Leeds, School of Computing**, as part of the **COMP3931 Individual Project** module in the third year of the BSc/MEng Computer Science degree programme (2025/26).
 
+The dissertation — titled *Real-Time Planar Quad (PQ) Mesh Optimisation and Visualisation Tool for Developable Surfaces* — investigates planar quad mesh optimisation through a four-term energy model, hardware-accelerated backends, interactive visualisation, and a structured experimental evaluation across five experiments. It was submitted in May 2026.
+
+- **Module**: COMP3931 Individual Project (Level 3, University of Leeds)
 - **Supervisor**: Professor Hamish Carr
-- **Student**: Muhammad Nabil Bin Muhammad Saiful Wong
-- **Project Title**: Real-Time Planar Quad Mesh Optimisation for Designing Developable Surfaces
+- **Academic Assessor**: Dr Sebastian Ordyniak
+- **Student**: Muhammad Nabil Bin Muhammad Saiful Wong (sc23mnbm@leeds.ac.uk)
+- **Project Title**: Real-Time Planar Quad Mesh Optimisation and Visualisation Tool for Developable Surfaces
+- **Submission**: May 2026
 
-**Key References**:
+**Key References** (see [Wiki — Citation](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/wiki/Citation) for the full list of 28 references):
 
-1. Liu, Y., Pottmann, H., et al. (2006). *Geometric modeling with conical meshes and developable surfaces*. ACM TOG, 25(3), 681–689.
-2. Pottmann, H., et al. (2007). *Architectural geometry*. Computers & Graphics, 31(6), 785–800.
-3. Nocedal, J., & Wright, S. (2006). *Numerical Optimization* (2nd ed.). Springer.
-
-See dissertation for complete bibliography.
+1. Liu, Y., Pottmann, H., Wallner, J., Yang, Y.-L. and Wang, W. (2006). *Geometric modeling with conical meshes and developable surfaces*. ACM Transactions on Graphics, 25(3), pp. 681–689.
+2. Pottmann, H., Asperl, A., Hofer, M. and Kilian, A. (2007). *Architectural Geometry*. Bentley Institute Press.
+3. Nocedal, J. and Wright, S.J. (2006). *Numerical Optimization*. 2nd edn. Springer.
+4. Zhu, C., Byrd, R.H., Lu, P. and Nocedal, J. (1997). *Algorithm 778: L-BFGS-B*. ACM TOMS, 23(4), pp. 550–560.
 
 ---
 
@@ -381,13 +396,13 @@ Contributions welcome! Please follow these guidelines:
 
 ---
 
-## 📄 License
+## 📄 Licenses
 
 This project is licensed under the **MIT License** — see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 - **Professor Hamish Carr** — Academic supervisor and guidance
 - **Dr Sebastian Ordyniak** — Academic Assessor and guidance

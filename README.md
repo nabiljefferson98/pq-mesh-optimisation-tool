@@ -15,6 +15,13 @@ A computational geometry tool for optimising quad meshes to achieve planar faces
 
 ---
 
+## In action
+
+![Interactive optimisation demo](docs/images/demo.gif)
+
+---
+
+
 ## 🎯 Features
 
 - **✨ Planar Quad Optimisation**: Reduces face planarity deviation by >96× (average 96.4% improvement)

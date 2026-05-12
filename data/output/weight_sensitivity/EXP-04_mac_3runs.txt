@@ -8,9 +8,9 @@ WEIGHT SENSITIVITY ANALYSIS (EXP-04)
     (planarity, fairness, closeness) and records how each one
     affects the final mesh quality.
 
-    The goal is to find the 'Pareto-optimal' configurations:   
-    weight combinations where you cannot improve one objective  
-    (e.g. flatness) without making another worse               
+    The goal is to find the 'Pareto-optimal' configurations:
+    weight combinations where you cannot improve one objective
+    (e.g. flatness) without making another worse
     (e.g. smoothness or shape change).
 
     Results are saved to data/output/weight_sensitivity/.
@@ -584,9 +584,9 @@ WEIGHT SENSITIVITY ANALYSIS (EXP-04)
     (planarity, fairness, closeness) and records how each one
     affects the final mesh quality.
 
-    The goal is to find the 'Pareto-optimal' configurations:   
-    weight combinations where you cannot improve one objective  
-    (e.g. flatness) without making another worse               
+    The goal is to find the 'Pareto-optimal' configurations:
+    weight combinations where you cannot improve one objective
+    (e.g. flatness) without making another worse
     (e.g. smoothness or shape change).
 
     Results are saved to data/output/weight_sensitivity/.
@@ -1160,9 +1160,9 @@ WEIGHT SENSITIVITY ANALYSIS (EXP-04)
     (planarity, fairness, closeness) and records how each one
     affects the final mesh quality.
 
-    The goal is to find the 'Pareto-optimal' configurations:   
-    weight combinations where you cannot improve one objective  
-    (e.g. flatness) without making another worse               
+    The goal is to find the 'Pareto-optimal' configurations:
+    weight combinations where you cannot improve one objective
+    (e.g. flatness) without making another worse
     (e.g. smoothness or shape change).
 
     Results are saved to data/output/weight_sensitivity/.
@@ -1725,4 +1725,3 @@ SUMMARY
   Full report saved to: /Users/muhammadnabil/Documents/GitHub/pq-mesh-optimisation/data/output/weight_sensitivity/sensitivity_analysis_report.txt
   Raw data saved to   : data/output/weight_sensitivity/EXP-04_mac_run3.json
 ======================================================================
-

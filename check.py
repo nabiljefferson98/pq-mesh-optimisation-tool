@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Project Quality Check Script
-Runs all code quality tools: formatting, linting, types, security, complexity, and tests.
+Project Quality Check Script.
+Runs all code quality tools: formatting, linting, types, security, and tests.
 """
 
 import argparse
@@ -53,7 +53,8 @@ class Checker:
                     if not line:
                         continue
 
-                    # 1. Pattern for flake8, mypy, pylint, vulture, bandit: "path/to/file.py:line:..."
+                    # 1. Pattern: "path/to/file.py:line:..." (flake8, mypy, pylint,
+                    # vulture, bandit)
                     if ":" in line:
                         parts = line.split(":")
                         path_str = parts[0].strip()
@@ -66,14 +67,15 @@ class Checker:
                         if Path(path_str).exists():
                             files.add(path_str)
 
-                    # 3. Pattern for isort: "ERROR: path/to/file.py Imports are incorrectly sorted"
+                    # 3. Pattern: ERROR message with "Imports are incorrectly sorted"
+                    # (isort)
                     if "Imports are incorrectly sorted" in line:
                         words = line.split()
                         for word in words:
                             if word.endswith(".py") and Path(word).exists():
                                 files.add(word)
 
-                    # 4. Pattern for bandit: ">> Issue: ... in file: path/to/file.py:..."
+                    # 4. Pattern: ">> Issue: ... in file: path/to/file.py:..." (bandit)
                     if "in file: " in line:
                         try:
                             path_str = line.split("in file: ")[1].split(":")[0].strip()
@@ -82,8 +84,8 @@ class Checker:
                         except IndexError:
                             pass
 
-                    # 5. Pattern for coverage/pytest: look for .py files in lines that look like reports
-                    # e.g., "src/optimisation/gradients.py      45     15    67%"
+                    # 5. Pattern: .py files in lines like:
+                    # "src/optimisation/gradients.py      45     15    67%"
                     if any(x in line for x in [".py", ".py "]) and (
                         "%" in line or "FAILED" in line
                     ):
@@ -188,11 +190,13 @@ class Checker:
                     )
 
             console.print(
-                "\n[yellow]Tip: Run with --verbose to see full tool output, or --fix to auto-format.[/yellow]"
+                "\n[yellow]Tip: Run with --verbose to see full output, or"
+                " --fix to auto-format.[/yellow]"
             )
         else:
             console.print(
-                "\n[bold green]✨ All checks passed! Your code is looking great. ✨[/bold green]"
+                "\n[bold green]✨ All checks passed! Your code is looking"
+                " great. ✨[/bold green]"
             )
 
     def display_verbose(self):

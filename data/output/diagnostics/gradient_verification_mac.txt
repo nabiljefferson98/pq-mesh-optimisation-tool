@@ -1,6 +1,6 @@
 
 ======================================================================
-                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+                  GRADIENT VERIFICATION & DIAGNOSTICS
 ======================================================================
 
 Loading mesh: data/input/generated/plane_5x5_noisy.obj
@@ -104,7 +104,7 @@ Next step: Run the interactive optimiser on a mesh.
 ---MESH-SEPARATOR---
 
 ======================================================================
-                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+                  GRADIENT VERIFICATION & DIAGNOSTICS
 ======================================================================
 
 Loading mesh: data/input/reference_datasets/oloid/oloid256_quad.obj
@@ -208,7 +208,7 @@ Next step: Run the interactive optimiser on a mesh.
 ---MESH-SEPARATOR---
 
 ======================================================================
-                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+                  GRADIENT VERIFICATION & DIAGNOSTICS
 ======================================================================
 
 Loading mesh: data/input/reference_datasets/spot/spot_quadrangulated.obj
@@ -312,7 +312,7 @@ Next step: Run the interactive optimiser on a mesh.
 ---MESH-SEPARATOR---
 
 ======================================================================
-                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+                  GRADIENT VERIFICATION & DIAGNOSTICS
 ======================================================================
 
 Loading mesh: data/input/reference_datasets/blub/blub_quadrangulated.obj
@@ -416,7 +416,7 @@ Next step: Run the interactive optimiser on a mesh.
 ---MESH-SEPARATOR---
 
 ======================================================================
-                  GRADIENT VERIFICATION & DIAGNOSTICS                 
+                  GRADIENT VERIFICATION & DIAGNOSTICS
 ======================================================================
 
 Loading mesh: data/input/reference_datasets/bob/bob_quad.obj

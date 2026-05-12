@@ -158,9 +158,9 @@ matrix multiplication.
 
 Numerical equivalence validated by `TestPlanarityGradientNumbaEquivalence`
 (10 tests). Tolerance: 1e-10 for meshes ≤10×10; 1e-8 for 20×20 meshes —
-the observed relative error of ~2.16e-09 is consistent with deterministic LAPACK/LLVM 
-floating-point rounding divergence in the least-singular-value direction, 
-which is well understood from standard numerical analysis, and is not a race condition. 
+the observed relative error of ~2.16e-09 is consistent with deterministic LAPACK/LLVM
+floating-point rounding divergence in the least-singular-value direction,
+which is well understood from standard numerical analysis, and is not a race condition.
 Impact on L-BFGS-B: abs_err ~9.7e-08 << gtol=1e-05.
 
 ### 3.2 Fairness Gradient

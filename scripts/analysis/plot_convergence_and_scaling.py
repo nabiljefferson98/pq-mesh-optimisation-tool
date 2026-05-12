@@ -151,8 +151,9 @@ def plot_convergence_comparison(data_path: Path, output_path: Path):
     print(f"\u2713 Saved: {output_path}")
     plt.close()
 
+    checkmark = "\u2713 Yes" if exponent < 2 else "\u2717 No"
     print(f"\n  Empirical complexity: T(n) \u2248 O(n^{exponent:.2f})")
-    print(f"  Sub-quadratic: {'\u2713 Yes' if exponent < 2 else '\u2717 No'}")
+    print(f"  Sub-quadratic: {checkmark}")
 
 
 def main():

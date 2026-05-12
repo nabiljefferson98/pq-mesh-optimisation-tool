@@ -293,19 +293,21 @@ def main():
     print("\n" + "=" * 90)
     print("BENCHMARK SUMMARY")
     print("=" * 90)
-    print(
+    header_cols = (
         f"  {'Mesh':<28} {'Vertices':>8} {'Faces':>7} "
         f"{'Time (s)':>12} {'Mem (MB)':>10} {'Energy \u2193':>10} {'OK':>4}"
     )
+    print(header_cols)
     print("-" * 90)
     for r in results:
         ok = "\u2705" if r["success"] else "\u274c"
-        print(
+        row = (
             f"  {r['mesh_name']:<28} {r['n_vertices']:>8,} {r['n_faces']:>7,} "
             f"  {r['time_mean_s']:>6.2f}\u00b1{r['time_std_s']:>4.2f}s "
             f"  {r['memory_peak_mb']:>8.1f} "
             f"  {r['energy_reduction']:>8.1f}%  {ok}"
         )
+        print(row)
     print("=" * 90)
 
 

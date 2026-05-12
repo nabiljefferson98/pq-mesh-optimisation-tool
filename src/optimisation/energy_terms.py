@@ -1110,16 +1110,6 @@ def _angle_balance_energy_gpu(mesh) -> float:
             prev_local = (local_idx - 1) % n_f_cols  # (n_active, 4)
             next_local = (local_idx + 1) % n_f_cols
 
-            # Build flat gather indices into faces_for_active
-            face_row = (
-                cp.arange(n_active, dtype=cp.int32)[:, None]
-                * cp.ones(4, dtype=cp.int32)[None, :]
-            )  # (n_active, 4)
-            face_col = (
-                cp.arange(4, dtype=cp.int32)[None, :]
-                * cp.ones(n_active, dtype=cp.int32)[:, None]
-            )  # (n_active, 4)
-
             # Flat-index into faces_for_active: (n_active, 4, n_f_cols)
             fa_flat = faces_for_active.reshape(n_active * 4, n_f_cols)
             pl_flat = prev_local.ravel()
@@ -1153,7 +1143,6 @@ def _angle_balance_energy_gpu(mesh) -> float:
     if not _gpu_succeeded:
         # Fallback: Numba if available, else serial NumPy
         try:
-            from src.backends import HAS_NUMBA
 
             if HAS_NUMBA:
                 vf = mesh.vertex_face_ids_padded

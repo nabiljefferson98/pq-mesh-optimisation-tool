@@ -17,10 +17,6 @@ HAS_CUDA / HAS_NUMBA guards — they are legitimately untestable in a CPU-only
 environment and are excluded from coverage via pragma comments where needed.
 """
 
-import io
-import sys
-from unittest.mock import patch
-
 import numpy as np
 import pytest
 
@@ -195,7 +191,8 @@ class TestEnergyTermsDiagnostics:
         assert "Total Energy" in captured.out
 
     def test_analyse_energy_components_zero_angle_balance(self, capsys):
-        """analyse_energy_components() with angle_balance=0 must not print angle line."""
+        """analyse_energy_components() with angle_balance=0.
+        Must not print angle line."""
         from src.optimisation.energy_terms import analyse_energy_components
 
         mesh = _make_quad_mesh()
@@ -275,7 +272,8 @@ class TestGradientsNumpyPaths:
         assert grad.shape == (mesh.n_vertices, 3)
 
     def test_compute_total_gradient_with_angle_balance(self):
-        """compute_total_gradient() with angle_balance weight must still return correct shape."""
+        """compute_total_gradient() with angle_balance weight.
+        Must still return correct shape."""
         from src.optimisation.gradients import compute_total_gradient
 
         mesh = _make_quad_mesh()
@@ -297,13 +295,15 @@ class TestGradientsNumpyPaths:
             mesh.update_vertices(bad)
 
     def test_update_vertices_raises_on_shape_mismatch(self):
-        """update_vertices() with the wrong shape raises ValueError — covers line 221."""
+        """update_vertices() with wrong shape raises ValueError.
+        Covers line 221."""
         mesh = _make_quad_mesh()
         with pytest.raises(ValueError, match="Shape mismatch"):
             mesh.update_vertices(np.zeros((3, 3)))
 
     def test_get_vertex_faces_out_of_range_raises(self):
-        """get_vertex_faces() with an invalid index raises IndexError — covers lines 249-260."""
+        """get_vertex_faces() with invalid index raises IndexError.
+        Covers lines 249-260."""
         mesh = _make_quad_mesh()
         with pytest.raises(IndexError):
             mesh.get_vertex_faces(9999)
@@ -358,7 +358,6 @@ class TestOptimiserConstant:
         summary() must not raise when a component's initial energy is at
         floating-point noise level (exercises the <= _NEAR_ZERO_ENERGY branches).
         """
-        from src.core.mesh import QuadMesh
         from src.optimisation.optimiser import OptimisationResult
 
         mesh = _make_quad_mesh(noise=0.0)
@@ -603,7 +602,8 @@ class TestEnergyTermsRemainingBranches:
 class TestMeshUncoveredPaths:
 
     def test_scatter_matrix_is_built_on_first_access(self):
-        """scatter_matrix property builds _scatter_matrix on first access (lines 118-126)."""
+        """scatter_matrix property builds _scatter_matrix on first access.
+        Lines 118-126."""
         mesh = _make_quad_mesh()
         mesh._scatter_matrix = None  # force cache miss
         sm = mesh.scatter_matrix
@@ -663,7 +663,8 @@ class TestMeshUncoveredPaths:
         assert np.all((table >= -1))
 
     def test_get_vertex_faces_raises_on_out_of_range(self):
-        """get_vertex_faces() with invalid index must raise IndexError (lines 249-260)."""
+        """get_vertex_faces() with invalid index must raise IndexError.
+        Lines 249-260."""
         mesh = _make_quad_mesh()
         with pytest.raises(IndexError):
             mesh.get_vertex_faces(9999)
@@ -720,7 +721,7 @@ class TestOptimiserUncoveredPaths:
         """MeshOptimiser.validate_mesh() with < 4 vertices returns (False, str)
         — covers lines 271 (n_vertices < 4 branch)."""
         from src.core.mesh import QuadMesh
-        from src.optimisation.optimiser import MeshOptimiser, OptimisationConfig
+        from src.optimisation.optimiser import MeshOptimiser
 
         opt = MeshOptimiser()
         tiny = QuadMesh(
@@ -883,7 +884,6 @@ class TestBackendsEnvVarPaths:
     def test_forced_numba_backend_env_var(self, monkeypatch):
         """PQ_BACKEND=numba env var forces numba detection (lines 84-111).
         If numba is not installed, it falls back to numpy with a warning."""
-        import importlib
 
         try:
             import numba  # noqa: F401

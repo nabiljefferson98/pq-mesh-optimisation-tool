@@ -129,7 +129,7 @@ def fig01_energy_reduction():
     labels = [
         m.replace("plane_", "").replace("_noisy", "").replace("_", "×") for m in meshes
     ]
-    labels = [l.replace("very×", "5×5\nvery ") for l in labels]
+    labels = [label.replace("very×", "5×5\nvery ") for label in labels]
 
     x = np.arange(len(meshes))
     width = 0.35
@@ -295,7 +295,7 @@ def fig03_backend_comparison():
         np_stds = [data[f"{platform}_numpy"][m]["time_std"] for m in meshes]
         nb_stds = [data[f"{platform}_numba"][m]["time_std"] for m in meshes]
 
-        b1 = ax.bar(
+        _ = ax.bar(
             x - w / 2,
             np_times,
             w,
@@ -307,7 +307,7 @@ def fig03_backend_comparison():
             error_kw={"linewidth": 1.2},
             edgecolor="white",
         )
-        b2 = ax.bar(
+        _ = ax.bar(
             x + w / 2,
             nb_times,
             w,
@@ -471,7 +471,7 @@ def fig05_realworld_timing():
     # only meshes present in both
     shared = sorted(set(mac) & set(win), key=lambda m: mac[m]["n_faces"])
     labels = [
-        f"{m.replace('_quadrangulated','').replace('_quad','')}\n"
+        f"{m.replace('_quadrangulated', '').replace('_quad', '')}\n"
         f"({mac[m]['n_faces']:,} faces)"
         for m in shared
     ]
@@ -479,7 +479,7 @@ def fig05_realworld_timing():
     x, w = np.arange(len(shared)), 0.35
     fig, ax = plt.subplots(figsize=(9, 5))
 
-    b1 = ax.bar(
+    _ = ax.bar(
         x - w / 2,
         [mac[m]["time_mean"] for m in shared],
         w,
@@ -490,7 +490,7 @@ def fig05_realworld_timing():
         capsize=4,
         edgecolor="white",
     )
-    b2 = ax.bar(
+    _ = ax.bar(
         x + w / 2,
         [win[m]["time_mean"] for m in shared],
         w,
@@ -510,7 +510,7 @@ def fig05_realworld_timing():
         ax.text(
             x[i],
             top * 1.04,
-            f"{'↑' if ratio>1 else '↓'}{abs(ratio):.2f}×\n({sign})",
+            f"{'↑' if ratio > 1 else '↓'}{abs(ratio):.2f}×\n({sign})",
             ha="center",
             fontsize=8,
             color="#374151",

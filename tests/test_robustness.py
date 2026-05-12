@@ -19,7 +19,6 @@ Regression tests for bugs and security issues fixed in the audit:
 """
 
 import os
-import warnings
 
 import numpy as np
 import pytest

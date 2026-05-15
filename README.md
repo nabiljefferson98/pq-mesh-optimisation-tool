@@ -6,13 +6,69 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![CI](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/actions/workflows/ci.yml/badge.svg)](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation-tool/branch/main/graph/badge.svg)](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation)
+[![codecov](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation-tool/branch/main/graph/badge.svg)](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation-tool)
 [![Wiki](https://img.shields.io/badge/docs-Wiki-blue)](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/wiki)
 
 A computational geometry tool for optimising quad meshes to achieve planar faces, enabling fabrication of architectural surfaces from flat panels. Implements SVD-based planarity formulation with L-BFGS-B optimisation.
 
 > 📖 **Full documentation is available in the [GitHub Wiki](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/wiki).**
 > The Wiki covers mathematical foundations, API reference, architecture, experiments, testing, reproducibility, and a complete FAQ.
+
+---
+
+## 🧭 What Is This? (Beginner-Friendly Overview)
+
+If you have never worked with computational geometry before, this section explains the core idea in plain language.
+
+### The Problem: Wobbly Panels
+
+Imagine you are an architect designing a curved glass roof — like a wave-shaped canopy over a railway station. You model the shape as a 3D mesh made up of many small quadrilateral (four-sided) panels. In theory the design looks beautiful. In practice, when you send those panels to a fabricator, they discover a problem: **the four corners of each panel do not lie on the same flat plane**. A slightly twisted panel cannot be cut from a flat sheet of glass or metal. The result is expensive custom bending of every single panel, or the whole design has to be abandoned.
+
+This tool solves that problem. It takes your quad mesh, and **nudges the vertices just enough** so that every face becomes flat (planar), while keeping the overall shape as close to your original design as possible.
+
+### The Solution: PQ Meshes
+
+A **Planar Quad (PQ) mesh** is simply a quad mesh where every face is exactly flat. The concept was formalised by Liu et al. (2006), who showed that PQ meshes allow freeform glass structures to be built from flat panels, which dramatically reducing fabrication cost. This tool automates the conversion of any quad mesh into a PQ mesh.
+
+### How It Works (High-Level)
+
+The optimisation works in four conceptual steps:
+
+```
+1. Load mesh        →   Read your .obj quad mesh into memory
+        ↓
+2. Measure flatness →   For each face, compute how "twisted" it is
+                        (using a mathematical technique called SVD)
+        ↓
+3. Fix the mesh     →   Move vertices to reduce twisting, while
+                        keeping the shape smooth and close to original
+                        (L-BFGS-B optimiser, typically 9–13 steps)
+        ↓
+4. Visualise        →   Show the before/after in a 3D viewer with a
+                        colour heatmap (green = flat, red = twisted)
+```
+
+### Key Concepts Explained
+
+| Term | Plain English |
+|:--|:--|
+| **Quad mesh** | A 3D surface made of four-sided patches (like a grid draped over a shape) |
+| **Planar face** | A face where all four corners lie exactly on the same flat plane |
+| **SVD** | Singular Value Decomposition — a mathematical tool to measure how much a set of points deviates from a plane |
+| **L-BFGS-B** | A well-known algorithm for finding the best solution to a smooth mathematical problem efficiently |
+| **Energy** | A score that measures how "bad" the mesh is — lower is better; the optimiser drives this towards zero |
+| **Conical mesh** | A special PQ mesh where the faces around each vertex all touch a common cone; useful for offsetting panels at a constant distance |
+| **Developable surface** | A surface that can be unrolled flat without stretching — think of unrolling a paper towel tube |
+| **Heatmap** | A colour overlay on the mesh showing planarity deviation: green = very flat, red = very twisted |
+
+### Why Does It Matter?
+
+In architecture, **conical and PQ meshes** are the gold standard for glass-and-steel freeform structures (think the British Museum Great Court roof, or Zaha Hadid's designs). They allow:
+- Flat panels that can be cut from standard sheet material
+- Offset layers (insulation, framing) that maintain the same geometry
+- A structural support system that is orthogonal to the surface
+
+This tool makes that technology accessible as an open-source Python library.
 
 ---
 
@@ -23,7 +79,7 @@ A computational geometry tool for optimising quad meshes to achieve planar faces
 
 ---
 
-## In action
+## In Action
 
 ![Interactive optimisation demo](docs/images/demo.gif)
 
@@ -69,6 +125,8 @@ pip install -r requirements_without_CUDA.txt
 python -m pytest tests/ -v  # Expect: 321 passed or skipped, depending on your setup
 ```
 
+> **New to virtual environments?** A virtual environment is simply an isolated Python installation for this project so it does not interfere with other Python software on your machine. The commands above create one in a folder called `.venv`, then activate it. You only need to activate it (the `source` line) each time you open a new terminal.
+
 ### Interactive Optimisation
 
 ```bash
@@ -96,6 +154,8 @@ PQ_BACKEND=cupy python src/visualisation/interactive_optimisation.py
 # ── With a specific mesh file ────────────────────────────────────────────────
 PQ_BACKEND=numba python src/visualisation/interactive_optimisation.py data/input/generated/plane_5x5_noisy.obj
 ```
+
+> **What are backends?** The tool can run the heavy maths on three different pieces of hardware. `numpy` is the safe default (works everywhere). `numba` uses all your CPU cores in parallel (faster on most laptops/desktops). `cupy` uses an NVIDIA GPU (fastest, but requires a CUDA-capable GPU). The tool picks the best available option automatically if you do not set `PQ_BACKEND`.
 
 ---
 
@@ -207,6 +267,21 @@ pq-mesh-optimisation/
 
 ## 🔧 Technical Details
 
+### How the Optimiser Works (Plain English)
+
+The tool frames mesh optimisation as a mathematical minimisation problem. Think of it like adjusting the positions of hundreds of tiny ball bearings connected by springs, where you want to make every face flat but without pulling the shape too far from what you originally designed. The optimiser solves this by computing a *score* (called **energy**) and repeatedly moving vertices in the direction that reduces the score fastest.
+
+There are **four components** to the score, each measuring something different:
+
+| Component | What it measures | Symbol |
+|:--|:--|:--|
+| **Planarity energy** | How twisted (non-flat) each face is | `E_p` |
+| **Fairness energy** | How bumpy or irregular the surface is | `E_f` |
+| **Closeness energy** | How far vertices have moved from the original design | `E_c` |
+| **Angle-balance energy** | How well the faces around each vertex form a manufacturable cone joint | `E_a` |
+
+You control the trade-off between these goals using **weight sliders** in the interactive viewer. For example, setting planarity weight very high forces near-perfect flatness, even if the surface smoothness suffers slightly.
+
 ### Algorithm Overview
 
 The tool implements a **constrained nonlinear optimisation** approach:
@@ -226,6 +301,35 @@ The tool implements a **constrained nonlinear optimisation** approach:
     - **Speedup**: Up to 10× with CUDA GPU acceleration (`cupy`) on 10k+ vertex meshes
     - **Memory**: O(n) via limited-memory Hessian approximation
     - **Iterations**: Typically 9–13 iterations to convergence
+
+### Using the Tool as a Python Library
+
+You do not need the interactive viewer to use this tool. You can import it directly into your own Python scripts:
+
+```python
+from src.io.obj_handler import load_obj, save_obj
+from src.preprocessing.preprocessor import preprocess_mesh
+from src.optimisation.optimiser import optimise_mesh_simple
+
+# Load any quad mesh in OBJ format
+mesh = load_obj("data/input/generated/plane_5x5_noisy.obj")
+
+# Clean up: remove duplicate vertices and normalise scale
+mesh = preprocess_mesh(mesh, normalise=True, verbose=True)
+
+# Run the optimisation — adjust weights to taste
+result = optimise_mesh_simple(
+    mesh,
+    weights={"planarity": 10.0, "fairness": 1.0, "closeness": 5.0},
+    max_iterations=200,
+    verbose=True,
+)
+
+print(result.summary())           # Human-readable results
+save_obj(mesh, "result.obj")      # Save the optimised mesh
+```
+
+The `weights` dictionary controls the balance between the four energy goals described above. A higher `planarity` weight means flatter faces at the potential cost of moving further from the original shape. See [`src/OVERVIEW.md`](src/OVERVIEW.md) for the full API reference.
 
 ### CLI Output
 
@@ -289,6 +393,8 @@ Full dependency list: [`requirements.txt`](requirements.txt)
 
 ## 📊 Performance Benchmarks
 
+The table below shows how long the optimiser takes on synthetic noisy-plane grids of increasing size, measured on a single CPU core (NumPy backend). Energy reduction figures above ~9,000% on smaller meshes reflect the starting mesh being far from planar — the optimiser achieves near-zero residual planarity energy.
+
 | Mesh Size | Vertices | Faces | Time (s) | Energy Reduction | Status |
 | :-- | :-- | :-- | :-- | :-- | :-- |
 | 3×3 | 16 | 9 | 0.08 | 9629.7% | ✓ |
@@ -302,6 +408,8 @@ Full dependency list: [`requirements.txt`](requirements.txt)
 
 **Scalability**: T(n) ≈ O(n^1.27) with R² = 1.000
 **Speedup**: 2.3–2.4× over original Python loop (vectorised SVD + sparse scatter matrix)
+
+> **What do these numbers mean?** A 10×10 mesh has 100 panels and takes just over 1 second. A 75×75 mesh has 5,625 panels (a large architectural roof) and takes about 80 seconds — still feasible for design iteration. For meshes larger than this, the GPU (`cupy`) backend is the recommended path.
 
 See [`data/output/benchmarks/`](data/output/benchmarks/) for detailed performance data.
 
@@ -342,6 +450,8 @@ The CI environment (GitHub Actions) does not install Numba; all `test_numerical_
 pip install pytest numpy scipy
 pytest tests/ -m "not slow" -v
 ```
+
+> **New to testing?** Tests are small scripts that automatically check that the code still works correctly after any change. Running `pytest tests/ -v` executes all 321 checks and prints a pass/fail result for each one. If you make a change and a test fails, it tells you exactly what broke.
 
 ---
 
@@ -396,18 +506,17 @@ Contributions welcome! Please follow these guidelines:
 
 ---
 
-## 📄 Licenses
+## 📄 License
 
 This project is licensed under the **MIT License** — see [LICENSE](LICENSE) file for details.
 
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 - **Professor Hamish Carr** — Academic supervisor and guidance
 - **Dr Sebastian Ordyniak** — Academic Assessor and guidance
 - **Dr Samuel Wilson** — Director of Student Education and his support and guidance
-- **Professor Gordon Love** — Head of the School of Computer Science and his support
 - **Keenan Crane** — Benchmark mesh (`spot_quadrangulated.obj`) used in experimental evaluation
 - **Helmut Pottmann et al.** — Foundational research on architectural geometry
 - **SciPy Contributors** — Excellent optimisation library
@@ -452,4 +561,4 @@ Report bugs: [GitHub Issues](https://github.com/nabiljefferson98/pq-mesh-optimis
 
 ---
 
-*Last updated: 12 May 2026*
+*Last updated: 15 May 2026*

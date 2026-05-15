@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![CI](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/actions/workflows/ci.yml/badge.svg)](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation-tool/branch/main/graph/badge.svg)](https://codecov.io/gh/nabiljefferson98/pq-mesh-optimisation-tool)
+![Coverage](https://img.shields.io/badge/coverage-81%25-brightgreen)
 [![Wiki](https://img.shields.io/badge/docs-Wiki-blue)](https://github.com/nabiljefferson98/pq-mesh-optimisation-tool/wiki)
 
 A computational geometry tool for optimising quad meshes to achieve planar faces, enabling fabrication of architectural surfaces from flat panels. Implements SVD-based planarity formulation with L-BFGS-B optimisation.
